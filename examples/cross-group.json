@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "canvas": {
+    "mode": "auto"
+  },
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "a",
+        "x_pt": 100,
+        "y_pt": 140
+      },
+      {
+        "node_id": "b",
+        "x_pt": 340,
+        "y_pt": 140
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "a",
+      "asset_id": "service.amazon-ec2",
+      "group_id": "left",
+      "label": "Amazon EC2"
+    },
+    {
+      "id": "b",
+      "asset_id": "service.amazon-ec2",
+      "group_id": "right",
+      "label": "Amazon EC2"
+    }
+  ],
+  "groups": [
+    {
+      "id": "left",
+      "type": "group.public-subnet",
+      "role": "containment"
+    },
+    {
+      "id": "right",
+      "type": "group.public-subnet",
+      "role": "containment"
+    },
+    {
+      "id": "asg",
+      "type": "group.auto-scaling",
+      "role": "overlay",
+      "members": [
+        "a",
+        "b"
+      ]
+    }
+  ],
+  "edges": []
+}

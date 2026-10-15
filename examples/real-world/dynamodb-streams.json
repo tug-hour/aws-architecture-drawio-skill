@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "mode": "production",
+  "theme": "both",
+  "nodes": [
+    {
+      "id": "table",
+      "asset_id": "aws4.dynamodb",
+      "description": "更新元"
+    },
+    {
+      "id": "stream",
+      "asset_id": "aws4.dynamodb_stream",
+      "description": "変更レコード"
+    },
+    {
+      "id": "processor",
+      "asset_id": "aws4.lambda",
+      "description": "変更の処理"
+    }
+  ],
+  "edges": [
+    {
+      "id": "changes",
+      "source": "table",
+      "target": "stream",
+      "label": "変更レコード"
+    },
+    {
+      "id": "consume",
+      "source": "stream",
+      "target": "processor",
+      "label": "ストリーム処理"
+    }
+  ],
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "table",
+        "x_pt": 100,
+        "y_pt": 100
+      },
+      {
+        "node_id": "stream",
+        "x_pt": 390,
+        "y_pt": 112
+      },
+      {
+        "node_id": "processor",
+        "x_pt": 680,
+        "y_pt": 100
+      }
+    ]
+  }
+}

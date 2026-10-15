@@ -1,0 +1,271 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "direction": "left-to-right",
+  "nodes": [
+    {
+      "id": "n00",
+      "asset_id": "aws4.api_gateway",
+      "label": "Amazon API Gateway",
+      "group_id": "region",
+      "description": "受信1"
+    },
+    {
+      "id": "n01",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda",
+      "group_id": "region",
+      "description": "処理1"
+    },
+    {
+      "id": "n02",
+      "asset_id": "aws4.s3",
+      "label": "Amazon S3",
+      "group_id": "region",
+      "description": "保存1"
+    },
+    {
+      "id": "n03",
+      "asset_id": "aws4.sqs",
+      "label": "Amazon SQS",
+      "group_id": "region",
+      "description": "待機1"
+    },
+    {
+      "id": "n04",
+      "asset_id": "aws4.ec2",
+      "label": "Amazon EC2",
+      "group_id": "region",
+      "description": "実行1"
+    },
+    {
+      "id": "n05",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB",
+      "group_id": "region",
+      "description": "記録1"
+    },
+    {
+      "id": "n10",
+      "asset_id": "aws4.api_gateway",
+      "label": "Amazon API Gateway",
+      "group_id": "region",
+      "description": "受信2"
+    },
+    {
+      "id": "n11",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda",
+      "group_id": "region",
+      "description": "処理2"
+    },
+    {
+      "id": "n12",
+      "asset_id": "aws4.s3",
+      "label": "Amazon S3",
+      "group_id": "region",
+      "description": "保存2"
+    },
+    {
+      "id": "n13",
+      "asset_id": "aws4.sqs",
+      "label": "Amazon SQS",
+      "group_id": "region",
+      "description": "待機2"
+    },
+    {
+      "id": "n14",
+      "asset_id": "aws4.ec2",
+      "label": "Amazon EC2",
+      "group_id": "region",
+      "description": "実行2"
+    },
+    {
+      "id": "n15",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB",
+      "group_id": "region",
+      "description": "記録2"
+    },
+    {
+      "id": "n20",
+      "asset_id": "aws4.api_gateway",
+      "label": "Amazon API Gateway",
+      "group_id": "region",
+      "description": "受信3"
+    },
+    {
+      "id": "n21",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda",
+      "group_id": "region",
+      "description": "処理3"
+    },
+    {
+      "id": "n22",
+      "asset_id": "aws4.s3",
+      "label": "Amazon S3",
+      "group_id": "region",
+      "description": "保存3"
+    },
+    {
+      "id": "n23",
+      "asset_id": "aws4.sqs",
+      "label": "Amazon SQS",
+      "group_id": "region",
+      "description": "待機3"
+    },
+    {
+      "id": "n24",
+      "asset_id": "aws4.ec2",
+      "label": "Amazon EC2",
+      "group_id": "region",
+      "description": "実行3"
+    },
+    {
+      "id": "n25",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB",
+      "group_id": "region",
+      "description": "記録3"
+    },
+    {
+      "id": "user",
+      "asset_id": "aws4.user",
+      "label": "利用者"
+    },
+    {
+      "id": "dns",
+      "asset_id": "aws4.route_53",
+      "label": "Amazon Route 53",
+      "group_id": "cloud",
+      "description": "名前解決"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e01",
+      "source": "n00",
+      "target": "n01"
+    },
+    {
+      "id": "e02",
+      "source": "n01",
+      "target": "n02"
+    },
+    {
+      "id": "e03",
+      "source": "n02",
+      "target": "n03"
+    },
+    {
+      "id": "e04",
+      "source": "n03",
+      "target": "n04"
+    },
+    {
+      "id": "e05",
+      "source": "n04",
+      "target": "n05"
+    },
+    {
+      "id": "bypass0",
+      "source": "n01",
+      "target": "n03"
+    },
+    {
+      "id": "e11",
+      "source": "n10",
+      "target": "n11"
+    },
+    {
+      "id": "e12",
+      "source": "n11",
+      "target": "n12"
+    },
+    {
+      "id": "e13",
+      "source": "n12",
+      "target": "n13"
+    },
+    {
+      "id": "e14",
+      "source": "n13",
+      "target": "n14"
+    },
+    {
+      "id": "e15",
+      "source": "n14",
+      "target": "n15"
+    },
+    {
+      "id": "bypass1",
+      "source": "n11",
+      "target": "n13"
+    },
+    {
+      "id": "e21",
+      "source": "n20",
+      "target": "n21"
+    },
+    {
+      "id": "e22",
+      "source": "n21",
+      "target": "n22"
+    },
+    {
+      "id": "e23",
+      "source": "n22",
+      "target": "n23"
+    },
+    {
+      "id": "e24",
+      "source": "n23",
+      "target": "n24"
+    },
+    {
+      "id": "e25",
+      "source": "n24",
+      "target": "n25"
+    },
+    {
+      "id": "bypass2",
+      "source": "n21",
+      "target": "n23"
+    },
+    {
+      "id": "entry",
+      "source": "user",
+      "target": "dns"
+    },
+    {
+      "id": "entry0",
+      "source": "dns",
+      "target": "n00"
+    },
+    {
+      "id": "entry1",
+      "source": "dns",
+      "target": "n10"
+    },
+    {
+      "id": "entry2",
+      "source": "dns",
+      "target": "n20"
+    }
+  ],
+  "groups": [
+    {
+      "id": "cloud",
+      "type": "group.aws-cloud",
+      "role": "containment"
+    },
+    {
+      "id": "region",
+      "type": "group.region",
+      "role": "containment",
+      "parent_id": "cloud",
+      "label": "東京リージョン"
+    }
+  ]
+}

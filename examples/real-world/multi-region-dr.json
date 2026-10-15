@@ -1,0 +1,859 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "mode": "production",
+  "nodes": [
+    {
+      "id": "browser",
+      "asset_id": "aws4.user",
+      "label": "ブラウザ・SPA実行",
+      "logical_id": "web-client"
+    },
+    {
+      "id": "cf",
+      "asset_id": "aws4.cloudfront",
+      "label": "Amazon CloudFront",
+      "group_id": "aws",
+      "description": "SPA配信・グローバル"
+    },
+    {
+      "id": "waf",
+      "asset_id": "aws4.waf",
+      "label": "AWS WAF",
+      "group_id": "aws",
+      "description": "CloudFront Web ACL"
+    },
+    {
+      "id": "dns",
+      "asset_id": "aws4.route_53",
+      "label": "Amazon Route 53",
+      "group_id": "aws",
+      "description": "API接続先・切替制御"
+    },
+    {
+      "id": "tapia",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "tappa",
+      "description": "ECS API/ワーカー"
+    },
+    {
+      "id": "tdba",
+      "asset_id": "aws4.aurora",
+      "label": "Amazon Aurora",
+      "group_id": "tdbsuba",
+      "description": "Writer"
+    },
+    {
+      "id": "tapib",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "tappb",
+      "description": "ECS API/ワーカー"
+    },
+    {
+      "id": "tdbb",
+      "asset_id": "aws4.aurora",
+      "label": "Amazon Aurora",
+      "group_id": "tdbsubb",
+      "description": "Reader・AZ障害時昇格"
+    },
+    {
+      "id": "talb",
+      "asset_id": "aws4.application_load_balancer",
+      "label": "Application Load Balancer\n2AZの公開サブネット",
+      "group_id": "tvpc"
+    },
+    {
+      "id": "tspa",
+      "asset_id": "aws4.s3",
+      "label": "Amazon S3",
+      "group_id": "tregion",
+      "description": "非公開SPA・OAC"
+    },
+    {
+      "id": "tstate",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB",
+      "group_id": "tregion",
+      "description": "Global Tables・MREC"
+    },
+    {
+      "id": "tiot",
+      "asset_id": "aws4.iot_core",
+      "label": "AWS IoT Core",
+      "group_id": "tregion",
+      "description": "デバイス受信・UI topic"
+    },
+    {
+      "id": "tpub",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda",
+      "group_id": "tregion",
+      "description": "Rules/Streams・処理/配信"
+    },
+    {
+      "id": "tqueue",
+      "asset_id": "aws4.sqs",
+      "label": "Amazon SQS",
+      "group_id": "tregion",
+      "description": "非同期処理・リージョン固有"
+    },
+    {
+      "id": "oapia",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "oappa",
+      "description": "ECS API/ワーカー・待機"
+    },
+    {
+      "id": "odba",
+      "asset_id": "aws4.aurora",
+      "label": "Amazon Aurora",
+      "group_id": "odbsuba",
+      "description": "Reader・DR時Writer昇格"
+    },
+    {
+      "id": "oapib",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "oappb",
+      "description": "ECS API/ワーカー・待機"
+    },
+    {
+      "id": "odbb",
+      "asset_id": "aws4.aurora",
+      "label": "Amazon Aurora",
+      "group_id": "odbsubb",
+      "description": "Reader・昇格後も維持"
+    },
+    {
+      "id": "oalb",
+      "asset_id": "aws4.application_load_balancer",
+      "label": "Application Load Balancer\n2AZの公開サブネット",
+      "group_id": "ovpc"
+    },
+    {
+      "id": "ospa",
+      "asset_id": "aws4.s3",
+      "label": "Amazon S3",
+      "group_id": "oregion",
+      "description": "非公開SPA・OAC"
+    },
+    {
+      "id": "ostate",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB",
+      "group_id": "oregion",
+      "description": "Global Tables・MREC"
+    },
+    {
+      "id": "oiot",
+      "asset_id": "aws4.iot_core",
+      "label": "AWS IoT Core",
+      "group_id": "oregion",
+      "description": "デバイス受信・UI topic"
+    },
+    {
+      "id": "opub",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda",
+      "group_id": "oregion",
+      "description": "Rules/Streams・処理/配信"
+    },
+    {
+      "id": "oqueue",
+      "asset_id": "aws4.sqs",
+      "label": "Amazon SQS",
+      "group_id": "oregion",
+      "description": "非同期処理・リージョン固有"
+    },
+    {
+      "id": "tclient",
+      "asset_id": "aws4.client",
+      "label": "IoTデバイス（同一）\n通常接続"
+    },
+    {
+      "id": "oclient",
+      "asset_id": "aws4.client",
+      "label": "IoTデバイス（同一）\n切替後"
+    },
+    {
+      "id": "browserdr",
+      "asset_id": "aws4.user",
+      "label": "同じブラウザ・切替後",
+      "logical_id": "web-client"
+    }
+  ],
+  "edges": [
+    {
+      "id": "tbalancea",
+      "source": "talb",
+      "target": "tapia",
+      "label": "振り分け",
+      "purpose": "traffic"
+    },
+    {
+      "id": "tsqla",
+      "source": "tapia",
+      "target": "tdba",
+      "label": "Writer endpoint",
+      "purpose": "traffic"
+    },
+    {
+      "id": "tbalanceb",
+      "source": "talb",
+      "target": "tapib",
+      "label": "振り分け",
+      "purpose": "traffic"
+    },
+    {
+      "id": "tsqlb",
+      "source": "tapib",
+      "target": "tdba",
+      "label": "Writer endpoint",
+      "purpose": "traffic"
+    },
+    {
+      "id": "tstateaccess",
+      "source": "tapib",
+      "target": "tstate",
+      "label": "最新状態",
+      "purpose": "traffic",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "id": "tingest",
+      "source": "tiot",
+      "target": "tpub",
+      "label": "データ処理／UI配信（詳細別図）",
+      "purpose": "traffic",
+      "direction": "both"
+    },
+    {
+      "id": "tstatewrite",
+      "source": "tpub",
+      "target": "tstate",
+      "label": "状態保存／Streams",
+      "purpose": "traffic",
+      "direction": "both",
+      "source_side": "right",
+      "target_side": "right"
+    },
+    {
+      "id": "tjob",
+      "source": "tqueue",
+      "target": "tapib",
+      "label": "Outbox発行／処理",
+      "purpose": "traffic",
+      "source_side": "top",
+      "target_side": "left",
+      "direction": "both"
+    },
+    {
+      "id": "apit",
+      "source": "browser",
+      "target": "talb",
+      "label": "HTTPS API・通常",
+      "purpose": "traffic",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "id": "obalancea",
+      "source": "oalb",
+      "target": "oapia",
+      "label": "振り分け・切替後",
+      "purpose": "failover"
+    },
+    {
+      "id": "osqla",
+      "source": "oapia",
+      "target": "odba",
+      "label": "更新・昇格後",
+      "purpose": "failover"
+    },
+    {
+      "id": "obalanceb",
+      "source": "oalb",
+      "target": "oapib",
+      "label": "振り分け・切替後",
+      "purpose": "failover"
+    },
+    {
+      "id": "osqlb",
+      "source": "oapib",
+      "target": "odba",
+      "label": "更新・昇格後",
+      "purpose": "failover",
+      "source_side": "top"
+    },
+    {
+      "id": "ostateaccess",
+      "source": "oapib",
+      "target": "ostate",
+      "label": "最新状態・切替後",
+      "purpose": "failover",
+      "source_side": "left",
+      "target_side": "top"
+    },
+    {
+      "id": "oingest",
+      "source": "oiot",
+      "target": "opub",
+      "label": "データ処理／UI配信（詳細別図）",
+      "purpose": "traffic",
+      "direction": "both"
+    },
+    {
+      "id": "ostatewrite",
+      "source": "opub",
+      "target": "ostate",
+      "label": "状態保存／Streams",
+      "purpose": "traffic",
+      "direction": "both",
+      "source_side": "left",
+      "target_side": "left"
+    },
+    {
+      "id": "ojob",
+      "source": "oqueue",
+      "target": "oapib",
+      "label": "Outbox発行／処理・切替後",
+      "purpose": "failover",
+      "source_side": "top",
+      "target_side": "right",
+      "direction": "both"
+    },
+    {
+      "id": "apio",
+      "source": "browserdr",
+      "target": "oalb",
+      "label": "HTTPS API・切替後",
+      "purpose": "failover",
+      "source_side": "left",
+      "target_side": "right"
+    },
+    {
+      "id": "static",
+      "source": "browser",
+      "target": "cf",
+      "label": "HTTPS・SPA",
+      "purpose": "traffic",
+      "source_side": "top",
+      "target_side": "left"
+    },
+    {
+      "id": "wafpolicy",
+      "source": "waf",
+      "target": "cf",
+      "label": "関連付け",
+      "purpose": "association",
+      "direction": "none",
+      "source_side": "left",
+      "target_side": "left"
+    },
+    {
+      "id": "origint",
+      "source": "cf",
+      "target": "tspa",
+      "label": "通常・OAC GET",
+      "purpose": "traffic",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "id": "origino",
+      "source": "cf",
+      "target": "ospa",
+      "label": "障害時・OAC GET",
+      "purpose": "failover",
+      "source_side": "top",
+      "target_side": "top"
+    },
+    {
+      "id": "replicaspa",
+      "source": "tspa",
+      "target": "ospa",
+      "label": "S3 CRR・非同期複製",
+      "purpose": "replication"
+    },
+    {
+      "id": "replicadb",
+      "source": "tdba",
+      "target": "odba",
+      "label": "Global DB複製（代表）",
+      "purpose": "replication"
+    },
+    {
+      "id": "replicastate",
+      "source": "tstate",
+      "target": "ostate",
+      "label": "Global Tables・MREC",
+      "purpose": "replication",
+      "direction": "both"
+    },
+    {
+      "id": "iott",
+      "source": "tclient",
+      "target": "tiot",
+      "label": "MQTT/TLS",
+      "direction": "both",
+      "purpose": "traffic",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "id": "ioto",
+      "source": "oclient",
+      "target": "oiot",
+      "label": "MQTT/TLS・切替後",
+      "direction": "both",
+      "purpose": "failover",
+      "source_side": "left",
+      "target_side": "right"
+    },
+    {
+      "id": "dnslookup",
+      "source": "browser",
+      "target": "dns",
+      "purpose": "association",
+      "direction": "none",
+      "label": "APIの名前解決",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "id": "treader",
+      "source": "tapib",
+      "target": "tdbb",
+      "label": "Reader endpoint",
+      "purpose": "traffic"
+    },
+    {
+      "id": "oreader",
+      "source": "oapib",
+      "target": "odbb",
+      "label": "参照・切替後",
+      "purpose": "failover"
+    },
+    {
+      "id": "tscreen",
+      "source": "tiot",
+      "target": "browser",
+      "label": "MQTT/WSS・画面更新",
+      "purpose": "traffic",
+      "source_side": "left",
+      "target_side": "left"
+    },
+    {
+      "id": "oscreen",
+      "source": "oiot",
+      "target": "browserdr",
+      "label": "MQTT/WSS・画面更新・切替後",
+      "purpose": "failover",
+      "source_side": "right",
+      "target_side": "right"
+    }
+  ],
+  "groups": [
+    {
+      "id": "aws",
+      "type": "group.aws-cloud",
+      "role": "containment",
+      "label": "AWS Cloud"
+    },
+    {
+      "id": "tregion",
+      "type": "group.region",
+      "role": "containment",
+      "label": "東京 ap-northeast-1・主系",
+      "parent_id": "aws"
+    },
+    {
+      "id": "tvpc",
+      "type": "group.vpc",
+      "role": "containment",
+      "label": "アプリケーション VPC",
+      "parent_id": "tregion"
+    },
+    {
+      "id": "taza",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "東京 AZ-A",
+      "parent_id": "tvpc"
+    },
+    {
+      "id": "tappa",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "アプリ用プライベート",
+      "parent_id": "taza"
+    },
+    {
+      "id": "tdbsuba",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "DB用プライベート",
+      "parent_id": "taza"
+    },
+    {
+      "id": "tazb",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "東京 AZ-C",
+      "parent_id": "tvpc"
+    },
+    {
+      "id": "tappb",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "アプリ用プライベート",
+      "parent_id": "tazb"
+    },
+    {
+      "id": "tdbsubb",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "DB用プライベート",
+      "parent_id": "tazb"
+    },
+    {
+      "id": "oregion",
+      "type": "group.region",
+      "role": "containment",
+      "label": "大阪 ap-northeast-3・warm standby",
+      "parent_id": "aws"
+    },
+    {
+      "id": "ovpc",
+      "type": "group.vpc",
+      "role": "containment",
+      "label": "アプリケーション VPC",
+      "parent_id": "oregion"
+    },
+    {
+      "id": "oaza",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "大阪 AZ-A",
+      "parent_id": "ovpc"
+    },
+    {
+      "id": "oappa",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "アプリ用プライベート",
+      "parent_id": "oaza"
+    },
+    {
+      "id": "odbsuba",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "DB用プライベート",
+      "parent_id": "oaza"
+    },
+    {
+      "id": "oazb",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "大阪 AZ-C",
+      "parent_id": "ovpc"
+    },
+    {
+      "id": "oappb",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "アプリ用プライベート",
+      "parent_id": "oazb"
+    },
+    {
+      "id": "odbsubb",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "DB用プライベート",
+      "parent_id": "oazb"
+    }
+  ],
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "browser",
+        "x_pt": -400,
+        "y_pt": 900
+      },
+      {
+        "node_id": "cf",
+        "x_pt": -120,
+        "y_pt": 360
+      },
+      {
+        "node_id": "waf",
+        "x_pt": 300,
+        "y_pt": 100
+      },
+      {
+        "node_id": "dns",
+        "x_pt": -120,
+        "y_pt": 650
+      },
+      {
+        "node_id": "tapia",
+        "x_pt": 500,
+        "y_pt": 730
+      },
+      {
+        "node_id": "tdba",
+        "x_pt": 850,
+        "y_pt": 730
+      },
+      {
+        "node_id": "tapib",
+        "x_pt": 500,
+        "y_pt": 1130
+      },
+      {
+        "node_id": "tdbb",
+        "x_pt": 850,
+        "y_pt": 1130
+      },
+      {
+        "node_id": "talb",
+        "x_pt": 160,
+        "y_pt": 900
+      },
+      {
+        "node_id": "tspa",
+        "x_pt": 500,
+        "y_pt": 360
+      },
+      {
+        "node_id": "tstate",
+        "x_pt": 1130,
+        "y_pt": 880
+      },
+      {
+        "node_id": "tiot",
+        "x_pt": 160,
+        "y_pt": 1550
+      },
+      {
+        "node_id": "tpub",
+        "x_pt": 850,
+        "y_pt": 1550
+      },
+      {
+        "node_id": "tqueue",
+        "x_pt": 500,
+        "y_pt": 1390
+      },
+      {
+        "node_id": "oapia",
+        "x_pt": 2230,
+        "y_pt": 730
+      },
+      {
+        "node_id": "odba",
+        "x_pt": 1880,
+        "y_pt": 730
+      },
+      {
+        "node_id": "oapib",
+        "x_pt": 2230,
+        "y_pt": 1130
+      },
+      {
+        "node_id": "odbb",
+        "x_pt": 1880,
+        "y_pt": 1130
+      },
+      {
+        "node_id": "oalb",
+        "x_pt": 2580,
+        "y_pt": 900
+      },
+      {
+        "node_id": "ospa",
+        "x_pt": 1880,
+        "y_pt": 360
+      },
+      {
+        "node_id": "ostate",
+        "x_pt": 1580,
+        "y_pt": 880
+      },
+      {
+        "node_id": "oiot",
+        "x_pt": 2580,
+        "y_pt": 1550
+      },
+      {
+        "node_id": "opub",
+        "x_pt": 1880,
+        "y_pt": 1550
+      },
+      {
+        "node_id": "oqueue",
+        "x_pt": 2230,
+        "y_pt": 1390
+      },
+      {
+        "node_id": "tclient",
+        "x_pt": -650,
+        "y_pt": 1562
+      },
+      {
+        "node_id": "oclient",
+        "x_pt": 3300,
+        "y_pt": 1562
+      },
+      {
+        "node_id": "browserdr",
+        "x_pt": 3050,
+        "y_pt": 900
+      }
+    ],
+    "frame_padding_pt": 24
+  },
+  "canvas": {
+    "mode": "auto"
+  },
+  "glossary": [
+    {
+      "asset_id": "aws4.aurora",
+      "short_name": "DB切替",
+      "full_name": "大阪クラスター昇格→書込先確認→API切替。通常時の大阪は読取専用",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.aurora",
+      "short_name": "DB複製線",
+      "full_name": "クラスターの共有ストレージ間複製を代表インスタンスへ接続。各地域のストレージはAWSが3AZへ自動複製",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.iot_core",
+      "short_name": "IoT切替",
+      "full_name": "両地域の証明書・ポリシー・Rulesを準備。デバイスとブラウザが接続先を変更して再接続",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.sqs",
+      "short_name": "非同期復旧",
+      "full_name": "SQS/EventBridgeは自動複製しない。Outbox/処理記録から再投入し、冪等に処理（補助図参照）",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.fargate",
+      "short_name": "主図のECS",
+      "full_name": "APIとワーカー群を2AZへ配置する代表記号。待機系は最小規模・切替時に増強",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.iot_core",
+      "short_name": "画面認証",
+      "full_name": "両地域のCognito/IAM/IoT policyを準備。切替時に認証と購読を再確立（補助図参照）",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.route_53",
+      "short_name": "線の意味",
+      "full_name": "実線のラベルで通常／障害時／複製／関連付けを区別。関連付けは矢印なし",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.s3",
+      "short_name": "主図のS3",
+      "full_name": "SPAバケット。履歴バケット/Firehose/AthenaはIoT補助図に示し、両地域へ別途配備する",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.route_53",
+      "short_name": "API通信",
+      "full_name": "CloudFrontで取得したSPAをブラウザで実行し、別APIホスト名でALBへHTTPS接続。Route 53は名前解決のみ",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.user",
+      "short_name": "ブラウザの再掲",
+      "full_name": "左は通常接続、右は同じSPAが接続先を切り替えた状態。logical_id=web-clientで同一主体と宣言",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.sqs",
+      "short_name": "主図のSQS線",
+      "full_name": "APIのOutbox発行→EventBridge→SQSとワーカー取得をまとめた双方向線。実際のサービスと方向は非同期補助図で示す",
+      "kind": "note"
+    }
+  ],
+  "availability": {
+    "strategy": "warm-standby",
+    "regions": [
+      {
+        "group_id": "tregion",
+        "role": "primary",
+        "entry_nodes": [
+          "talb",
+          "tiot"
+        ],
+        "regional_nodes": [
+          "tapia",
+          "tdba",
+          "tapib",
+          "tdbb",
+          "talb",
+          "tspa",
+          "tstate",
+          "tiot",
+          "tpub",
+          "tqueue"
+        ]
+      },
+      {
+        "group_id": "oregion",
+        "role": "standby",
+        "entry_nodes": [
+          "oalb",
+          "oiot"
+        ],
+        "regional_nodes": [
+          "oapia",
+          "odba",
+          "oapib",
+          "odbb",
+          "oalb",
+          "ospa",
+          "ostate",
+          "oiot",
+          "opub",
+          "oqueue"
+        ]
+      }
+    ],
+    "aurora_clusters": [
+      {
+        "region_id": "tregion",
+        "writer": "tdba",
+        "readers": [
+          "tdbb"
+        ]
+      },
+      {
+        "region_id": "oregion",
+        "writer": null,
+        "readers": [
+          "odba",
+          "odbb"
+        ]
+      }
+    ],
+    "replication_assets": [
+      "aws4.s3",
+      "aws4.aurora",
+      "aws4.dynamodb"
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "canvas": {
+    "mode": "auto"
+  },
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "state",
+        "x_pt": 300,
+        "y_pt": 300
+      },
+      {
+        "node_id": "publisher",
+        "x_pt": 640,
+        "y_pt": 300
+      },
+      {
+        "node_id": "iot",
+        "x_pt": 980,
+        "y_pt": 300
+      },
+      {
+        "node_id": "browser",
+        "x_pt": 1760,
+        "y_pt": 300
+      },
+      {
+        "node_id": "cognito",
+        "x_pt": 1320,
+        "y_pt": 670
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "state",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB",
+      "group_id": "region",
+      "description": "最新状態・Global Tables"
+    },
+    {
+      "id": "publisher",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda",
+      "group_id": "region",
+      "description": "DynamoDB Streams処理"
+    },
+    {
+      "id": "iot",
+      "asset_id": "aws4.iot_core",
+      "label": "AWS IoT Core",
+      "group_id": "region",
+      "description": "許可された画面トピック"
+    },
+    {
+      "id": "browser",
+      "asset_id": "aws4.user",
+      "label": "ブラウザ\n再接続・状態再取得"
+    },
+    {
+      "id": "cognito",
+      "asset_id": "aws4.cognito",
+      "label": "Amazon Cognito",
+      "group_id": "region",
+      "description": "認証・一時認証情報"
+    }
+  ],
+  "edges": [
+    {
+      "id": "stream",
+      "source": "state",
+      "target": "publisher",
+      "label": "DynamoDB Streams"
+    },
+    {
+      "id": "publish",
+      "source": "publisher",
+      "target": "iot",
+      "label": "HTTPS Publish"
+    },
+    {
+      "id": "push",
+      "source": "iot",
+      "target": "browser",
+      "label": "MQTT over WSS"
+    },
+    {
+      "id": "credentials",
+      "source": "browser",
+      "target": "cognito",
+      "label": "認証・一時資格情報",
+      "source_side": "left",
+      "target_side": "top"
+    }
+  ],
+  "groups": [
+    {
+      "id": "aws",
+      "type": "group.aws-cloud",
+      "role": "containment",
+      "label": "AWS Cloud"
+    },
+    {
+      "id": "region",
+      "type": "group.region",
+      "role": "containment",
+      "label": "選択中のリージョン・リアルタイム更新",
+      "parent_id": "aws"
+    }
+  ]
+}

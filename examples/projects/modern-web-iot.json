@@ -1,0 +1,2552 @@
+{
+  "project_version": "1.0",
+  "model": {
+    "schema_version": "1.0",
+    "theme": "both",
+    "mode": "production",
+    "nodes": [
+      {
+        "id": "browser",
+        "asset_id": "aws4.user",
+        "label": "ブラウザ・SPA実行",
+        "logical_id": "web-client"
+      },
+      {
+        "id": "cf",
+        "asset_id": "aws4.cloudfront",
+        "label": "Amazon CloudFront",
+        "group_id": "aws",
+        "description": "SPA配信・グローバル"
+      },
+      {
+        "id": "waf",
+        "asset_id": "aws4.waf",
+        "label": "AWS WAF",
+        "group_id": "aws",
+        "description": "CloudFront Web ACL"
+      },
+      {
+        "id": "dns",
+        "asset_id": "aws4.route_53",
+        "label": "Amazon Route 53",
+        "group_id": "aws",
+        "description": "API接続先・切替制御"
+      },
+      {
+        "id": "tapia",
+        "asset_id": "aws4.fargate",
+        "label": "AWS Fargate",
+        "group_id": "tappa",
+        "description": "ECS API"
+      },
+      {
+        "id": "tdba",
+        "asset_id": "aws4.aurora",
+        "label": "Amazon Aurora",
+        "group_id": "tdbsuba",
+        "description": "Writer"
+      },
+      {
+        "id": "tapib",
+        "asset_id": "aws4.fargate",
+        "label": "AWS Fargate",
+        "group_id": "tappb",
+        "description": "ECS API"
+      },
+      {
+        "id": "tdbb",
+        "asset_id": "aws4.aurora",
+        "label": "Amazon Aurora",
+        "group_id": "tdbsubb",
+        "description": "Reader・AZ障害時昇格"
+      },
+      {
+        "id": "talb",
+        "asset_id": "aws4.application_load_balancer",
+        "label": "Application Load Balancer\n2AZの公開サブネット",
+        "group_id": "tvpc"
+      },
+      {
+        "id": "tspa",
+        "asset_id": "aws4.s3",
+        "label": "Amazon S3",
+        "group_id": "tregion",
+        "description": "非公開SPA・OAC"
+      },
+      {
+        "id": "tstate",
+        "asset_id": "aws4.dynamodb",
+        "label": "Amazon DynamoDB",
+        "group_id": "tregion",
+        "description": "Global Tables・MREC"
+      },
+      {
+        "id": "tiot",
+        "asset_id": "aws4.iot_core",
+        "label": "AWS IoT Core",
+        "group_id": "tregion",
+        "description": "デバイス受信・UI topic"
+      },
+      {
+        "id": "tpub",
+        "asset_id": "aws4.lambda",
+        "label": "AWS Lambda",
+        "group_id": "tregion",
+        "description": "UIトピック配信"
+      },
+      {
+        "id": "tqueue",
+        "asset_id": "aws4.sqs",
+        "label": "Amazon SQS",
+        "group_id": "tregion",
+        "description": "非同期処理・リージョン固有"
+      },
+      {
+        "id": "oapia",
+        "asset_id": "aws4.fargate",
+        "label": "AWS Fargate",
+        "group_id": "oappa",
+        "description": "ECS API・DR用"
+      },
+      {
+        "id": "odba",
+        "asset_id": "aws4.aurora",
+        "label": "Amazon Aurora",
+        "group_id": "odbsuba",
+        "description": "Reader・DR時Writer昇格"
+      },
+      {
+        "id": "oapib",
+        "asset_id": "aws4.fargate",
+        "label": "AWS Fargate",
+        "group_id": "oappb",
+        "description": "ECS API・DR用"
+      },
+      {
+        "id": "odbb",
+        "asset_id": "aws4.aurora",
+        "label": "Amazon Aurora",
+        "group_id": "odbsubb",
+        "description": "Reader・昇格後も維持"
+      },
+      {
+        "id": "oalb",
+        "asset_id": "aws4.application_load_balancer",
+        "label": "Application Load Balancer\n2AZの公開サブネット",
+        "group_id": "ovpc"
+      },
+      {
+        "id": "ospa",
+        "asset_id": "aws4.s3",
+        "label": "Amazon S3",
+        "group_id": "oregion",
+        "description": "非公開SPA・OAC"
+      },
+      {
+        "id": "ostate",
+        "asset_id": "aws4.dynamodb",
+        "label": "Amazon DynamoDB",
+        "group_id": "oregion",
+        "description": "Global Tables・MREC"
+      },
+      {
+        "id": "oiot",
+        "asset_id": "aws4.iot_core",
+        "label": "AWS IoT Core",
+        "group_id": "oregion",
+        "description": "デバイス受信・UI topic"
+      },
+      {
+        "id": "opub",
+        "asset_id": "aws4.lambda",
+        "label": "AWS Lambda",
+        "group_id": "oregion",
+        "description": "UIトピック配信"
+      },
+      {
+        "id": "oqueue",
+        "asset_id": "aws4.sqs",
+        "label": "Amazon SQS",
+        "group_id": "oregion",
+        "description": "非同期処理・リージョン固有"
+      },
+      {
+        "id": "tclient",
+        "asset_id": "aws4.client",
+        "label": "IoTデバイス（同一）\n通常接続"
+      },
+      {
+        "id": "oclient",
+        "asset_id": "aws4.client",
+        "label": "IoTデバイス（同一）\n切替後"
+      },
+      {
+        "id": "browserdr",
+        "asset_id": "aws4.user",
+        "label": "同じブラウザ・切替後",
+        "logical_id": "web-client"
+      },
+      {
+        "id": "tcluster",
+        "asset_id": "aws4.aurora",
+        "label": "Amazon Aurora",
+        "group_id": "tregion",
+        "description": "DBクラスタ・複製単位"
+      },
+      {
+        "id": "tstream",
+        "asset_id": "aws4.kinesis_data_streams",
+        "label": "Amazon Kinesis\nData Streams",
+        "group_id": "tregion",
+        "description": "データストリーム"
+      },
+      {
+        "id": "tingestfn",
+        "asset_id": "aws4.lambda",
+        "label": "AWS Lambda",
+        "group_id": "tregion",
+        "description": "IoTデータ処理"
+      },
+      {
+        "id": "trelay",
+        "asset_id": "aws4.lambda",
+        "label": "AWS Lambda",
+        "group_id": "tregion",
+        "description": "Outboxリレー"
+      },
+      {
+        "id": "tbus",
+        "asset_id": "aws4.eventbridge",
+        "label": "Amazon EventBridge",
+        "group_id": "tregion",
+        "description": "ジョブ発行"
+      },
+      {
+        "id": "tworkera",
+        "asset_id": "aws4.fargate",
+        "label": "AWS Fargate",
+        "group_id": "tappa",
+        "description": "ECSワーカー"
+      },
+      {
+        "id": "tworkerb",
+        "asset_id": "aws4.fargate",
+        "label": "AWS Fargate",
+        "group_id": "tappb",
+        "description": "ECSワーカー"
+      },
+      {
+        "id": "ocluster",
+        "asset_id": "aws4.aurora",
+        "label": "Amazon Aurora",
+        "group_id": "oregion",
+        "description": "DBクラスタ・複製単位"
+      },
+      {
+        "id": "ostream",
+        "asset_id": "aws4.kinesis_data_streams",
+        "label": "Amazon Kinesis\nData Streams",
+        "group_id": "oregion",
+        "description": "データストリーム"
+      },
+      {
+        "id": "oingestfn",
+        "asset_id": "aws4.lambda",
+        "label": "AWS Lambda",
+        "group_id": "oregion",
+        "description": "IoTデータ処理"
+      },
+      {
+        "id": "orelay",
+        "asset_id": "aws4.lambda",
+        "label": "AWS Lambda",
+        "group_id": "oregion",
+        "description": "Outboxリレー"
+      },
+      {
+        "id": "obus",
+        "asset_id": "aws4.eventbridge",
+        "label": "Amazon EventBridge",
+        "group_id": "oregion",
+        "description": "ジョブ発行"
+      },
+      {
+        "id": "oworkera",
+        "asset_id": "aws4.fargate",
+        "label": "AWS Fargate",
+        "group_id": "oappa",
+        "description": "ECSワーカー・切替後"
+      },
+      {
+        "id": "oworkerb",
+        "asset_id": "aws4.fargate",
+        "label": "AWS Fargate",
+        "group_id": "oappb",
+        "description": "ECSワーカー・切替後"
+      },
+      {
+        "id": "cw",
+        "asset_id": "aws4.cloudwatch_2",
+        "label": "Amazon CloudWatch",
+        "group_id": "aws",
+        "description": "Logs・Metrics・Alarms"
+      },
+      {
+        "id": "sns",
+        "asset_id": "aws4.sns",
+        "label": "Amazon SNS",
+        "group_id": "aws",
+        "description": "障害通知"
+      },
+      {
+        "id": "operator",
+        "asset_id": "aws4.user",
+        "label": "運用担当者"
+      }
+    ],
+    "edges": [
+      {
+        "id": "tbalancea",
+        "source": "talb",
+        "target": "tapia",
+        "label": "振り分け",
+        "purpose": "traffic"
+      },
+      {
+        "id": "tsqla",
+        "source": "tapia",
+        "target": "tdba",
+        "label": "Writer endpoint",
+        "purpose": "traffic"
+      },
+      {
+        "id": "tbalanceb",
+        "source": "talb",
+        "target": "tapib",
+        "label": "振り分け",
+        "purpose": "traffic"
+      },
+      {
+        "id": "tsqlb",
+        "source": "tapib",
+        "target": "tdba",
+        "label": "Writer endpoint",
+        "purpose": "traffic"
+      },
+      {
+        "id": "tstateaccess",
+        "source": "tapib",
+        "target": "tstate",
+        "label": "最新状態",
+        "purpose": "traffic"
+      },
+      {
+        "id": "apit",
+        "source": "browser",
+        "target": "talb",
+        "label": "HTTPS API・通常",
+        "purpose": "traffic"
+      },
+      {
+        "id": "obalancea",
+        "source": "oalb",
+        "target": "oapia",
+        "label": "振り分け・切替後",
+        "purpose": "failover"
+      },
+      {
+        "id": "osqla",
+        "source": "oapia",
+        "target": "odba",
+        "label": "更新・昇格後",
+        "purpose": "failover"
+      },
+      {
+        "id": "obalanceb",
+        "source": "oalb",
+        "target": "oapib",
+        "label": "振り分け・切替後",
+        "purpose": "failover"
+      },
+      {
+        "id": "osqlb",
+        "source": "oapib",
+        "target": "odba",
+        "label": "更新・昇格後",
+        "purpose": "failover"
+      },
+      {
+        "id": "ostateaccess",
+        "source": "oapib",
+        "target": "ostate",
+        "label": "最新状態・切替後",
+        "purpose": "failover"
+      },
+      {
+        "id": "apio",
+        "source": "browserdr",
+        "target": "oalb",
+        "label": "HTTPS API・切替後",
+        "purpose": "failover"
+      },
+      {
+        "id": "static",
+        "source": "browser",
+        "target": "cf",
+        "label": "HTTPS・SPA",
+        "purpose": "traffic"
+      },
+      {
+        "id": "wafpolicy",
+        "source": "waf",
+        "target": "cf",
+        "label": "関連付け",
+        "purpose": "association",
+        "direction": "none",
+        "source_side": "left",
+        "target_side": "top"
+      },
+      {
+        "id": "origint",
+        "source": "cf",
+        "target": "tspa",
+        "label": "通常・OAC GET",
+        "purpose": "traffic"
+      },
+      {
+        "id": "origino",
+        "source": "cf",
+        "target": "ospa",
+        "label": "障害時・OAC GET",
+        "purpose": "failover"
+      },
+      {
+        "id": "replicaspa",
+        "source": "tspa",
+        "target": "ospa",
+        "label": "S3 CRR・非同期複製",
+        "purpose": "replication"
+      },
+      {
+        "id": "replicastate",
+        "source": "tstate",
+        "target": "ostate",
+        "label": "Global Tables・MREC",
+        "purpose": "replication",
+        "direction": "both"
+      },
+      {
+        "id": "iott",
+        "source": "tclient",
+        "target": "tiot",
+        "label": "MQTT/TLS",
+        "direction": "both",
+        "purpose": "traffic"
+      },
+      {
+        "id": "ioto",
+        "source": "oclient",
+        "target": "oiot",
+        "label": "MQTT/TLS・切替後",
+        "direction": "both",
+        "purpose": "failover"
+      },
+      {
+        "id": "dnslookup",
+        "source": "browser",
+        "target": "dns",
+        "purpose": "association",
+        "direction": "none",
+        "label": "APIの名前解決"
+      },
+      {
+        "id": "treader",
+        "source": "tapib",
+        "target": "tdbb",
+        "label": "Reader endpoint",
+        "purpose": "traffic"
+      },
+      {
+        "id": "oreader",
+        "source": "oapib",
+        "target": "odbb",
+        "label": "参照・切替後",
+        "purpose": "failover"
+      },
+      {
+        "id": "tscreen",
+        "source": "tiot",
+        "target": "browser",
+        "label": "MQTT/WSS・画面更新",
+        "purpose": "traffic"
+      },
+      {
+        "id": "oscreen",
+        "source": "oiot",
+        "target": "browserdr",
+        "label": "MQTT/WSS・画面更新・切替後",
+        "purpose": "failover"
+      },
+      {
+        "id": "tmemberdba",
+        "source": "tcluster",
+        "target": "tdba",
+        "label": "クラスタ所属",
+        "purpose": "association",
+        "direction": "none"
+      },
+      {
+        "id": "tmemberdbb",
+        "source": "tcluster",
+        "target": "tdbb",
+        "label": "クラスタ所属",
+        "purpose": "association",
+        "direction": "none"
+      },
+      {
+        "id": "tconsumea",
+        "source": "tqueue",
+        "target": "tworkera",
+        "label": "取得・実行",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "tconsumeb",
+        "source": "tqueue",
+        "target": "tworkerb",
+        "label": "取得・実行",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "toutbox",
+        "source": "tdba",
+        "target": "trelay",
+        "label": "Outbox取得結果",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "tpublish",
+        "source": "trelay",
+        "target": "tbus",
+        "label": "発行",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "tenqueue",
+        "source": "tbus",
+        "target": "tqueue",
+        "label": "キュー投入",
+        "purpose": "traffic",
+        "direction": "forward",
+        "source_side": "left",
+        "target_side": "top"
+      },
+      {
+        "id": "trules",
+        "source": "tiot",
+        "target": "tstream",
+        "label": "IoT Rules",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "tprocess",
+        "source": "tstream",
+        "target": "tingestfn",
+        "label": "イベント処理",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "tsave",
+        "source": "tingestfn",
+        "target": "tstate",
+        "label": "状態保存",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "tchanges",
+        "source": "tstate",
+        "target": "tpub",
+        "label": "Streams",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "tsend",
+        "source": "tpub",
+        "target": "tiot",
+        "label": "UI topicへpublish",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "omemberdba",
+        "source": "ocluster",
+        "target": "odba",
+        "label": "クラスタ所属",
+        "purpose": "association",
+        "direction": "none"
+      },
+      {
+        "id": "omemberdbb",
+        "source": "ocluster",
+        "target": "odbb",
+        "label": "クラスタ所属",
+        "purpose": "association",
+        "direction": "none"
+      },
+      {
+        "id": "oconsumea",
+        "source": "oqueue",
+        "target": "oworkera",
+        "label": "取得・実行・切替後",
+        "purpose": "failover",
+        "direction": "forward"
+      },
+      {
+        "id": "oconsumeb",
+        "source": "oqueue",
+        "target": "oworkerb",
+        "label": "取得・実行・切替後",
+        "purpose": "failover",
+        "direction": "forward"
+      },
+      {
+        "id": "ooutbox",
+        "source": "odba",
+        "target": "orelay",
+        "label": "Outbox取得結果・切替後",
+        "purpose": "failover",
+        "direction": "forward"
+      },
+      {
+        "id": "opublish",
+        "source": "orelay",
+        "target": "obus",
+        "label": "発行・切替後",
+        "purpose": "failover",
+        "direction": "forward"
+      },
+      {
+        "id": "oenqueue",
+        "source": "obus",
+        "target": "oqueue",
+        "label": "キュー投入・切替後",
+        "purpose": "failover",
+        "direction": "forward",
+        "source_side": "left",
+        "target_side": "top"
+      },
+      {
+        "id": "orules",
+        "source": "oiot",
+        "target": "ostream",
+        "label": "IoT Rules・切替後",
+        "purpose": "failover",
+        "direction": "forward"
+      },
+      {
+        "id": "oprocess",
+        "source": "ostream",
+        "target": "oingestfn",
+        "label": "イベント処理・切替後",
+        "purpose": "failover",
+        "direction": "forward"
+      },
+      {
+        "id": "osave",
+        "source": "oingestfn",
+        "target": "ostate",
+        "label": "状態保存・切替後",
+        "purpose": "failover",
+        "direction": "forward"
+      },
+      {
+        "id": "ochanges",
+        "source": "ostate",
+        "target": "opub",
+        "label": "Streams・切替後",
+        "purpose": "failover",
+        "direction": "forward"
+      },
+      {
+        "id": "osend",
+        "source": "opub",
+        "target": "oiot",
+        "label": "UI topicへpublish・切替後",
+        "purpose": "failover",
+        "direction": "forward"
+      },
+      {
+        "id": "replicacluster",
+        "source": "tcluster",
+        "target": "ocluster",
+        "label": "Global Database・非同期複製",
+        "purpose": "replication",
+        "direction": "forward"
+      },
+      {
+        "id": "monitor-api",
+        "source": "tapia",
+        "target": "cw",
+        "label": "ログ・メトリクス",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "alarm",
+        "source": "cw",
+        "target": "sns",
+        "label": "Alarm通知",
+        "purpose": "traffic",
+        "direction": "forward"
+      },
+      {
+        "id": "notify",
+        "source": "sns",
+        "target": "operator",
+        "label": "通知",
+        "purpose": "traffic",
+        "direction": "forward"
+      }
+    ],
+    "groups": [
+      {
+        "id": "aws",
+        "type": "group.aws-cloud",
+        "role": "containment",
+        "label": "AWS Cloud"
+      },
+      {
+        "id": "tregion",
+        "type": "group.region",
+        "role": "containment",
+        "label": "東京 ap-northeast-1・主系",
+        "parent_id": "aws"
+      },
+      {
+        "id": "tvpc",
+        "type": "group.vpc",
+        "role": "containment",
+        "label": "アプリケーション VPC",
+        "parent_id": "tregion"
+      },
+      {
+        "id": "taza",
+        "type": "group.availability-zone",
+        "role": "containment",
+        "label": "東京 AZ-A",
+        "parent_id": "tvpc"
+      },
+      {
+        "id": "tappa",
+        "type": "group.private-subnet",
+        "role": "containment",
+        "label": "アプリ用プライベート",
+        "parent_id": "taza"
+      },
+      {
+        "id": "tdbsuba",
+        "type": "group.private-subnet",
+        "role": "containment",
+        "label": "DB用プライベート",
+        "parent_id": "taza"
+      },
+      {
+        "id": "tazb",
+        "type": "group.availability-zone",
+        "role": "containment",
+        "label": "東京 AZ-C",
+        "parent_id": "tvpc"
+      },
+      {
+        "id": "tappb",
+        "type": "group.private-subnet",
+        "role": "containment",
+        "label": "アプリ用プライベート",
+        "parent_id": "tazb"
+      },
+      {
+        "id": "tdbsubb",
+        "type": "group.private-subnet",
+        "role": "containment",
+        "label": "DB用プライベート",
+        "parent_id": "tazb"
+      },
+      {
+        "id": "oregion",
+        "type": "group.region",
+        "role": "containment",
+        "label": "大阪 ap-northeast-3・warm standby",
+        "parent_id": "aws"
+      },
+      {
+        "id": "ovpc",
+        "type": "group.vpc",
+        "role": "containment",
+        "label": "アプリケーション VPC",
+        "parent_id": "oregion"
+      },
+      {
+        "id": "oaza",
+        "type": "group.availability-zone",
+        "role": "containment",
+        "label": "大阪 AZ-A",
+        "parent_id": "ovpc"
+      },
+      {
+        "id": "oappa",
+        "type": "group.private-subnet",
+        "role": "containment",
+        "label": "アプリ用プライベート",
+        "parent_id": "oaza"
+      },
+      {
+        "id": "odbsuba",
+        "type": "group.private-subnet",
+        "role": "containment",
+        "label": "DB用プライベート",
+        "parent_id": "oaza"
+      },
+      {
+        "id": "oazb",
+        "type": "group.availability-zone",
+        "role": "containment",
+        "label": "大阪 AZ-C",
+        "parent_id": "ovpc"
+      },
+      {
+        "id": "oappb",
+        "type": "group.private-subnet",
+        "role": "containment",
+        "label": "アプリ用プライベート",
+        "parent_id": "oazb"
+      },
+      {
+        "id": "odbsubb",
+        "type": "group.private-subnet",
+        "role": "containment",
+        "label": "DB用プライベート",
+        "parent_id": "oazb"
+      }
+    ],
+    "layout": {
+      "mode": "manual",
+      "positions": [
+        {
+          "node_id": "browser",
+          "x_pt": -400,
+          "y_pt": 900
+        },
+        {
+          "node_id": "cf",
+          "x_pt": -120,
+          "y_pt": 360
+        },
+        {
+          "node_id": "waf",
+          "x_pt": 300,
+          "y_pt": 100
+        },
+        {
+          "node_id": "dns",
+          "x_pt": -120,
+          "y_pt": 650
+        },
+        {
+          "node_id": "tapia",
+          "x_pt": 500,
+          "y_pt": 730
+        },
+        {
+          "node_id": "tdba",
+          "x_pt": 850,
+          "y_pt": 730
+        },
+        {
+          "node_id": "tapib",
+          "x_pt": 500,
+          "y_pt": 1130
+        },
+        {
+          "node_id": "tdbb",
+          "x_pt": 850,
+          "y_pt": 1130
+        },
+        {
+          "node_id": "talb",
+          "x_pt": 160,
+          "y_pt": 900
+        },
+        {
+          "node_id": "tspa",
+          "x_pt": 500,
+          "y_pt": 360
+        },
+        {
+          "node_id": "tstate",
+          "x_pt": 1130,
+          "y_pt": 880
+        },
+        {
+          "node_id": "tiot",
+          "x_pt": 160,
+          "y_pt": 1550
+        },
+        {
+          "node_id": "tpub",
+          "x_pt": 850,
+          "y_pt": 1550
+        },
+        {
+          "node_id": "tqueue",
+          "x_pt": 500,
+          "y_pt": 1390
+        },
+        {
+          "node_id": "oapia",
+          "x_pt": 2230,
+          "y_pt": 730
+        },
+        {
+          "node_id": "odba",
+          "x_pt": 1880,
+          "y_pt": 730
+        },
+        {
+          "node_id": "oapib",
+          "x_pt": 2230,
+          "y_pt": 1130
+        },
+        {
+          "node_id": "odbb",
+          "x_pt": 1880,
+          "y_pt": 1130
+        },
+        {
+          "node_id": "oalb",
+          "x_pt": 2580,
+          "y_pt": 900
+        },
+        {
+          "node_id": "ospa",
+          "x_pt": 1880,
+          "y_pt": 360
+        },
+        {
+          "node_id": "ostate",
+          "x_pt": 1580,
+          "y_pt": 880
+        },
+        {
+          "node_id": "oiot",
+          "x_pt": 2580,
+          "y_pt": 1550
+        },
+        {
+          "node_id": "opub",
+          "x_pt": 1880,
+          "y_pt": 1550
+        },
+        {
+          "node_id": "oqueue",
+          "x_pt": 2230,
+          "y_pt": 1390
+        },
+        {
+          "node_id": "tclient",
+          "x_pt": -650,
+          "y_pt": 1562
+        },
+        {
+          "node_id": "oclient",
+          "x_pt": 3300,
+          "y_pt": 1562
+        },
+        {
+          "node_id": "browserdr",
+          "x_pt": 3050,
+          "y_pt": 900
+        },
+        {
+          "node_id": "tcluster",
+          "x_pt": 1200,
+          "y_pt": 3100
+        },
+        {
+          "node_id": "tstream",
+          "x_pt": 1600,
+          "y_pt": 3100
+        },
+        {
+          "node_id": "tingestfn",
+          "x_pt": 2000,
+          "y_pt": 3100
+        },
+        {
+          "node_id": "trelay",
+          "x_pt": 2400,
+          "y_pt": 3100
+        },
+        {
+          "node_id": "tbus",
+          "x_pt": 2800,
+          "y_pt": 3100
+        },
+        {
+          "node_id": "tworkera",
+          "x_pt": 0,
+          "y_pt": 3400
+        },
+        {
+          "node_id": "tworkerb",
+          "x_pt": 400,
+          "y_pt": 3400
+        },
+        {
+          "node_id": "ocluster",
+          "x_pt": 800,
+          "y_pt": 3400
+        },
+        {
+          "node_id": "ostream",
+          "x_pt": 1200,
+          "y_pt": 3400
+        },
+        {
+          "node_id": "oingestfn",
+          "x_pt": 1600,
+          "y_pt": 3400
+        },
+        {
+          "node_id": "orelay",
+          "x_pt": 2000,
+          "y_pt": 3400
+        },
+        {
+          "node_id": "obus",
+          "x_pt": 2400,
+          "y_pt": 3400
+        },
+        {
+          "node_id": "oworkera",
+          "x_pt": 2800,
+          "y_pt": 3400
+        },
+        {
+          "node_id": "oworkerb",
+          "x_pt": 0,
+          "y_pt": 3700
+        },
+        {
+          "node_id": "cw",
+          "x_pt": 400,
+          "y_pt": 3700
+        },
+        {
+          "node_id": "sns",
+          "x_pt": 800,
+          "y_pt": 3700
+        },
+        {
+          "node_id": "operator",
+          "x_pt": 1200,
+          "y_pt": 3700
+        }
+      ],
+      "frame_padding_pt": 24
+    },
+    "canvas": {
+      "mode": "auto"
+    },
+    "glossary": [],
+    "semantics": {
+      "flows": [
+        {
+          "id": "spa",
+          "kind": "web",
+          "phase": "normal",
+          "path": [
+            "browser",
+            "cf",
+            "tspa"
+          ]
+        },
+        {
+          "id": "spa-dr",
+          "kind": "dr",
+          "phase": "failover",
+          "path": [
+            "browser",
+            "cf",
+            "ospa"
+          ]
+        },
+        {
+          "id": "tapi-a",
+          "kind": "web",
+          "phase": "normal",
+          "path": [
+            "browser",
+            "talb",
+            "tapia",
+            "tdba"
+          ]
+        },
+        {
+          "id": "tapi-b",
+          "kind": "web",
+          "phase": "normal",
+          "path": [
+            "browser",
+            "talb",
+            "tapib",
+            "tdba"
+          ]
+        },
+        {
+          "id": "tread",
+          "kind": "web",
+          "phase": "normal",
+          "path": [
+            "browser",
+            "talb",
+            "tapib",
+            "tdbb"
+          ]
+        },
+        {
+          "id": "tstate-api",
+          "kind": "web",
+          "phase": "normal",
+          "path": [
+            "browser",
+            "talb",
+            "tapib",
+            "tstate"
+          ]
+        },
+        {
+          "id": "tjob-a",
+          "kind": "async",
+          "phase": "normal",
+          "path": [
+            "tapib",
+            "tdba",
+            "trelay",
+            "tbus",
+            "tqueue",
+            "tworkera"
+          ]
+        },
+        {
+          "id": "tjob-b",
+          "kind": "async",
+          "phase": "normal",
+          "path": [
+            "tapib",
+            "tdba",
+            "trelay",
+            "tbus",
+            "tqueue",
+            "tworkerb"
+          ]
+        },
+        {
+          "id": "tiot",
+          "kind": "serverless",
+          "phase": "normal",
+          "path": [
+            "tclient",
+            "tiot",
+            "tstream",
+            "tingestfn",
+            "tstate"
+          ]
+        },
+        {
+          "id": "tui",
+          "kind": "realtime",
+          "phase": "normal",
+          "path": [
+            "tstate",
+            "tpub",
+            "tiot",
+            "browser"
+          ]
+        },
+        {
+          "id": "oapi-a",
+          "kind": "web",
+          "phase": "failover",
+          "path": [
+            "browserdr",
+            "oalb",
+            "oapia",
+            "odba"
+          ]
+        },
+        {
+          "id": "oapi-b",
+          "kind": "web",
+          "phase": "failover",
+          "path": [
+            "browserdr",
+            "oalb",
+            "oapib",
+            "odba"
+          ]
+        },
+        {
+          "id": "oread",
+          "kind": "web",
+          "phase": "failover",
+          "path": [
+            "browserdr",
+            "oalb",
+            "oapib",
+            "odbb"
+          ]
+        },
+        {
+          "id": "ostate-api",
+          "kind": "web",
+          "phase": "failover",
+          "path": [
+            "browserdr",
+            "oalb",
+            "oapib",
+            "ostate"
+          ]
+        },
+        {
+          "id": "ojob-a",
+          "kind": "async",
+          "phase": "failover",
+          "path": [
+            "oapib",
+            "odba",
+            "orelay",
+            "obus",
+            "oqueue",
+            "oworkera"
+          ]
+        },
+        {
+          "id": "ojob-b",
+          "kind": "async",
+          "phase": "failover",
+          "path": [
+            "oapib",
+            "odba",
+            "orelay",
+            "obus",
+            "oqueue",
+            "oworkerb"
+          ]
+        },
+        {
+          "id": "oiot",
+          "kind": "serverless",
+          "phase": "failover",
+          "path": [
+            "oclient",
+            "oiot",
+            "ostream",
+            "oingestfn",
+            "ostate"
+          ]
+        },
+        {
+          "id": "oui",
+          "kind": "realtime",
+          "phase": "failover",
+          "path": [
+            "ostate",
+            "opub",
+            "oiot",
+            "browserdr"
+          ]
+        },
+        {
+          "id": "replicacluster",
+          "kind": "dr",
+          "phase": "replication",
+          "path": [
+            "tcluster",
+            "ocluster"
+          ]
+        },
+        {
+          "id": "replicaspa",
+          "kind": "dr",
+          "phase": "replication",
+          "path": [
+            "tspa",
+            "ospa"
+          ]
+        },
+        {
+          "id": "replicastate",
+          "kind": "dr",
+          "phase": "replication",
+          "path": [
+            "tstate",
+            "ostate"
+          ]
+        },
+        {
+          "id": "monitor",
+          "kind": "monitoring",
+          "phase": "normal",
+          "path": [
+            "tapia",
+            "cw",
+            "sns",
+            "operator"
+          ]
+        }
+      ],
+      "standby_nodes": [
+        "oapia",
+        "odba",
+        "oapib",
+        "odbb",
+        "oalb",
+        "ospa",
+        "ostate",
+        "oiot",
+        "opub",
+        "oqueue",
+        "oclient",
+        "ocluster",
+        "ostream",
+        "oingestfn",
+        "orelay",
+        "obus",
+        "oworkera",
+        "oworkerb"
+      ],
+      "required_edges": [
+        {
+          "id": "tbalancea",
+          "source": "talb",
+          "target": "tapia",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tsqla",
+          "source": "tapia",
+          "target": "tdba",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tbalanceb",
+          "source": "talb",
+          "target": "tapib",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tsqlb",
+          "source": "tapib",
+          "target": "tdba",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tstateaccess",
+          "source": "tapib",
+          "target": "tstate",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "apit",
+          "source": "browser",
+          "target": "talb",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "obalancea",
+          "source": "oalb",
+          "target": "oapia",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "osqla",
+          "source": "oapia",
+          "target": "odba",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "obalanceb",
+          "source": "oalb",
+          "target": "oapib",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "osqlb",
+          "source": "oapib",
+          "target": "odba",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "ostateaccess",
+          "source": "oapib",
+          "target": "ostate",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "apio",
+          "source": "browserdr",
+          "target": "oalb",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "static",
+          "source": "browser",
+          "target": "cf",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "wafpolicy",
+          "source": "waf",
+          "target": "cf",
+          "purpose": "association",
+          "direction": "none"
+        },
+        {
+          "id": "origint",
+          "source": "cf",
+          "target": "tspa",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "origino",
+          "source": "cf",
+          "target": "ospa",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "replicaspa",
+          "source": "tspa",
+          "target": "ospa",
+          "purpose": "replication",
+          "direction": "forward"
+        },
+        {
+          "id": "replicastate",
+          "source": "tstate",
+          "target": "ostate",
+          "purpose": "replication",
+          "direction": "both"
+        },
+        {
+          "id": "iott",
+          "source": "tclient",
+          "target": "tiot",
+          "purpose": "traffic",
+          "direction": "both"
+        },
+        {
+          "id": "ioto",
+          "source": "oclient",
+          "target": "oiot",
+          "purpose": "failover",
+          "direction": "both"
+        },
+        {
+          "id": "dnslookup",
+          "source": "browser",
+          "target": "dns",
+          "purpose": "association",
+          "direction": "none"
+        },
+        {
+          "id": "treader",
+          "source": "tapib",
+          "target": "tdbb",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "oreader",
+          "source": "oapib",
+          "target": "odbb",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "tscreen",
+          "source": "tiot",
+          "target": "browser",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "oscreen",
+          "source": "oiot",
+          "target": "browserdr",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "tmemberdba",
+          "source": "tcluster",
+          "target": "tdba",
+          "purpose": "association",
+          "direction": "none"
+        },
+        {
+          "id": "tmemberdbb",
+          "source": "tcluster",
+          "target": "tdbb",
+          "purpose": "association",
+          "direction": "none"
+        },
+        {
+          "id": "tconsumea",
+          "source": "tqueue",
+          "target": "tworkera",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tconsumeb",
+          "source": "tqueue",
+          "target": "tworkerb",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "toutbox",
+          "source": "tdba",
+          "target": "trelay",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tpublish",
+          "source": "trelay",
+          "target": "tbus",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tenqueue",
+          "source": "tbus",
+          "target": "tqueue",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "trules",
+          "source": "tiot",
+          "target": "tstream",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tprocess",
+          "source": "tstream",
+          "target": "tingestfn",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tsave",
+          "source": "tingestfn",
+          "target": "tstate",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tchanges",
+          "source": "tstate",
+          "target": "tpub",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "tsend",
+          "source": "tpub",
+          "target": "tiot",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "omemberdba",
+          "source": "ocluster",
+          "target": "odba",
+          "purpose": "association",
+          "direction": "none"
+        },
+        {
+          "id": "omemberdbb",
+          "source": "ocluster",
+          "target": "odbb",
+          "purpose": "association",
+          "direction": "none"
+        },
+        {
+          "id": "oconsumea",
+          "source": "oqueue",
+          "target": "oworkera",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "oconsumeb",
+          "source": "oqueue",
+          "target": "oworkerb",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "ooutbox",
+          "source": "odba",
+          "target": "orelay",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "opublish",
+          "source": "orelay",
+          "target": "obus",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "oenqueue",
+          "source": "obus",
+          "target": "oqueue",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "orules",
+          "source": "oiot",
+          "target": "ostream",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "oprocess",
+          "source": "ostream",
+          "target": "oingestfn",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "osave",
+          "source": "oingestfn",
+          "target": "ostate",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "ochanges",
+          "source": "ostate",
+          "target": "opub",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "osend",
+          "source": "opub",
+          "target": "oiot",
+          "purpose": "failover",
+          "direction": "forward"
+        },
+        {
+          "id": "replicacluster",
+          "source": "tcluster",
+          "target": "ocluster",
+          "purpose": "replication",
+          "direction": "forward"
+        },
+        {
+          "id": "monitor-api",
+          "source": "tapia",
+          "target": "cw",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "alarm",
+          "source": "cw",
+          "target": "sns",
+          "purpose": "traffic",
+          "direction": "forward"
+        },
+        {
+          "id": "notify",
+          "source": "sns",
+          "target": "operator",
+          "purpose": "traffic",
+          "direction": "forward"
+        }
+      ]
+    },
+    "availability": {
+      "strategy": "warm-standby",
+      "regions": [
+        {
+          "group_id": "tregion",
+          "role": "primary",
+          "entry_nodes": [
+            "talb",
+            "tiot"
+          ],
+          "regional_nodes": [
+            "tapia",
+            "tdba",
+            "tapib",
+            "tdbb",
+            "talb",
+            "tspa",
+            "tstate",
+            "tiot",
+            "tpub",
+            "tqueue",
+            "tcluster",
+            "tstream",
+            "tingestfn",
+            "trelay",
+            "tbus",
+            "tworkera",
+            "tworkerb"
+          ]
+        },
+        {
+          "group_id": "oregion",
+          "role": "standby",
+          "entry_nodes": [
+            "oalb",
+            "oiot"
+          ],
+          "regional_nodes": [
+            "oapia",
+            "odba",
+            "oapib",
+            "odbb",
+            "oalb",
+            "ospa",
+            "ostate",
+            "oiot",
+            "opub",
+            "oqueue",
+            "ocluster",
+            "ostream",
+            "oingestfn",
+            "orelay",
+            "obus",
+            "oworkera",
+            "oworkerb"
+          ]
+        }
+      ],
+      "aurora_clusters": [
+        {
+          "region_id": "tregion",
+          "writer": "tdba",
+          "readers": [
+            "tdbb"
+          ],
+          "cluster_node": "tcluster"
+        },
+        {
+          "region_id": "oregion",
+          "writer": null,
+          "readers": [
+            "odba",
+            "odbb"
+          ],
+          "cluster_node": "ocluster"
+        }
+      ],
+      "replication_assets": [
+        "aws4.s3",
+        "aws4.aurora",
+        "aws4.dynamodb"
+      ]
+    }
+  },
+  "views": [
+    {
+      "id": "frontend",
+      "title": "フロントエンド・通常と切替",
+      "node_ids": [
+        "browser",
+        "cf",
+        "waf",
+        "dns",
+        "tspa",
+        "ospa"
+      ],
+      "edge_ids": [
+        "static",
+        "wafpolicy",
+        "dnslookup",
+        "origint",
+        "origino"
+      ],
+      "flow_ids": [
+        "spa",
+        "spa-dr"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "browser",
+            "x_pt": -200,
+            "y_pt": 212
+          },
+          {
+            "node_id": "cf",
+            "x_pt": 320,
+            "y_pt": 200
+          },
+          {
+            "node_id": "waf",
+            "x_pt": 320,
+            "y_pt": -50
+          },
+          {
+            "node_id": "dns",
+            "x_pt": 320,
+            "y_pt": 650
+          },
+          {
+            "node_id": "tspa",
+            "x_pt": 740,
+            "y_pt": 200
+          },
+          {
+            "node_id": "ospa",
+            "x_pt": 740,
+            "y_pt": 570
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "replication",
+      "title": "リージョン間複製・API詳細は別図",
+      "node_ids": [
+        "tspa",
+        "ospa",
+        "tcluster",
+        "ocluster",
+        "tstate",
+        "ostate"
+      ],
+      "edge_ids": [
+        "replicaspa",
+        "replicastate",
+        "replicacluster"
+      ],
+      "flow_ids": [
+        "replicacluster",
+        "replicaspa",
+        "replicastate"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "tspa",
+            "x_pt": 100,
+            "y_pt": 100
+          },
+          {
+            "node_id": "ospa",
+            "x_pt": 760,
+            "y_pt": 100
+          },
+          {
+            "node_id": "tcluster",
+            "x_pt": 100,
+            "y_pt": 400
+          },
+          {
+            "node_id": "ocluster",
+            "x_pt": 760,
+            "y_pt": 400
+          },
+          {
+            "node_id": "tstate",
+            "x_pt": 100,
+            "y_pt": 700
+          },
+          {
+            "node_id": "ostate",
+            "x_pt": 760,
+            "y_pt": 700
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "t-web",
+      "title": "東京・通常運用：APIとDB",
+      "node_ids": [
+        "browser",
+        "talb",
+        "tapia",
+        "tapib",
+        "tdba",
+        "tdbb",
+        "tstate"
+      ],
+      "edge_ids": [
+        "tbalancea",
+        "tsqla",
+        "tbalanceb",
+        "tsqlb",
+        "tstateaccess",
+        "apit",
+        "treader"
+      ],
+      "flow_ids": [
+        "tapi-a",
+        "tapi-b",
+        "tread",
+        "tstate-api"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "browser",
+            "x_pt": -200,
+            "y_pt": 470
+          },
+          {
+            "node_id": "talb",
+            "x_pt": 280,
+            "y_pt": 470
+          },
+          {
+            "node_id": "tapia",
+            "x_pt": 620,
+            "y_pt": 340
+          },
+          {
+            "node_id": "tapib",
+            "x_pt": 620,
+            "y_pt": 650
+          },
+          {
+            "node_id": "tdba",
+            "x_pt": 980,
+            "y_pt": 340
+          },
+          {
+            "node_id": "tdbb",
+            "x_pt": 1000,
+            "y_pt": 650
+          },
+          {
+            "node_id": "tstate",
+            "x_pt": 1320,
+            "y_pt": 470
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "t-async",
+      "title": "東京・通常運用：Outboxとワーカー",
+      "node_ids": [
+        "tapib",
+        "tdba",
+        "trelay",
+        "tbus",
+        "tqueue",
+        "tworkera",
+        "tworkerb"
+      ],
+      "edge_ids": [
+        "tsqlb",
+        "tconsumea",
+        "tconsumeb",
+        "toutbox",
+        "tpublish",
+        "tenqueue"
+      ],
+      "flow_ids": [
+        "tjob-a",
+        "tjob-b"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "tapib",
+            "x_pt": 100,
+            "y_pt": 100
+          },
+          {
+            "node_id": "tdba",
+            "x_pt": 560,
+            "y_pt": 100
+          },
+          {
+            "node_id": "trelay",
+            "x_pt": 1000,
+            "y_pt": 100
+          },
+          {
+            "node_id": "tbus",
+            "x_pt": 1370,
+            "y_pt": 100
+          },
+          {
+            "node_id": "tqueue",
+            "x_pt": 1240,
+            "y_pt": 460
+          },
+          {
+            "node_id": "tworkera",
+            "x_pt": 560,
+            "y_pt": 320
+          },
+          {
+            "node_id": "tworkerb",
+            "x_pt": 100,
+            "y_pt": 460
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "t-iot",
+      "title": "東京・通常運用：IoT収集",
+      "node_ids": [
+        "tclient",
+        "tiot",
+        "tstream",
+        "tingestfn",
+        "tstate"
+      ],
+      "edge_ids": [
+        "iott",
+        "trules",
+        "tprocess",
+        "tsave"
+      ],
+      "flow_ids": [
+        "tiot"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "tclient",
+            "x_pt": -100,
+            "y_pt": 242
+          },
+          {
+            "node_id": "tiot",
+            "x_pt": 270,
+            "y_pt": 230
+          },
+          {
+            "node_id": "tstream",
+            "x_pt": 600,
+            "y_pt": 230
+          },
+          {
+            "node_id": "tingestfn",
+            "x_pt": 930,
+            "y_pt": 230
+          },
+          {
+            "node_id": "tstate",
+            "x_pt": 1260,
+            "y_pt": 230
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "t-realtime",
+      "title": "東京・通常運用：画面のリアルタイム更新",
+      "node_ids": [
+        "tstate",
+        "tpub",
+        "tiot",
+        "browser"
+      ],
+      "edge_ids": [
+        "tscreen",
+        "tchanges",
+        "tsend"
+      ],
+      "flow_ids": [
+        "tui"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "tstate",
+            "x_pt": 100,
+            "y_pt": 160
+          },
+          {
+            "node_id": "tpub",
+            "x_pt": 460,
+            "y_pt": 160
+          },
+          {
+            "node_id": "tiot",
+            "x_pt": 820,
+            "y_pt": 160
+          },
+          {
+            "node_id": "browser",
+            "x_pt": 1350,
+            "y_pt": 172
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "t-cluster",
+      "title": "東京・通常運用：クラスタとAZ配置",
+      "node_ids": [
+        "tcluster",
+        "tdba",
+        "tdbb"
+      ],
+      "edge_ids": [
+        "tmemberdba",
+        "tmemberdbb"
+      ],
+      "flow_ids": [],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "tcluster",
+            "x_pt": 0,
+            "y_pt": 420
+          },
+          {
+            "node_id": "tdba",
+            "x_pt": 400,
+            "y_pt": 260
+          },
+          {
+            "node_id": "tdbb",
+            "x_pt": 400,
+            "y_pt": 600
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "o-web",
+      "title": "大阪・切替後：APIとDB",
+      "node_ids": [
+        "browserdr",
+        "oalb",
+        "oapia",
+        "oapib",
+        "odba",
+        "odbb",
+        "ostate"
+      ],
+      "edge_ids": [
+        "obalancea",
+        "osqla",
+        "obalanceb",
+        "osqlb",
+        "ostateaccess",
+        "apio",
+        "oreader"
+      ],
+      "flow_ids": [
+        "oapi-a",
+        "oapi-b",
+        "oread",
+        "ostate-api"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "browserdr",
+            "x_pt": -200,
+            "y_pt": 470
+          },
+          {
+            "node_id": "oalb",
+            "x_pt": 280,
+            "y_pt": 470
+          },
+          {
+            "node_id": "oapia",
+            "x_pt": 620,
+            "y_pt": 340
+          },
+          {
+            "node_id": "oapib",
+            "x_pt": 620,
+            "y_pt": 650
+          },
+          {
+            "node_id": "odba",
+            "x_pt": 980,
+            "y_pt": 340
+          },
+          {
+            "node_id": "odbb",
+            "x_pt": 980,
+            "y_pt": 650
+          },
+          {
+            "node_id": "ostate",
+            "x_pt": 1320,
+            "y_pt": 470
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "o-async",
+      "title": "大阪・切替後：Outboxとワーカー",
+      "node_ids": [
+        "oapib",
+        "odba",
+        "orelay",
+        "obus",
+        "oqueue",
+        "oworkera",
+        "oworkerb"
+      ],
+      "edge_ids": [
+        "osqlb",
+        "oconsumea",
+        "oconsumeb",
+        "ooutbox",
+        "opublish",
+        "oenqueue"
+      ],
+      "flow_ids": [
+        "ojob-a",
+        "ojob-b"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "oapib",
+            "x_pt": 100,
+            "y_pt": 100
+          },
+          {
+            "node_id": "odba",
+            "x_pt": 560,
+            "y_pt": 100
+          },
+          {
+            "node_id": "orelay",
+            "x_pt": 1000,
+            "y_pt": 100
+          },
+          {
+            "node_id": "obus",
+            "x_pt": 1370,
+            "y_pt": 100
+          },
+          {
+            "node_id": "oqueue",
+            "x_pt": 1240,
+            "y_pt": 460
+          },
+          {
+            "node_id": "oworkera",
+            "x_pt": 560,
+            "y_pt": 320
+          },
+          {
+            "node_id": "oworkerb",
+            "x_pt": 100,
+            "y_pt": 460
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "o-iot",
+      "title": "大阪・切替後：IoT収集",
+      "node_ids": [
+        "oclient",
+        "oiot",
+        "ostream",
+        "oingestfn",
+        "ostate"
+      ],
+      "edge_ids": [
+        "ioto",
+        "orules",
+        "oprocess",
+        "osave"
+      ],
+      "flow_ids": [
+        "oiot"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "oclient",
+            "x_pt": -100,
+            "y_pt": 242
+          },
+          {
+            "node_id": "oiot",
+            "x_pt": 270,
+            "y_pt": 230
+          },
+          {
+            "node_id": "ostream",
+            "x_pt": 600,
+            "y_pt": 230
+          },
+          {
+            "node_id": "oingestfn",
+            "x_pt": 930,
+            "y_pt": 230
+          },
+          {
+            "node_id": "ostate",
+            "x_pt": 1260,
+            "y_pt": 230
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "o-realtime",
+      "title": "大阪・切替後：画面のリアルタイム更新",
+      "node_ids": [
+        "ostate",
+        "opub",
+        "oiot",
+        "browserdr"
+      ],
+      "edge_ids": [
+        "oscreen",
+        "ochanges",
+        "osend"
+      ],
+      "flow_ids": [
+        "oui"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "ostate",
+            "x_pt": 100,
+            "y_pt": 160
+          },
+          {
+            "node_id": "opub",
+            "x_pt": 460,
+            "y_pt": 160
+          },
+          {
+            "node_id": "oiot",
+            "x_pt": 820,
+            "y_pt": 160
+          },
+          {
+            "node_id": "browserdr",
+            "x_pt": 1350,
+            "y_pt": 172
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "o-cluster",
+      "title": "大阪・切替後：クラスタとAZ配置",
+      "node_ids": [
+        "ocluster",
+        "odba",
+        "odbb"
+      ],
+      "edge_ids": [
+        "omemberdba",
+        "omemberdbb"
+      ],
+      "flow_ids": [],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "ocluster",
+            "x_pt": 0,
+            "y_pt": 420
+          },
+          {
+            "node_id": "odba",
+            "x_pt": 400,
+            "y_pt": 260
+          },
+          {
+            "node_id": "odbb",
+            "x_pt": 400,
+            "y_pt": 600
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    },
+    {
+      "id": "observability",
+      "title": "監視と通知",
+      "node_ids": [
+        "tapia",
+        "cw",
+        "sns",
+        "operator"
+      ],
+      "edge_ids": [
+        "monitor-api",
+        "alarm",
+        "notify"
+      ],
+      "flow_ids": [
+        "monitor"
+      ],
+      "layout": {
+        "mode": "manual",
+        "frame_padding_pt": 24,
+        "positions": [
+          {
+            "node_id": "tapia",
+            "x_pt": 100,
+            "y_pt": 320
+          },
+          {
+            "node_id": "cw",
+            "x_pt": 650,
+            "y_pt": 320
+          },
+          {
+            "node_id": "sns",
+            "x_pt": 990,
+            "y_pt": 320
+          },
+          {
+            "node_id": "operator",
+            "x_pt": 1300,
+            "y_pt": 332
+          }
+        ]
+      },
+      "display": {
+        "width_px": 1920,
+        "height_px": 1080,
+        "min_text_px": 12
+      }
+    }
+  ]
+}

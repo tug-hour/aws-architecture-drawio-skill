@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "nodes": [
+    {
+      "id": "a",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda"
+    },
+    {
+      "id": "b",
+      "asset_id": "aws4.s3",
+      "label": "Amazon S3"
+    },
+    {
+      "id": "c",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB"
+    }
+  ],
+  "edges": [
+    {
+      "id": "direct",
+      "source": "a",
+      "target": "c",
+      "direction": "both",
+      "waypoints": [
+        {
+          "x_pt": 280,
+          "y_pt": 210
+        },
+        {
+          "x_pt": 280,
+          "y_pt": 150
+        },
+        {
+          "x_pt": 580,
+          "y_pt": 150
+        },
+        {
+          "x_pt": 580,
+          "y_pt": 210
+        }
+      ]
+    }
+  ],
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "a",
+        "x_pt": 200,
+        "y_pt": 180
+      },
+      {
+        "node_id": "b",
+        "x_pt": 370,
+        "y_pt": 180
+      },
+      {
+        "node_id": "c",
+        "x_pt": 600,
+        "y_pt": 180
+      }
+    ]
+  },
+  "canvas": {
+    "mode": "fixed",
+    "width_pt": 800,
+    "height_pt": 350
+  },
+  "mode": "draft"
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "profile": "standard",
+  "canvas": {
+    "mode": "auto"
+  },
+  "layout": {
+    "mode": "auto"
+  },
+  "nodes": [
+    {
+      "id": "fn",
+      "asset_id": "service.aws-lambda",
+      "label": "AWS Lambda",
+      "group_id": "subnet",
+      "description": "注文処理"
+    },
+    {
+      "id": "store",
+      "asset_id": "service.amazon-s3",
+      "label": "Amazon S3",
+      "description": "保存先"
+    }
+  ],
+  "edges": [
+    {
+      "id": "write",
+      "source": "fn",
+      "target": "store",
+      "direction": "forward"
+    }
+  ],
+  "glossary": [
+    {
+      "asset_id": "service.amazon-s3",
+      "full_name": "Amazon Simple Storage Service",
+      "short_name": "Amazon S3"
+    }
+  ],
+  "groups": [
+    {
+      "id": "vpc",
+      "type": "group.vpc",
+      "role": "containment",
+      "label": "本番ネットワーク"
+    },
+    {
+      "id": "subnet",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "parent_id": "vpc",
+      "label": "プライベートサブネット"
+    }
+  ]
+}

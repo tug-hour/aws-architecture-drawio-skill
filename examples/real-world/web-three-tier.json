@@ -1,0 +1,305 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "mode": "production",
+  "nodes": [
+    {
+      "id": "apia",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "appa",
+      "description": "ECS API"
+    },
+    {
+      "id": "dbinsta",
+      "asset_id": "aws4.aurora",
+      "label": "Amazon Aurora",
+      "group_id": "dba",
+      "description": "Writer"
+    },
+    {
+      "id": "apic",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "appc",
+      "description": "ECS API"
+    },
+    {
+      "id": "dbinstc",
+      "asset_id": "aws4.aurora",
+      "label": "Amazon Aurora",
+      "group_id": "dbc",
+      "description": "Reader・昇格候補"
+    },
+    {
+      "id": "browser",
+      "asset_id": "aws4.user",
+      "label": "ブラウザ"
+    },
+    {
+      "id": "cf",
+      "asset_id": "aws4.cloudfront",
+      "label": "Amazon CloudFront",
+      "group_id": "aws",
+      "description": "SPA配信"
+    },
+    {
+      "id": "waf",
+      "asset_id": "aws4.waf",
+      "label": "AWS WAF",
+      "group_id": "aws",
+      "description": "Web ACL"
+    },
+    {
+      "id": "spa",
+      "asset_id": "aws4.s3",
+      "label": "Amazon S3",
+      "group_id": "tokyo",
+      "description": "非公開SPA・OAC"
+    },
+    {
+      "id": "alb",
+      "asset_id": "aws4.application_load_balancer",
+      "label": "Application Load Balancer\n2AZの公開サブネット",
+      "group_id": "vpc"
+    },
+    {
+      "id": "state",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB",
+      "group_id": "tokyo",
+      "description": "最新状態"
+    }
+  ],
+  "edges": [
+    {
+      "id": "static",
+      "source": "browser",
+      "target": "cf",
+      "label": "HTTPS・SPA",
+      "purpose": "traffic",
+      "source_side": "top",
+      "target_side": "left"
+    },
+    {
+      "id": "origin",
+      "source": "cf",
+      "target": "spa",
+      "label": "OAC・GET",
+      "purpose": "traffic",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "id": "policy",
+      "source": "waf",
+      "target": "cf",
+      "label": "関連付け",
+      "purpose": "association",
+      "direction": "none",
+      "source_side": "left",
+      "target_side": "left"
+    },
+    {
+      "id": "api",
+      "source": "browser",
+      "target": "alb",
+      "label": "HTTPS API",
+      "purpose": "traffic"
+    },
+    {
+      "id": "balancea",
+      "source": "alb",
+      "target": "apia",
+      "label": "振り分け",
+      "purpose": "traffic"
+    },
+    {
+      "id": "sqla",
+      "source": "apia",
+      "target": "dbinsta",
+      "label": "Writer endpoint",
+      "purpose": "traffic",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "id": "statea",
+      "source": "apia",
+      "target": "state",
+      "label": "最新状態",
+      "purpose": "traffic",
+      "source_side": "top",
+      "target_side": "top"
+    },
+    {
+      "id": "balancec",
+      "source": "alb",
+      "target": "apic",
+      "label": "振り分け",
+      "purpose": "traffic"
+    },
+    {
+      "id": "sqlc",
+      "source": "apic",
+      "target": "dbinsta",
+      "label": "Writer endpoint",
+      "purpose": "traffic",
+      "source_side": "top",
+      "target_side": "left"
+    },
+    {
+      "id": "statec",
+      "source": "apic",
+      "target": "state",
+      "label": "最新状態",
+      "purpose": "traffic",
+      "source_side": "top",
+      "target_side": "left"
+    },
+    {
+      "id": "read",
+      "source": "apic",
+      "target": "dbinstc",
+      "label": "Reader endpoint・参照",
+      "purpose": "traffic"
+    }
+  ],
+  "groups": [
+    {
+      "id": "aws",
+      "type": "group.aws-cloud",
+      "role": "containment",
+      "label": "AWS Cloud"
+    },
+    {
+      "id": "tokyo",
+      "type": "group.region",
+      "role": "containment",
+      "label": "東京・主系",
+      "parent_id": "aws"
+    },
+    {
+      "id": "vpc",
+      "type": "group.vpc",
+      "role": "containment",
+      "label": "アプリケーション VPC",
+      "parent_id": "tokyo"
+    },
+    {
+      "id": "aza",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "AZ-A",
+      "parent_id": "vpc"
+    },
+    {
+      "id": "appa",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "アプリ用プライベート",
+      "parent_id": "aza"
+    },
+    {
+      "id": "dba",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "DB用プライベート",
+      "parent_id": "aza"
+    },
+    {
+      "id": "azc",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "AZ-C",
+      "parent_id": "vpc"
+    },
+    {
+      "id": "appc",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "アプリ用プライベート",
+      "parent_id": "azc"
+    },
+    {
+      "id": "dbc",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "DB用プライベート",
+      "parent_id": "azc"
+    }
+  ],
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "apia",
+        "x_pt": 650,
+        "y_pt": 530
+      },
+      {
+        "node_id": "dbinsta",
+        "x_pt": 1010,
+        "y_pt": 530
+      },
+      {
+        "node_id": "apic",
+        "x_pt": 650,
+        "y_pt": 840
+      },
+      {
+        "node_id": "dbinstc",
+        "x_pt": 1010,
+        "y_pt": 840
+      },
+      {
+        "node_id": "browser",
+        "x_pt": -450,
+        "y_pt": 600
+      },
+      {
+        "node_id": "cf",
+        "x_pt": 0,
+        "y_pt": 150
+      },
+      {
+        "node_id": "waf",
+        "x_pt": 300,
+        "y_pt": -80
+      },
+      {
+        "node_id": "spa",
+        "x_pt": 300,
+        "y_pt": 150
+      },
+      {
+        "node_id": "alb",
+        "x_pt": 300,
+        "y_pt": 600
+      },
+      {
+        "node_id": "state",
+        "x_pt": 1370,
+        "y_pt": 840
+      }
+    ],
+    "frame_padding_pt": 24
+  },
+  "canvas": {
+    "mode": "auto"
+  },
+  "glossary": [
+    {
+      "asset_id": "aws4.aurora",
+      "short_name": "Auroraストレージ",
+      "full_name": "クラスター共有・AWSが3AZへ自動複製。Writer/Reader間の直接複製線は描かない",
+      "kind": "note"
+    },
+    {
+      "asset_id": "aws4.application_load_balancer",
+      "short_name": "ALB配置の補足",
+      "full_name": "AZ-A/Cの公開サブネットを利用する単一リソース（AZを横断する論理配置）",
+      "kind": "note"
+    }
+  ]
+}

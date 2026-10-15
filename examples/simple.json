@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "profile": "standard",
+  "canvas": {
+    "mode": "fixed",
+    "width_pt": 360,
+    "height_pt": 240
+  },
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "fn",
+        "x_pt": 60,
+        "y_pt": 60
+      },
+      {
+        "node_id": "store",
+        "x_pt": 240,
+        "y_pt": 60
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "fn",
+      "asset_id": "service.aws-lambda",
+      "label": "AWS Lambda"
+    },
+    {
+      "id": "store",
+      "asset_id": "service.amazon-s3",
+      "label": "Amazon S3"
+    }
+  ],
+  "edges": [
+    {
+      "id": "write",
+      "source": "fn",
+      "target": "store",
+      "direction": "forward"
+    }
+  ],
+  "glossary": [
+    {
+      "asset_id": "service.amazon-s3",
+      "full_name": "Amazon Simple Storage Service",
+      "short_name": "Amazon S3"
+    }
+  ]
+}

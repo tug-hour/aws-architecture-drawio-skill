@@ -1,0 +1,56 @@
+{
+  "version": "0.6.1",
+  "status": "passed",
+  "scope": "Specified Mac runtime and verified assets; drawing tool acceptance, not AWS deployment validation",
+  "tests": {
+    "total": 138,
+    "passed": 138,
+    "skipped": 0,
+    "native_integration": 10
+  },
+  "project": {
+    "nodes": 44,
+    "edges": 53,
+    "critical_flows": 22,
+    "views": 13,
+    "themes": 26,
+    "all_edges_covered": true,
+    "all_flows_covered": true,
+    "operational_quality": "passed",
+    "minimum_text_px_at_fit": 12.52,
+    "viewport_px": [
+      1920,
+      1080
+    ]
+  },
+  "legacy_regression": {
+    "cases": 7,
+    "theme_renders": 14
+  },
+  "corpus": {
+    "cases": 7,
+    "expected_outcomes_matched": 7,
+    "accepted": 3,
+    "rendered_but_needs_split": 1,
+    "rejected": 3,
+    "theme_renders": 8
+  },
+  "total_delivered_acceptance_theme_renders": 48,
+  "aws_conformance": "partial",
+  "new_dependencies": false,
+  "settings_changed": false,
+  "personal_skill_installed": false,
+  "ci_activated": false,
+  "source_binding_equal": true,
+  "viewer_status": "passed",
+  "release_rehearsal": "0.6.0 to 0.6.1 update/rollback not performed; legacy mixed captions require explicit migration",
+  "limitations": [
+    "Only the specified Mac/runtime/26 icons validated",
+    "Auto layout cannot resolve high degree or dense inputs; split/manual adjustment required",
+    "Human review must confirm completeness of declared critical flows",
+    "PPTX geometry partially matched",
+    "No actual AWS deployment/IAM/load/DR test",
+    "No personal skill discovery or CI activation",
+    "Official skill validator unavailable without PyYAML"
+  ]
+}

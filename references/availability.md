@@ -1,0 +1,38 @@
+# 冗長化と切替を描く規則
+
+サービス内部でAWSが提供する冗長化は、一つのサービス記号と説明で表す。利用者が台数、AZ、サブネット、役割を構成する場合は、その配置を描く。マネージドサービスという名称だけで判定しない。
+
+AuroraはDBインスタンスのWriter/Readerを別AZのDB用プライベートサブネットへ描く。クラスターのストレージは共有され、AWSが3AZへ複製する。Writer→Readerをストレージの直接複製として描かない。リージョン間のGlobal Databaseは共有ストレージ間の複製である。インスタンス記号へ代表線を接続する場合は、線ラベルと凡例に代表表現と書く。[Auroraの可用性](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html)
+
+Fargateはサービスのタスク配置をAZ別に描く。ALBは一つのリソースとして表せるが、利用する複数AZの公開サブネットをラベルまたは図の構成表へ明記する。S3、DynamoDB、IoT Coreはリージョナルな記号としてVPC・利用者のアプリAZの外へ描く。CloudFront、Route 53はグローバルな領域へ置く。
+
+Multi-Region主図には両リージョンの処理資源と役割、データ複製、通常経路、切替経路を含める。主図だけで切替先が読めるようにし、詳細なサービス連携は補助図へ展開する。warm standbyは副系のDB Writerを昇格前から稼働中として描かない。大阪は2AZにReaderを置き、一つがWriterへ昇格した後も別AZのReaderを維持する。[Aurora Global Database](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html)
+
+IoTの接続先とブラウザのWSS接続先はリージョン固有である。証明書、ポリシー、Rules、認証、再接続を別途準備する。SQS/EventBridgeをリージョン間で自動複製する線は描かない。Outbox/処理記録から再投入する手順と冪等性を説明する。[IoTの耐障害性](https://docs.aws.amazon.com/iot/latest/developerguide/disaster-recovery-resiliency.html)
+
+## 任意の構成契約
+
+availabilityを指定した入力は、topology.pyで描画前に検証する。対応strategyはwarm-standbyのみ。regionsには二つのRegionグループID、primary/standby、entry_nodes、regional_nodesを宣言する。aurora_clustersにはregion_id、writer（副系はnull）、readersを宣言する。replication_assetsは両リージョンに配置し、複製線を持つサービスIDの配列である。実例はexamples/real-world/multi-region-dr.json。
+
+検査は、Region所属、主系・副系の役割、両地域のFargateの2AZ配置・ALBから各AZへの接続、宣言サービス種類の対称性、AuroraのDBサブネット・異なるAZ・役割、通常/障害時の入口、宣言したリージョン間複製とその方向を確認する。Aurora/S3は主系→副系、DynamoDB Global Tablesは双方向とする、この例の契約である。契約がない既存入力は互換性を保つ。宣言された構成の検査であり、未宣言の構成・AWS全サービス・IAM・ネットワーク・運用手順の正しさは証明しない。Multi-Region図を作る際は対応契約を指定する。active-active等は契約対象外と明示し、人が構成を確認する。
+
+edgesのpurposeはtraffic/replication/failover/association。指定時はlabelが必須、associationはdirection=none。PPTXの既定接続を維持し、purposeによって独自の破線へ変えない。線ラベルに通常、障害時、複製、関連付けを明記し、凡例を付ける。
+
+availabilityの通信経路検査では、direction=forwardはsource→target、bothは両方向として扱い、noneは経路に含めない。リージョンへの入口、ALBから各AZのアプリへの接続、ブラウザのCloudFront取得とAPIへの到達、キューへの投入、DBへの接続をこの向きで確認する。双方向線はsourceとtargetを入れ替えても到達関係が同じになる。副系DBへの通常通信も両方向を調べ、別のfailover接続があっても許可しない。この扱いは宣言されたavailability契約に適用し、入力や線を自動修正しない。複製方向の規則と、semantics.required_edgesで指定した接続との厳密一致は維持する。
+
+Route 53と入口ALBの接続にtrafficやfailoverを指定した場合は、sourceとtargetの記述順やdirectionによらず拒否する。DNSの関連付けをアプリケーション通信として宣言しない。
+
+矢じり直前と始点直後に外向きの直線24pt以上を確保する。8pt未満で近接する接続点はW_PORT_PROXIMITY。経路長が180ptを超え、端点間マンハッタン距離の1.5倍を超える場合はW_EDGE_DETOUR。警告は意味上の不具合を確定しないが、配置・ポートの見直しと両テーマでの目視確認が必要である。直線24ptが確保できない経由点はE_EDGE_TERMINAL。SVG実描画でもmarkerによる短縮を考慮して直線長を検査する。
+
+
+CloudFrontでSPAを取得するクライアントからALBまでの実通信経路も検査する。Route 53はAPI通信を中継しない。名前解決はassociation、ブラウザ→ALBはHTTPS traffic、切替後の同じブラウザ→副系ALBはfailoverとする。全てのAuroraインスタンスには、同じリージョンのFargateから読取/書込または明示した昇格後接続が必要である。配置や役割ラベルだけで、接続されていないDBを完成と扱わない。
+
+主図はWriter endpointへの更新接続とReader endpointへの読取接続を示す。読取線は2AZの同一ECSサービスからの代表経路で、AZ別に読取専用サービスを作る指定ではない。副系の読取/書込は切替後とする。Readerを障害時昇格候補だけとして使う別設計は、読取用途を勝手に追加せず、昇格後の接続を明示する。
+
+ブラウザ検査は実際のtext要素の表示範囲を計測し、draw.ioが作る透明な操作領域とは別に保存する。空白の操作領域を文字衝突と誤判定しない。透明な領域に線が通っても、文字・記号に重なる場合は拒否する。
+
+宣言されたSQSには生成側の経路も必要である。消費側の線だけを接続して完全な非同期処理として扱わない。主図の双方向線で生成/消費をまとめる場合は凡例を付け、補助図に実際の中継サービスと方向を描く。
+
+接続ラベルも枠線を跨がない位置へ置く。文字と枠の空きに合わせた候補を計算し、空きがなければ接続ラベルを短くするか配置を広げる。AWSの名称・役割・条件は省略しない。acceptanceはコード・テスト・例・カタログのSHA-256を開始と終了で照合し、検証中に変わった場合はE_SOURCE_CHANGEDで失敗する。
+
+0.6.0のavailability.aurora_clustersは任意のcluster_nodeを持つ。両リージョンの論理クラスタを指定した場合、Auroraの複製線はそのクラスタ同士に接続し、Writer/Reader記号への複製線を拒否する。cluster_nodeはリージョンに直接所属する論理単位で、サブネットのネットワークエンドポイントではない。Writer/Readerの2AZ・クライアント接続検査は従来通り維持する。

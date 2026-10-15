@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "profile": "standard",
+  "canvas": {
+    "mode": "auto"
+  },
+  "layout": {
+    "mode": "auto"
+  },
+  "nodes": [
+    {
+      "id": "fn",
+      "asset_id": "service.aws-lambda",
+      "label": "AWS Lambda",
+      "group_id": "subnet",
+      "description": "注文処理"
+    },
+    {
+      "id": "store",
+      "asset_id": "service.amazon-s3",
+      "label": "Amazon S3",
+      "group_id": "region",
+      "description": "保存先"
+    },
+    {
+      "id": "table",
+      "asset_id": "service.amazon-dynamodb",
+      "label": "Amazon DynamoDB",
+      "group_id": "region",
+      "description": "注文データ"
+    }
+  ],
+  "edges": [
+    {
+      "id": "write",
+      "source": "fn",
+      "target": "store",
+      "direction": "forward"
+    },
+    {
+      "id": "index",
+      "source": "fn",
+      "target": "table"
+    }
+  ],
+  "glossary": [
+    {
+      "asset_id": "service.amazon-s3",
+      "full_name": "Amazon Simple Storage Service",
+      "short_name": "Amazon S3"
+    }
+  ],
+  "direction": "left-to-right",
+  "groups": [
+    {
+      "id": "cloud",
+      "type": "group.aws-cloud",
+      "role": "containment",
+      "label": "AWS Cloud"
+    },
+    {
+      "id": "region",
+      "type": "group.region",
+      "role": "containment",
+      "parent_id": "cloud",
+      "label": "東京リージョン"
+    },
+    {
+      "id": "vpc",
+      "type": "group.vpc",
+      "role": "containment",
+      "parent_id": "region",
+      "label": "本番VPC"
+    },
+    {
+      "id": "az",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "parent_id": "vpc",
+      "label": "アベイラビリティゾーン"
+    },
+    {
+      "id": "subnet",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "parent_id": "az",
+      "label": "プライベートサブネット"
+    }
+  ]
+}

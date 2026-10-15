@@ -1,0 +1,27 @@
+# Inert template. Activation/runner configuration needs separate user approval.
+name: AWS diagram acceptance
+on:
+  workflow_dispatch:
+concurrency:
+  group: aws-diagram-render
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: [self-hosted, macOS, ARM64, aws-diagram-approved]
+    timeout-minutes: 30
+    steps:
+      # Checkout is assumed already present in the dedicated runner workspace.
+      # Replace the skill path for the repository. Do not download/install tools.
+      - name: Confirm existing checkout matches requested commit
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Validate installed runtime and diagrams
+        env:
+          AWS_DIAGRAM_RUNTIME: ${{ vars.AWS_DIAGRAM_RUNTIME }}
+          AWS_DIAGRAM_PROFILE: ${{ vars.AWS_DIAGRAM_PROFILE }}
+        run: >-
+          python3 aws-architecture-drawio/scripts/acceptance.py
+          --runtime "$AWS_DIAGRAM_RUNTIME"
+          --profile "$AWS_DIAGRAM_PROFILE"
+          --output "$RUNNER_TEMP/aws-diagram-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"

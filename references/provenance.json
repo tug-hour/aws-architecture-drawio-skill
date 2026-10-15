@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "release": "23-2026.01.30",
+  "source_documents": [
+    {
+      "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+      "sha256": "82ff8356669c8098768ea168ba417c0039cb37486eba261a69f8f1099332cafb"
+    },
+    {
+      "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+      "sha256": "400cc76fb9fd1161e230cf14872f9cd9b463e04e636b355184919e77fb558e4f"
+    }
+  ],
+  "extraction_sha256": "fe6b232576ca00a1f9e3adc538cd414e31a11c135514b9348a3bcb4e4a8fc9af",
+  "drawio_version": "32.4.1",
+  "native_catalog_count": 1050,
+  "aliases_count": 248,
+  "native_stencil_sha256": "a2d9489c194d2e54326620fa5e430897cdcbdf69211ea4fdad46a405d23c13b7",
+  "source_slides": {
+    "light": {
+      "groups": 25,
+      "arrows": 27
+    },
+    "dark": {
+      "groups": 23,
+      "arrows": 25
+    }
+  },
+  "images_bundled": false,
+  "artwork_equality": "not_guaranteed",
+  "verified_assets_ref": "verified-assets.json",
+  "origin_rendered_cases": [
+    "basic",
+    "vertical",
+    "nested",
+    "cross",
+    "gallery",
+    "architecture",
+    "both-arrows",
+    "cloudsearch"
+  ],
+  "current_validation_ref": "verification-summary.json",
+  "native_catalog_sha256": "fd2e62b095e27e56f9b3b9c35a9639df66b09cc59f7ed900c5cfb7aeb828ef42"
+}

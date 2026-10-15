@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "profile": "standard",
+  "canvas": {
+    "mode": "auto"
+  },
+  "layout": {
+    "mode": "auto"
+  },
+  "nodes": [
+    {
+      "id": "fn",
+      "asset_id": "service.amazon-cloudsearch",
+      "label": "Amazon CloudSearch"
+    },
+    {
+      "id": "store",
+      "asset_id": "service.amazon-s3",
+      "label": "Amazon S3",
+      "description": "保存先"
+    }
+  ],
+  "edges": [
+    {
+      "id": "write",
+      "source": "fn",
+      "target": "store",
+      "direction": "forward"
+    }
+  ],
+  "glossary": [
+    {
+      "asset_id": "service.amazon-s3",
+      "full_name": "Amazon Simple Storage Service",
+      "short_name": "Amazon S3"
+    }
+  ]
+}

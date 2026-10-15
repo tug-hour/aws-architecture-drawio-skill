@@ -1,0 +1,29 @@
+# 構成正本と用途別の図
+
+project.pyは一つの構成正本から複数の図を生成する。通常のrun.pyは1図の生成と旧入力の互換性確認に使う。正式運用向けの構成はproject_version=1.0のプロジェクトで管理し、model、viewsを宣言する。基本例はexamples/projects/modern-web-iot.json。
+
+## 構成の意味
+
+modelは従来の構成JSONにsemanticsを追加したもの。semantics.flowsで重要な処理のid、kind、phase、pathを指定する。kindはweb、serverless、async、realtime、dr、monitoring、custom。phaseはnormal、failover、replication。pathは順番に通過すべきノードIDの列で、最低2要素。通信方向を保った連続した経路で全段階を辿れることを検査する。
+
+normalはtraffic、failoverはtrafficとfailover、replicationはreplicationの線だけを使う。associationと矢印のない線は実通信の経路に含めない。後の必須段階を先に通る経路も認めない。DNSはアプリケーション通信の中継として認めない。standby_nodesには切替前にアプリケーション通信を受けないノードを列挙する。そのノードの通信はfailoverで表す。複製と関連付けは許可する。
+
+required_edgesで、id、source、target、purpose、directionが一致すべき接続を指定できる。経路が存在しても、直接接続の方向や複製の意味が変わった場合に拒否する。重要な読取、更新、キュー発行・消費、複製線を宣言する。検査は宣言の正しさ、実際のAWS設定、IAM、配備、障害時の動作を証明しない。必要な経路が宣言されているかは人が確認する。
+
+## 図の選択と省略
+
+viewsはid、title、node_ids、edge_ids、flow_ids、layout、displayを持つ。displayはwidth_px、height_px、min_text_pxを指定する。glossaryは任意。図では正本の記号、ラベル、所属、線の意味を変えず、表示する要素と座標を選ぶ。集約ノードや省略区間の架空の線を自動で追加しない。
+
+線の両端が図に含まれなければ拒否する。選んだ必須経路は、その図の中で最後まで辿れることを確認する。正本の全接続と全必須経路が、少なくとも一つの図に含まれることを要求する。境界をまたぐ省略線と、図内部で省略した線はproject-report.jsonに記録する。表示しない線を削除済みと説明しない。
+
+例は、フロントエンド、リージョン間複製、東京・大阪それぞれのAPI/DB、Outbox/ワーカー、IoT収集、画面更新、クラスタ/AZ、監視の13図に分ける。リージョン間複製図はアプリケーション全体図ではない。API経路とAZ配置は地域別の図で示す。
+
+APIとワーカー、データ処理と画面配信のLambdaを別記号にする。キュー投入と取得を別方向の線にする。Auroraのクラスタ記号は論理的な複製単位で、VPC外のネットワークエンドポイントを示さない。インスタンスとの線は矢印なしの所属関連であり、実通信ではない。Writer/Readerの実配置はクラスタ詳細図とAPI/DB図に示す。
+
+## 実行
+
+実行条件とコマンドは[生成物用の検証](rendering.md#スキルの生成物用の検証)を参照する。
+
+生成されたproject-report.jsonのstatus、各図のoperational_quality、省略接続、必須経路を確認する。表示サイズに収まらない場合は文字・記号を縮小せず、図の分割や配置を変更する。交差、迂回、接続点近接、枠近接並走、紛らわしい包含枠は正式運用向けの合格を止める。両テーマを実際に表示し、正本の全体経路と各図の粒度を人が確認してから渡す。
+
+表示条件は図の表示領域のピクセル数である。操作パネルを含むウィンドウ全体の寸法ではない。作例の条件は1920×1080、fit表示時の本文12px以上。A4印刷やPowerPointへの貼付けを検証した結果ではない。別の媒体では条件を変更して再検証する。

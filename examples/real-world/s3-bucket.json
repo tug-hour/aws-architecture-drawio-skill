@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "mode": "production",
+  "theme": "both",
+  "nodes": [
+    {
+      "id": "cdn",
+      "asset_id": "aws4.cloudfront"
+    },
+    {
+      "id": "bucket",
+      "asset_id": "aws4.bucket",
+      "description": "非公開SPA・OAC"
+    }
+  ],
+  "edges": [
+    {
+      "id": "origin",
+      "source": "cdn",
+      "target": "bucket",
+      "label": "OAC・GET"
+    }
+  ],
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "cdn",
+        "x_pt": 100,
+        "y_pt": 100
+      },
+      {
+        "node_id": "bucket",
+        "x_pt": 390,
+        "y_pt": 112
+      }
+    ]
+  }
+}
