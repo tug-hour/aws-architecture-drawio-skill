@@ -41,6 +41,36 @@ class DirectRouteTests(unittest.TestCase):
         self.assertEqual(result['issues'][0]['code'],'E_EDGE_OBSTACLE')
         self.assertEqual(result['issues'][0]['details']['obstacle'],'role')
 
+    def test_undersized_plain_text_is_not_claimed_as_fully_checked(self):
+        root,vertex=drawing()
+        vertex('heading',200,20,100,21,'group',style='text;html=0;fontSize=22;overflow=visible;',value='Heading')
+        vertex('role',200,130,100,21,'group',style='html=0;fontSize=16;',value='Name\nRole')
+        before=ET.tostring(root)
+        report=self.review(root)
+        self.assertEqual({u['element_id'] for u in report['unresolved']},{'heading','role'})
+        self.assertEqual(ET.tostring(root),before)
+        for ident in ('heading','role'):
+            root.find(".//mxCell[@id='%s']/mxGeometry"%ident).set('height','42')
+        self.assertFalse(self.review(root)['unresolved'])
+
+    def test_cli_compact_output_keeps_findings_and_comparison(self):
+        import json,subprocess,tempfile
+        root,vertex=drawing()
+        vertex('role',200,40,100,100,'group',style='text;',value='Role')
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'example.drawio';path.write_bytes(ET.tostring(root));before=path.read_bytes()
+            command=[sys.executable,'-B',str(ROOT/'scripts/drawio_routes.py'),str(path),str(path)]
+            compact=json.loads(subprocess.check_output(command))
+            detailed=json.loads(subprocess.check_output(command+['--details']))
+            self.assertEqual(path.read_bytes(),before)
+        self.assertTrue(compact['same_topology']);self.assertTrue(compact['same_route_coverage'])
+        for a,b in zip(compact['results'],detailed['results']):
+            for pa,pb in zip(a['pages'],b['pages']):
+                self.assertNotIn('topology',pa)
+                self.assertTrue(pb.pop('topology'))
+                self.assertEqual(pa,pb)
+                self.assertEqual(pa['issues'][0]['code'],'E_EDGE_OBSTACLE')
+
     def test_computed_routes_and_relative_text_are_not_reported_as_checked(self):
         root,vertex=drawing()
         c=root.find(".//mxCell[@id='ab']");c.set('style',c.get('style')+'edgeStyle=orthogonalEdgeStyle;')

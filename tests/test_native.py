@@ -36,6 +36,17 @@ class NativeTests(unittest.TestCase):
         _,_,root=self.render();text=E.tostring(root,encoding='unicode')
         self.assertNotIn('data:image',text);self.assertNotIn('shape=image',text);self.assertNotIn('http',text)
         self.assertTrue(any('shape=mxgraph.aws4.' in c.get('style','') for c in root.iter('mxCell')))
+    def test_ses_uses_pptx_business_application_color_in_both_themes(self):
+        # Release 23 light slide 55 / dark slide 53: native palette fallback was blue.
+        raw={'schema_version':'1.0','nodes':[{'id':'ses','asset_id':'aws4.simple_email_service'}],'edges':[]}
+        for theme in ('light','dark'):
+            with self.subTest(theme=theme):
+                _,_,root=self.render(raw,theme)
+                cells={c.get('id'):c for c in root.iter('mxCell')}
+                self.assertIn('fillColor=#DD344C;',cells['icon.base.ses'].get('style'))
+                self.assertIn('shape=mxgraph.aws4.simple_email_service;',cells['icon.glyph.ses'].get('style'))
+                self.assertIn('fillColor=#FFFFFF;',cells['icon.glyph.ses'].get('style'))
+                self.assertIn('Amazon Simple Email',cells['label.ses'].get('value'))
     def test_both_themes_have_same_geometry(self):
         _,_,light=self.render();_,_,dark=self.render(theme='dark')
         self.assertEqual([e.attrib for e in light.iter('mxGeometry')],[e.attrib for e in dark.iter('mxGeometry')])

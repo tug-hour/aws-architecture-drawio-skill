@@ -71,7 +71,13 @@ def inspect_page(model):
         return result
     for ident,cell in cells.items():
         if cell.get('vertex')=='1':
-            try:box(ident)
+            try:
+                b=box(ident);s=styles[ident];text=cell.get('value','')
+                # A lower bound, not font measurement. Never enlarge geometry silently:
+                # overflow text may extend beyond the stored obstacle used below.
+                if text and s.get('html','0')=='0' and 'fontSize' in s:
+                    if b['h']+EPS<number(s['fontSize'])*.75*len(text.split('\n')):
+                        unknown(ident,'Stored text height is smaller than font size × lines; rendered bounds need draw.io')
             except (ValueError,KeyError) as error:unknown(ident,str(error))
     frame_ids={ident for ident in boxes if styles[ident].get('group')!='1' and
                (styles[ident].get('container')=='1' or styles[ident].get('shape')=='mxgraph.aws4.group')}
@@ -152,10 +158,14 @@ def compare(xmls):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('diagrams',nargs='+',type=Path)
+    parser.add_argument('--details',action='store_true',help='Include per-cell topology used by the comparison')
     args=parser.parse_args()
     try:
         report=compare([p.read_bytes().decode('utf-8') for p in args.diagrams])
         for result,path in zip(report['results'],args.diagrams):result['file']=str(path)
+        if not args.details:
+            for result in report['results']:
+                for page in result['pages']:page.pop('topology',None)
         print(json.dumps(report,ensure_ascii=False));return 0
     except (OSError,ValueError,ET.ParseError,zlib.error) as error:
         print(json.dumps({'error':str(error)},ensure_ascii=False));return 2
