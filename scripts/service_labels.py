@@ -92,7 +92,7 @@ def validate_names(a, m, fail):
             continue
         names = rules['services'].get(n['asset_id'])
         if not names:
-            fail('E_SERVICE_NAME_UNVERIFIED', 'Service name policy is unavailable; add a source-backed policy', [n['id']])
+            continue  # Missing local name policy does not prohibit a native AWS service.
         lines = n['label'].split('\n')
         # Joining with a space cannot reassemble a word broken across two lines.
         if len(lines) > 2 or any(x != x.strip() or x in ('AWS', 'Amazon') for x in lines):

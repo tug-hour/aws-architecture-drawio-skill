@@ -1,4 +1,6 @@
-# 冗長化と切替を描く規則
+# 冗長化と切替の表現
+
+実際に採用された構成を描くための資料である。例のサービス・AZ数・台数を他の構成に要求しない。
 
 サービス内部でAWSが提供する冗長化は、一つのサービス記号と説明で表す。利用者が台数、AZ、サブネット、役割を構成する場合は、その配置を描く。マネージドサービスという名称だけで判定しない。
 
@@ -14,7 +16,7 @@ IoTの接続先とブラウザのWSS接続先はリージョン固有である�
 
 availabilityを指定した入力は、topology.pyで描画前に検証する。対応strategyはwarm-standbyのみ。regionsには二つのRegionグループID、primary/standby、entry_nodes、regional_nodesを宣言する。aurora_clustersにはregion_id、writer（副系はnull）、readersを宣言する。replication_assetsは両リージョンに配置し、複製線を持つサービスIDの配列である。実例はexamples/real-world/multi-region-dr.json。
 
-検査は、Region所属、主系・副系の役割、両地域のFargateの2AZ配置・ALBから各AZへの接続、宣言サービス種類の対称性、AuroraのDBサブネット・異なるAZ・役割、通常/障害時の入口、宣言したリージョン間複製とその方向を確認する。Aurora/S3は主系→副系、DynamoDB Global Tablesは双方向とする、この例の契約である。契約がない既存入力は互換性を保つ。宣言された構成の検査であり、未宣言の構成・AWS全サービス・IAM・ネットワーク・運用手順の正しさは証明しない。Multi-Region図を作る際は対応契約を指定する。active-active等は契約対象外と明示し、人が構成を確認する。
+検査は、Region所属、主系・副系の役割、両地域のFargateの2AZ配置・ALBから各AZへの接続、宣言サービス種類の対称性、AuroraのDBサブネット・異なるAZ・役割、通常/障害時の入口、宣言したリージョン間複製とその方向を確認する。Aurora/S3は主系→副系、DynamoDB Global Tablesは双方向とする、この例の契約である。契約がない既存入力は互換性を保つ。宣言された構成の検査であり、未宣言の構成・AWS全サービス・IAM・ネットワーク・運用手順の正しさは証明しない。この例と同じ契約を機械検査したい場合だけ指定する。active-active等は契約対象外と明示し、人が構成を確認する。
 
 edgesのpurposeはtraffic/replication/failover/association。指定時はlabelが必須、associationはdirection=none。PPTXの既定接続を維持し、purposeによって独自の破線へ変えない。線ラベルに通常、障害時、複製、関連付けを明記し、凡例を付ける。
 
@@ -22,7 +24,7 @@ availabilityの通信経路検査では、direction=forwardはsource→target、
 
 Route 53と入口ALBの接続にtrafficやfailoverを指定した場合は、sourceとtargetの記述順やdirectionによらず拒否する。DNSの関連付けをアプリケーション通信として宣言しない。
 
-矢じり直前と始点直後に外向きの直線24pt以上を確保する。8pt未満で近接する接続点はW_PORT_PROXIMITY。経路長が180ptを超え、端点間マンハッタン距離の1.5倍を超える場合はW_EDGE_DETOUR。警告は意味上の不具合を確定しないが、配置・ポートの見直しと両テーマでの目視確認が必要である。直線24ptが確保できない経由点はE_EDGE_TERMINAL。SVG実描画でもmarkerによる短縮を考慮して直線長を検査する。
+配置・端点・経路の計算条件は[配置と経路](layout-and-routing.md)を参照する。
 
 
 CloudFrontでSPAを取得するクライアントからALBまでの実通信経路も検査する。Route 53はAPI通信を中継しない。名前解決はassociation、ブラウザ→ALBはHTTPS traffic、切替後の同じブラウザ→副系ALBはfailoverとする。全てのAuroraインスタンスには、同じリージョンのFargateから読取/書込または明示した昇格後接続が必要である。配置や役割ラベルだけで、接続されていないDBを完成と扱わない。
@@ -36,3 +38,16 @@ CloudFrontでSPAを取得するクライアントからALBまでの実通信経�
 接続ラベルも枠線を跨がない位置へ置く。文字と枠の空きに合わせた候補を計算し、空きがなければ接続ラベルを短くするか配置を広げる。AWSの名称・役割・条件は省略しない。acceptanceはコード・テスト・例・カタログのSHA-256を開始と終了で照合し、検証中に変わった場合はE_SOURCE_CHANGEDで失敗する。
 
 0.6.0のavailability.aurora_clustersは任意のcluster_nodeを持つ。両リージョンの論理クラスタを指定した場合、Auroraの複製線はそのクラスタ同士に接続し、Writer/Reader記号への複製線を拒否する。cluster_nodeはリージョンに直接所属する論理単位で、サブネットのネットワークエンドポイントではない。Writer/Readerの2AZ・クライアント接続検査は従来通り維持する。
+
+## Multi-AZの線
+
+AZ別の資源から同じ通信がある場合、省略なのか実際の差なのかを読めるようにする。実装・構成定義に根拠がない通信を追加しない。
+
+| 構成 | 描き方 |
+| --- | --- |
+| Active/Active | 両AZから線を引く。代表線へまとめる場合は「両AZの代表経路」と明記する |
+| Active/Standby | 待機側も描き、切替時だけの通信には条件を付ける |
+| 実行ごとにAZが決まるタスク | 図中の配置が一例であり、AZが固定でないと注記する |
+| Aurora | 実際のWriter/Reader endpointの使い分けに従う。Writerだけに接続する構成へ読取線を足さず、昇格後の接続を描く場合はその条件を示す |
+
+直接作図ではラベルか注記で意味を示す。JSON補助では必要に応じてglossaryのkind=noteやpurpose=failoverを使える。上記の既存主図の代表読取線は、その構成例の説明であり、全構成の必須線ではない。

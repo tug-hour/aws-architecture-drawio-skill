@@ -155,6 +155,8 @@ class ReleaseTests(unittest.TestCase):
     def test_package_uses_definition_not_stale_manifest_and_does_not_write_source(self):
         with tempfile.TemporaryDirectory() as d:
             base = Path(d); source = self.source(base)
+            (source / 'examples').mkdir()
+            (source / 'examples/placement.spec.py').write_text('POS = {}\nW = 800\nH = 400\n')
             before = {p.relative_to(source):p.read_bytes() for p in source.rglob('*') if p.is_file()}
             result, code = package(source, base / 'out')
             self.assertEqual(code, 0, result)
@@ -164,7 +166,7 @@ class ReleaseTests(unittest.TestCase):
             self.assertIn('references/version.json', record['files'])
             self.assertNotIn('references/release-manifest.json', record['files'])
             with zipfile.ZipFile(result['archive']) as bundle:
-                for name in ('LICENSE', 'README.md', 'THIRD_PARTY_NOTICES.md'):
+                for name in ('LICENSE', 'README.md', 'THIRD_PARTY_NOTICES.md', 'examples/placement.spec.py'):
                     content = (source / name).read_bytes()
                     self.assertEqual(bundle.read('aws-architecture-drawio/' + name), content)
                     self.assertEqual(record['files'][name], hashlib.sha256(content).hexdigest())

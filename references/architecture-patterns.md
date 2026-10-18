@@ -63,3 +63,9 @@ Web詳細図ではブラウザのSPA取得とAPI呼出しを別の実通信と�
 ## 0.6.0の構成正本
 
 現行の推奨例はexamples/projects/modern-web-iot.json。API/ワーカー、IoT処理/画面配信を分離し、Outboxリレー、EventBridge、キュー発行・取得、クラスタ単位の複製を明示する。examples/real-worldの単独例は互換性・描画回帰の検査にも使う。主図の省略表現をそのまま新しい正式運用図へ転用しない。
+
+## WebRTCの映像
+
+Kinesis Video Streams with WebRTCではシグナリング、STUN、TURNと映像の経路を区別する。直接接続できるP2Pの図では送信側から視聴側へ映像の線を引き、KVSにはシグナリングの線を引く。直接接続できない場合はTURN中継になるため、必要なら経路や条件を示す。[AWSの構成説明](https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/kvswebrtc-how-it-works.html)
+
+WebRTC ingestion and storageを使う構成ではクラウドへの映像取込もある。全てのWebRTC構成をP2Pだけで表さず、依頼された利用方式に合わせる。[AWSの取込・保存仕様](https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/getting-started-ingestion.html)

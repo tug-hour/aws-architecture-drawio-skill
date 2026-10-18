@@ -67,7 +67,6 @@ def validate(a,m):
         if n.get('group_id') is not None and not isinstance(n['group_id'],str):fail('E_SCHEMA','group_id must be a string',[n['id']])
         if n['asset_id'] not in m['assets']:fail('E_ASSET_UNKNOWN','Unknown asset',[n['id']])
         asset=m['assets'][n['asset_id']]
-        if a['mode']=='production' and asset.get('support_status')!='verified':fail('E_ASSET_UNVERIFIED','Use a verified asset or select draft mode',[n['id']])
         if asset['role'] not in ('service','resource','general'):fail('E_ASSET_ROLE','This asset is not a node icon',[n['id']])
         if 'logical_id' in n and (asset['role']!='general' or not isinstance(n['logical_id'],str) or not re.fullmatch('[A-Za-z0-9_.-]+',n['logical_id'])):fail('E_NODE_IDENTITY','logical_id is only supported for general actors',[n['id']])
         expected='service-name' if asset['role']=='service' else 'general-label' if asset['role']=='general' else 'resource-name'

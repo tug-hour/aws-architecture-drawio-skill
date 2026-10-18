@@ -92,14 +92,23 @@ def search(start,end,boxes,reserved,width,height,crossing_penalty=120,frames=())
                 cost[nxt]=value;parent[nxt]=state;serial+=1;heapq.heappush(queue,(value+abs(q[0]-end[0])+abs(q[1]-end[1]),serial,nxt,value))
     fail('E_ROUTE_UNAVAILABLE','No safe route; supply manual positions/waypoints or split the diagram')
 
-def _route_edges(a,nodes,groups,width,height,order):
+def edge_sides(a,e,byid):
+    """Return the source/target sides, applying the defaults used by routing."""
+    n,t=byid[e['source']],byid[e['target']];forward=t['x']>=n['x']
+    return e.get('source_side','right' if forward else 'left'),e.get('target_side',('left' if forward else 'right') if a['direction']=='left-to-right' else 'top')
+
+def allocate_ports(a,nodes):
+    """Assign every edge endpoint a port fraction on its side.
+
+    Ports on one side are ordered by the other end's x (top side) or y (left/right side),
+    then horizontal pairs whose icon centres align are moved onto one shared y.
+    Returns {edge_id: {'source_side','target_side','source_port','target_port','start','end'}}.
+    """
     byid={n['id']:n for n in nodes};connections={}
     for e in a['edges']:
-        n,t=byid[e['source']],byid[e['target']];forward=t['x']>=n['x']
-        source_side=e.get('source_side','right' if forward else 'left')
-        target_side=e.get('target_side',('left' if forward else 'right') if a['direction']=='left-to-right' else 'top')
-        connections.setdefault((n['id'],source_side),[]).append(('source',e['id']))
-        connections.setdefault((t['id'],target_side),[]).append(('target',e['id']))
+        source_side,target_side=edge_sides(a,e,byid)
+        connections.setdefault((e['source'],source_side),[]).append(('source',e['id']))
+        connections.setdefault((e['target'],target_side),[]).append(('target',e['id']))
     edge_inputs={e['id']:e for e in a['edges']}
     for (node_id,side),values in connections.items():
         def order_port(item):
@@ -107,14 +116,12 @@ def _route_edges(a,nodes,groups,width,height,order):
             other=byid[edge['target'] if role=='source' else edge['source']]
             return (other['x'] if side=='top' else other['y'],ident,role)
         values.sort(key=order_port)
-    def fraction(values,ident):return .1+.8*(values.index(ident)+1)/(len(values)+1)
     allocated={}
     for key,values in connections.items():
-        for value in values:allocated[(key,value)]=fraction(values,value)
+        for value in values:allocated[(key,value)]=.1+.8*(values.index(value)+1)/(len(values)+1)
     # Align unobstructed horizontal pairs without collapsing distinct endpoint lanes.
     for e in a['edges']:
-        n,t=byid[e['source']],byid[e['target']];forward=t['x']>=n['x']
-        ss=e.get('source_side','right' if forward else 'left');ts=e.get('target_side',('left' if forward else 'right') if a['direction']=='left-to-right' else 'top')
+        n,t=byid[e['source']],byid[e['target']];ss,ts=edge_sides(a,e,byid)
         if (ss,ts) not in (('right','left'),('left','right')):continue
         if abs(n['y']+n['h']/2-t['y']-t['h']/2)>EPS:continue
         sk=((n['id'],ss),('source',e['id']));tk=((t['id'],ts),('target',e['id']))
@@ -124,24 +131,36 @@ def _route_edges(a,nodes,groups,width,height,order):
             if not low<=y<=high:continue
             if any(abs(y-byid[key[0][0]]['y']-v*byid[key[0][0]]['h'])<8-EPS for key,v in allocated.items() if key not in (sk,tk) and key[0] in (sk[0],tk[0])):continue
             allocated[sk]=(y-n['y'])/n['h'];allocated[tk]=(y-t['y'])/t['h'];break
+    ports={}
+    for e in a['edges']:
+        n,t=byid[e['source']],byid[e['target']];ss,ts=edge_sides(a,e,byid)
+        sy=allocated[((n['id'],ss),('source',e['id']))];ty=allocated[((t['id'],ts),('target',e['id']))]
+        sp={'right':(1,sy),'left':(0,sy),'top':(sy,0)}[ss];tp={'right':(1,ty),'left':(0,ty),'top':(ty,0)}[ts]
+        ports[e['id']]={'source_side':ss,'target_side':ts,'source_port':sp,'target_port':tp,
+                        'start':[n['x']+sp[0]*n['w'],n['y']+sp[1]*n['h']],'end':[t['x']+tp[0]*t['w'],t['y']+tp[1]*t['h']]}
+    return ports
+
+def obstacle_boxes(nodes,groups,exclude=()):
+    """Icons (except the edge's own ends), every node label and every frame header."""
+    boxes=[{'id':'icon.'+v['id'],'x':v['x'],'y':v['y'],'w':v['w'],'h':v['h']} for v in nodes if v['id'] not in exclude]
+    boxes += [{'id':'label.'+v['id'],'x':v['label_x'],'y':v['y']+v['h']+4,'w':v['label_w'],'h':len(v['label'])*14.4} for v in nodes]
+    boxes += [{'id':'header.'+g['id'],'x':g['x'],'y':g['y'],'w':g.get('header_w',g['w']),'h':54 if g['role']=='overlay' else 30} for g in groups]
+    return boxes
+
+
+def _route_edges(a,nodes,groups,width,height,order):
+    byid={n['id']:n for n in nodes};ports=allocate_ports(a,nodes)
     reserved=[];result=[]
     for e in order:
         n,t=byid[e['source']],byid[e['target']]
-        forward=t['x']>=n['x']
-        source_side=e.get('source_side','right' if forward else 'left')
-        target_side=e.get('target_side',('left' if forward else 'right') if a['direction']=='left-to-right' else 'top')
-        sy=allocated[((n['id'],source_side),('source',e['id']))]
-        ty=allocated[((t['id'],target_side),('target',e['id']))]
-        source_port={'right':(1,sy),'left':(0,sy),'top':(sy,0)}[source_side]
-        target_port={'right':(1,ty),'left':(0,ty),'top':(ty,0)}[target_side]
-        start=[n['x']+source_port[0]*n['w'],n['y']+source_port[1]*n['h']]
-        end=[t['x']+target_port[0]*t['w'],t['y']+target_port[1]*t['h']]
+        port=ports[e['id']]
+        source_side,target_side=port['source_side'],port['target_side']
+        source_port,target_port=port['source_port'],port['target_port']
+        start,end=port['start'],port['end']
         vectors={'right':(TERMINAL,0),'left':(-TERMINAL,0),'top':(0,-TERMINAL)}
         sv,tv=vectors[source_side],vectors[target_side]
         first=[start[0]+sv[0],start[1]+sv[1]];last=[end[0]+tv[0],end[1]+tv[1]]
-        boxes=[{'id':'icon.'+v['id'],'x':v['x'],'y':v['y'],'w':v['w'],'h':v['h']} for v in nodes if v['id'] not in (n['id'],t['id'])]
-        boxes += [{'id':'label.'+v['id'],'x':v['label_x'],'y':v['y']+v['h']+4,'w':v['label_w'],'h':len(v['label'])*14.4} for v in nodes]
-        boxes += [{'id':'header.'+g['id'],'x':g['x'],'y':g['y'],'w':g.get('header_w',g['w']),'h':54 if g['role']=='overlay' else 30} for g in groups]
+        boxes=obstacle_boxes(nodes,groups,(n['id'],t['id']))
         if 'waypoints' in e:
             points=compact([start]+[[p['x_pt'],p['y_pt']] for p in e['waypoints']]+[end])
         else:
