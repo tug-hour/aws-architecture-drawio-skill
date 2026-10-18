@@ -100,7 +100,7 @@ def edge_sides(a,e,byid):
 def allocate_ports(a,nodes):
     """Assign every edge endpoint a port fraction on its side.
 
-    Ports on one side are ordered by the other end's x (top side) or y (left/right side),
+    Ports on one side are ordered by the other end's x (top/bottom sides) or y (left/right side),
     then horizontal pairs whose icon centres align are moved onto one shared y.
     Returns {edge_id: {'source_side','target_side','source_port','target_port','start','end'}}.
     """
@@ -114,7 +114,7 @@ def allocate_ports(a,nodes):
         def order_port(item):
             role,ident=item;edge=edge_inputs[ident]
             other=byid[edge['target'] if role=='source' else edge['source']]
-            return (other['x'] if side=='top' else other['y'],ident,role)
+            return (other['x'] if side in ('top','bottom') else other['y'],ident,role)
         values.sort(key=order_port)
     allocated={}
     for key,values in connections.items():
@@ -135,7 +135,7 @@ def allocate_ports(a,nodes):
     for e in a['edges']:
         n,t=byid[e['source']],byid[e['target']];ss,ts=edge_sides(a,e,byid)
         sy=allocated[((n['id'],ss),('source',e['id']))];ty=allocated[((t['id'],ts),('target',e['id']))]
-        sp={'right':(1,sy),'left':(0,sy),'top':(sy,0)}[ss];tp={'right':(1,ty),'left':(0,ty),'top':(ty,0)}[ts]
+        sp={'right':(1,sy),'left':(0,sy),'top':(sy,0),'bottom':(sy,1)}[ss];tp={'right':(1,ty),'left':(0,ty),'top':(ty,0),'bottom':(ty,1)}[ts]
         ports[e['id']]={'source_side':ss,'target_side':ts,'source_port':sp,'target_port':tp,
                         'start':[n['x']+sp[0]*n['w'],n['y']+sp[1]*n['h']],'end':[t['x']+tp[0]*t['w'],t['y']+tp[1]*t['h']]}
     return ports
@@ -148,6 +148,21 @@ def obstacle_boxes(nodes,groups,exclude=()):
     return boxes
 
 
+def check_path(e,points,source,target,boxes,reserved,width,height,source_side=None,target_side=None,check_bounds=True):
+    """Shared post-route checks; callers decide whether failures gate or advise."""
+    for segment_index,(p,q) in enumerate(zip(points,points[1:])):
+        if abs(p[0]-q[0])>EPS and abs(p[1]-q[1])>EPS:fail('E_EDGE_OBSTACLE','Waypoints must form orthogonal segments',[e['id']])
+        for owner in (source,target):
+            allowed=owner['id']==source['id'] and segment_index==0 or owner['id']==target['id'] and segment_index==len(points)-2
+            if not allowed and rect_hit(p,q,owner):fail('E_EDGE_REENTRY','Edge reenters source/target icon',[e['id']])
+        if check_bounds and (min(*p,*q)<0 or max(p[0],q[0])>width or max(p[1],q[1])>height):fail('E_ROUTE_OVERFLOW','Edge exceeds canvas',[e['id']])
+        hit=next((b['id'] for b in boxes if rect_hit(p,q,b)),None)
+        if hit:fail('E_EDGE_OBSTACLE','Edge intersects '+hit+' (icon/label/header)',[e['id']],details={'obstacle':hit,'segment':[p,q]})
+        if any(shared_length(p,q,u,v)>EPS for u,v in reserved):fail('E_EDGE_OVERLAP','Edges share a segment',[e['id']])
+    if source_side is not None and target_side is not None:
+        check_terminals(e,points,source_side,target_side)
+
+
 def _route_edges(a,nodes,groups,width,height,order):
     byid={n['id']:n for n in nodes};ports=allocate_ports(a,nodes)
     reserved=[];result=[]
@@ -157,7 +172,7 @@ def _route_edges(a,nodes,groups,width,height,order):
         source_side,target_side=port['source_side'],port['target_side']
         source_port,target_port=port['source_port'],port['target_port']
         start,end=port['start'],port['end']
-        vectors={'right':(TERMINAL,0),'left':(-TERMINAL,0),'top':(0,-TERMINAL)}
+        vectors={'right':(TERMINAL,0),'left':(-TERMINAL,0),'top':(0,-TERMINAL),'bottom':(0,TERMINAL)}
         sv,tv=vectors[source_side],vectors[target_side]
         first=[start[0]+sv[0],start[1]+sv[1]];last=[end[0]+tv[0],end[1]+tv[1]]
         boxes=obstacle_boxes(nodes,groups,(n['id'],t['id']))
@@ -169,16 +184,7 @@ def _route_edges(a,nodes,groups,width,height,order):
             except Exception as error:
                 if hasattr(error,'issue'):error.issue['element_ids']=[e['id']]
                 raise
-        for segment_index,(p,q) in enumerate(zip(points,points[1:])):
-            if abs(p[0]-q[0])>EPS and abs(p[1]-q[1])>EPS:fail('E_EDGE_OBSTACLE','Waypoints must form orthogonal segments',[e['id']])
-            for owner in (n,t):
-                allowed=owner['id']==n['id'] and segment_index==0 or owner['id']==t['id'] and segment_index==len(points)-2
-                if not allowed and rect_hit(p,q,owner):fail('E_EDGE_REENTRY','Edge reenters source/target icon',[e['id']])
-            if min(*p,*q)<0 or max(p[0],q[0])>width or max(p[1],q[1])>height:fail('E_ROUTE_OVERFLOW','Edge exceeds canvas',[e['id']])
-            hit=next((b['id'] for b in boxes if rect_hit(p,q,b)),None)
-            if hit:fail('E_EDGE_OBSTACLE','Edge intersects '+hit+' (icon/label/header)',[e['id']],details={'obstacle':hit,'segment':[p,q]})
-            if any(shared_length(p,q,u,v)>EPS for u,v in reserved):fail('E_EDGE_OVERLAP','Edges share a segment',[e['id']])
-        check_terminals(e,points,source_side,target_side)
+        check_path(e,points,n,t,boxes,reserved,width,height,source_side,target_side)
         reserved.extend(zip(points,points[1:]));result.append({'id':e['id'],'points':points,'direction':e['direction'],'source_port':list(source_port),'target_port':list(target_port)})
     lookup={r['id']:r for r in result}
     return [lookup[e['id']] for e in a['edges']]
@@ -206,7 +212,7 @@ def route_edges(a,nodes,groups,width,height):
 
 
 def check_terminals(edge,points,source_side,target_side):
-    vectors={'left':(-1,0),'right':(1,0),'top':(0,-1)}
+    vectors={'left':(-1,0),'right':(1,0),'top':(0,-1),'bottom':(0,1)}
     for name,p,q,side in [('source',points[0],points[1],source_side),('target',points[-1],points[-2],target_side)]:
         dx,dy=q[0]-p[0],q[1]-p[1];vx,vy=vectors[side]
         if abs(dx*vy-dy*vx)>EPS or dx*vx+dy*vy<TERMINAL-EPS:

@@ -131,7 +131,7 @@ def validate(a,m):
             valid_text(e['label'],e['id'])
             if '\n' in e['label'] or len(e['label'])>80:fail('E_EDGE_LABEL','Edge labels need one line, at most 80 characters',[e['id']])
         for side in ('source_side','target_side'):
-            if side in e and e[side] not in ('left','right','top'):fail('E_EDGE_PORT','Supported sides: left, right, top',[e['id']])
+            if side in e and e[side] not in ('left','right','top','bottom'):fail('E_EDGE_PORT','Supported sides: left, right, top, bottom',[e['id']])
         if 'waypoints' in e:
             if not isinstance(e['waypoints'],list) or not e['waypoints']:fail('E_SCHEMA','waypoints must be a nonempty array',[e['id']])
             for p in e['waypoints']:
