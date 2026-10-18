@@ -53,6 +53,26 @@ class DirectRouteTests(unittest.TestCase):
             root.find(".//mxCell[@id='%s']/mxGeometry"%ident).set('height','42')
         self.assertFalse(self.review(root)['unresolved'])
 
+    def test_locked_icons_remain_obstacles_but_background_and_endpoint_glyph_do_not(self):
+        root,vertex=drawing();root.set('background','#FFFFFF')
+        vertex('background',0,0,800,500,style='shape=rect;fillColor=#FFFFFF;strokeColor=none;locked=1;')
+        background=root.find(".//mxCell[@id='background']");background.set('connectable','0')
+        container=root.find('root');container.remove(background);container.insert(2,background)
+        vertex('glyph',0,0,80,80,'a',style='shape=mxgraph.aws4.lambda;locked=1;')
+        root.find(".//mxCell[@id='glyph']").set('connectable','0')
+        self.assertFalse(self.review(root)['issues'])
+        vertex('obstacle',220,40,80,80,'group')
+        obstacle=root.find(".//mxCell[@id='obstacle']");obstacle.set('connectable','0')
+        for shape in ('mxgraph.aws4.lambda','rect'):
+            for locked in (0,1):
+                with self.subTest(shape=shape,locked=locked):
+                    obstacle.set('style','shape=%s;fillColor=#FFFFFF;strokeColor=none;locked=%s;'%(shape,locked))
+                    before=ET.tostring(root);report=self.review(root)
+                    self.assertEqual([i['code'] for i in report['issues']],['E_EDGE_OBSTACLE'])
+                    self.assertEqual(report['issues'][0]['details']['obstacle'],'obstacle')
+                    self.assertFalse(report['unresolved'])
+                    self.assertEqual(ET.tostring(root),before)
+
     def test_cli_compact_output_keeps_findings_and_comparison(self):
         import json,subprocess,tempfile
         root,vertex=drawing()

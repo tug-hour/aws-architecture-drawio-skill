@@ -89,6 +89,21 @@ def inspect_page(model):
     def owner(ident):return next((p for p in ancestors(ident) if p in frame_ids),None)
     architecture={'nodes':[{'id':k,'group_id':owner(k)} for k in boxes if k not in frame_ids],
                   'groups':[{'id':k,'role':'containment','parent_id':owner(k)} for k in frame_ids], 'edges':edge_inputs}
+    # Locking/non-connectability describes editing, not visibility. Only recognize
+    # a backmost, full-diagram background; ordinary locked shapes still obstruct.
+    backgrounds=set()
+    back=next((c for c in items if c.get('id') in boxes and styles[c.get('id')].get('group')!='1'),None)
+    if back is not None:
+        ident=back.get('id');s=styles[ident];b=boxes[ident]
+        if (s.get('shape')=='rect' and s.get('strokeColor')=='none'
+                and s.get('fillColor','').lower()==model.get('background','#FFFFFF').lower()
+                and back.get('connectable')=='0' and not back.get('value')
+                and cells.get(back.get('parent'),ET.Element('mxCell')).get('vertex')!='1'
+                and not any(ident in (c.get('source'),c.get('target')) for c in items if c.get('edge')=='1')
+                and all(b['x']<=v['x']+EPS and b['y']<=v['y']+EPS
+                        and b['x']+b['w']>=v['x']+v['w']-EPS and b['y']+b['h']>=v['y']+v['h']-EPS
+                        for v in boxes.values())):
+            backgrounds.add(ident)
     def endpoint(ident,s,prefix):
         b=box(ident);x=number(s[prefix+'X']);y=number(s[prefix+'Y'])
         if s.get(prefix+'Perimeter')!='0':raise ValueError('Perimeter projection needs draw.io')
@@ -125,7 +140,7 @@ def inspect_page(model):
         obstacles=[]
         for key,b in boxes.items():
             st=styles[key];c=cells[key]
-            if key in (source,target) or key in frame_ids or st.get('group')=='1' or st.get('locked')=='1' and c.get('connectable')=='0' and not c.get('value'):continue
+            if key in (source,target) or key in frame_ids or key in backgrounds or st.get('group')=='1':continue
             if (source in set(ancestors(key)) or target in set(ancestors(key))) and not c.get('value'):continue
             obstacles.append(b)
         try:check_path(edge,points,boxes[source],boxes[target],obstacles,reserved,math.inf,math.inf,ss,ts,check_bounds=False)
