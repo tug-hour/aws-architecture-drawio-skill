@@ -39,13 +39,24 @@ class WaypointTests(unittest.TestCase):
             spec.write_text("raise RuntimeError('must not execute')")
             with self.assertRaises(Failure):read_spec(spec)
 
-    def test_example_reuses_port_allocation_and_obstacle_validation(self):
-        m=manifest();raw=load(ROOT/'examples/real-world/multi-az-waypoints.json');spec=read_spec(ROOT/'examples/real-world/multi-az-waypoints.spec.py')
+    def test_shared_ports_and_obstacle_validation(self):
+        m=manifest()
+        raw={'schema_version':'1.0','nodes':[{'id':n,'asset_id':'aws4.lambda'} for n in ('a','b','c')],
+             'edges':[{'id':e,'source':'a','target':t} for e,t in [('ab','b'),('ac','c')]]}
+        spec={'POS':{'a':(100,200),'b':(500,100),'c':(500,300)},'W':800,'H':500,
+              'SIDES':{'ab':('right','left'),'ac':('right','left')},'LANES':{'ab':[300],'ac':[350]}}
         before=copy.deepcopy(raw);a,lay,_=build(raw,spec,m);self.assertEqual(raw,before)
         self.assertTrue(all(e.get('waypoints') for e in a['edges']))
         self.assertEqual(len(lay['edges']),len(raw['edges']))
-        self.assertEqual(lay['routing_quality']['crossings'],3)
-        bad=copy.deepcopy(spec);bad['LANES']['state-a']=[600]
-        with self.assertRaises(Failure):build(raw,bad,m)
-        for change in ({'POS':{}},{'LANES':{'missing':[0]}},{'W':float('inf')},{'AUTO':['poll-a'],'LANES':{'poll-a':[700]}}):
+        from routing import allocate_ports
+        ports=allocate_ports(a,lay['nodes'])
+        for edge in lay['edges']:
+            self.assertEqual(edge['points'][0],ports[edge['id']]['start'])
+            self.assertEqual(edge['points'][-1],ports[edge['id']]['end'])
+        self.assertNotEqual(ports['ab']['start'],ports['ac']['start'])
+        bad=copy.deepcopy(spec);bad['POS']['c']=(300,200);bad['LANES']['ab']=[400]
+        with self.assertRaises(Failure) as error:build(raw,bad,m)
+        self.assertEqual(error.exception.issue['code'],'E_EDGE_OBSTACLE')
+        self.assertEqual(error.exception.issue['details']['obstacle'],'icon.c')
+        for change in ({'POS':{}},{'LANES':{'missing':[0]}},{'W':float('inf')},{'AUTO':['ab'],'LANES':{'ab':[300]}}):
             with self.subTest(change=change),self.assertRaises(Failure):build(raw,dict(spec,**change),m)

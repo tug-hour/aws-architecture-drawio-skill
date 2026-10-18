@@ -39,9 +39,9 @@
     "references/native-rules.md": "953c0828489bf48d73a573c9ceb68b102087a13ace433993191f0e205fb98fdc",
     "references/projects-and-flows.md": "c647771402cb57b7dce9a81d5cfc99ffdb5e1e3b3e2876048fe444e26c43cb9e",
     "references/provenance.json": "37507fd9078e1746d8fa0285c5d3bcfbaffae86a7f3f1e32de790fc3735e44f1",
-    "references/release-operations.md": "6ce6f6b0ce2397d4a9e40691b2bb9b289b0b56d07f0e937cdf15a1b67df775ee",
+    "references/release-operations.md": "d083465840e2278ce222bd3fa96fb88308451463c06f05a4af343844bc5d91db",
     "references/release-rehearsal.md": "550c5e688c0d676a4fc7d92049d1368787666b8c73f76c0a9f4b5a9bf5588955",
-    "references/rendering.md": "d8614200ba12e60a621d3066908f369110b7600202de4f99ed6fd3f9147cc3a0",
+    "references/rendering.md": "664546f10284a2f9055104c9c0ea87e95ebcdb37d35050836996dead0ecedf9d",
     "references/service-labels-and-conformance.md": "24dc0dd215a7ebd0842b058abe06424633e939f7b5e99fa43b1362f9723152be",
     "references/service-names.json": "8f2df298a255f4edb7ebc16712294121d8dcbeac140952ad0659b2a8c50d4c1e",
     "references/verification-summary.json": "c2cc86af82362e642cce8398c9c4666efea9e09134bd7a1b886c50d17820f975",
@@ -93,7 +93,7 @@
     "tests/test_service_labels.py": "ec56bc73836748082e88a0998b7b62258576b15ea016aab2fd39415fc71c72bf",
     "tests/test_support_index.py": "4af20d54efaab32141f727bc42b1c0500e97aa1124ea8418f9625792d82f9746",
     "tests/test_version.py": "c6d384839ace8c486e57d2079b827cf18b1ea258c25223f89aabb4b43a9719ac",
-    "tests/test_waypoints.py": "7ae3828dd182f6096885805c448ed31146e3e7611caa1cd2881285f8b8f4aca1",
+    "tests/test_waypoints.py": "fff85a6185c7ac2c15c6ec720faa20fea5a53b37810bbe76d2e101d8028055a4",
     "tests/test_workflow.py": "7b33f9ca5aab41fffd9689fc140d4775826727dd77203773a3a727d5e3ec17a9"
   }
 }
