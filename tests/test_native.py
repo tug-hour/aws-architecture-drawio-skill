@@ -154,4 +154,26 @@ class ArrowNativeTests(unittest.TestCase):
                         self.assertAlmostEqual(math.dist(tip,middle),7.67,delta=.03)
                         self.assertAlmostEqual(math.dist(wing_a,wing_b),7.67,delta=.03)
 
+@unittest.skipUnless(os.environ.get('AWS_NATIVE_DRAWIO_RUNTIME'),'Approved native render runtime not specified')
+class ManualThemeNativeTests(unittest.TestCase):
+    native_render = True
+    supports_artifacts = True
+    def test_manual_example_and_fixed_theme_exports(self):
+        from build_drawio import export_file
+        from integrity import xml_fingerprint,sha
+        with artifact_directory(self) as base:
+            binary=Path(os.environ.get('AWS_DRAWIO_BINARY','/Applications/draw.io.app/Contents/MacOS/draw.io'))
+            profile=Path(os.environ['AWS_DRAWIO_PROFILE'])
+            result,code=run(ROOT/'examples/manual-waypoints.json',base/'out',binary,profile,Path(os.environ['AWS_NATIVE_DRAWIO_RUNTIME']))
+            self.assertEqual(code,0,result.get('errors'))
+            for theme in ('light','dark'):
+                source=base/'out'/(theme+'.drawio');tree=E.fromstring(source.read_text())
+                del tree.find('diagram/mxGraphModel').attrib['adaptiveColors']
+                legacy=base/(theme+'.auto.drawio');legacy.write_text(E.tostring(tree,encoding='unicode'))
+                for kind in ('svg','png'):
+                    target=base/(theme+'.auto.'+kind);export_file(binary,profile,legacy,target,kind)
+                    current=base/'out'/(theme+'.'+kind)
+                    if kind=='svg':self.assertEqual(xml_fingerprint(current.read_text(),svg=True),xml_fingerprint(target.read_text(),svg=True))
+                    else:self.assertEqual(sha(current),sha(target))
+
 if __name__=='__main__':unittest.main()

@@ -156,7 +156,8 @@ def _route_edges(a,nodes,groups,width,height,order):
                 allowed=owner['id']==n['id'] and segment_index==0 or owner['id']==t['id'] and segment_index==len(points)-2
                 if not allowed and rect_hit(p,q,owner):fail('E_EDGE_REENTRY','Edge reenters source/target icon',[e['id']])
             if min(*p,*q)<0 or max(p[0],q[0])>width or max(p[1],q[1])>height:fail('E_ROUTE_OVERFLOW','Edge exceeds canvas',[e['id']])
-            if any(rect_hit(p,q,b) for b in boxes):fail('E_EDGE_OBSTACLE','Edge intersects icon/label/header or contains a diagonal',[e['id']])
+            hit=next((b['id'] for b in boxes if rect_hit(p,q,b)),None)
+            if hit:fail('E_EDGE_OBSTACLE','Edge intersects '+hit+' (icon/label/header)',[e['id']],details={'obstacle':hit,'segment':[p,q]})
             if any(shared_length(p,q,u,v)>EPS for u,v in reserved):fail('E_EDGE_OVERLAP','Edges share a segment',[e['id']])
         check_terminals(e,points,source_side,target_side)
         reserved.extend(zip(points,points[1:]));result.append({'id':e['id'],'points':points,'direction':e['direction'],'source_port':list(source_port),'target_port':list(target_port)})

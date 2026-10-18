@@ -73,6 +73,36 @@ class CandidateTests(unittest.TestCase):
         a=json.loads((ROOT/'examples/manual-waypoints.json').read_text());a['edges'][0]['waypoints']=[{'x_pt':280,'y_pt':160}];a=normalize(a,self.m)
         with self.assertRaises(Failure) as ctx:layout(a,self.m)
         self.assertEqual(ctx.exception.issue['code'],'E_EDGE_OBSTACLE')
+    def test_manual_example_and_adaptive_colors(self):
+        a=normalize(json.loads((ROOT/'examples/manual-waypoints.json').read_text()),self.m)
+        lay,_=layout(a,self.m)
+        self.assertEqual(lay['edges'][0]['points'],[[260,210],[290,210],[290,150],[570,150],[570,210],[600,210]])
+        from integrity import compare_model
+        for theme in ('light','dark'):
+            xml=author(a,lay,self.m,theme);root=ET.fromstring(xml)
+            model=root.find('diagram/mxGraphModel')
+            self.assertEqual(model.get('adaptiveColors'),'none')
+            self.assertEqual(model.get('background'),'#FFFFFF' if theme=='light' else '#000000')
+            compare_model(xml,xml,theme)
+            del model.attrib['adaptiveColors']
+            with self.assertRaises(Failure) as ctx:compare_model(ET.tostring(root,encoding='unicode'),xml,theme)
+            self.assertEqual(ctx.exception.issue['code'],'E_MODEL_MISMATCH')
+
+    def test_obstacle_failure_identifies_element_and_segment(self):
+        from routing import route_edges
+        a={'direction':'left-to-right','edges':[{'id':'direct','source':'a','target':'c','direction':'forward','waypoints':[{'x_pt':400,'y_pt':210}]}]}
+        nodes=[{'id':k,'x':x,'y':180,'w':60,'h':60,'label_x':x,'label_w':60,'label':['Node']} for k,x in [('a',200),('c',600)]]
+        for kind in ('icon','label','header'):
+            with self.subTest(kind=kind):
+                others=[];groups=[]
+                if kind=='header':groups=[{'id':'b','x':370,'y':190,'w':60,'h':100,'role':'containment'}]
+                else:others=[{'id':'b','x':370,'y':180 if kind=='icon' else 130,'w':60,'h':60,'label_x':370,'label_w':60,'label':['Node','Details']}]
+                with self.assertRaises(Failure) as ctx:route_edges(a,nodes+others,groups,800,350)
+                issue=ctx.exception.issue
+                self.assertEqual(issue['code'],'E_EDGE_OBSTACLE')
+                self.assertEqual(issue['element_ids'],['direct'])
+                self.assertEqual(issue['details'],{'obstacle':kind+'.b','segment':[[260,210],[600,210]]})
+
     def test_waypoints_require_fixed_manual_coordinates(self):
         self.a['edges'][0]['waypoints']=[{'x_pt':1,'y_pt':2}];self.rejected(self.a,'E_WAYPOINT_MODE')
     def test_pipeline_saves_input_failure_report(self):
