@@ -305,3 +305,13 @@ git -C "<public-repo>" commit -m "Initial public source"
 ```sh
 git -C "<public-repo>" log --all --format=fuller --show-signature
 ```
+
+### 手動経由点とテーマ固定の変更
+
+構成例の経由点・原本のadaptiveColorsを変更した場合は、通常unitと次の対象nativeを実行する。構成例そのものをブラウザ計測で生成・検証し、テーマ固定指定の有無でSVGの描画内容とPNGが変わらないことを確認する。同じ例を別途生成し直さず、保持したout/qaの両テーマ画像を目視する。
+
+```sh
+AWS_NATIVE_DRAWIO_RUNTIME=<runtime.json> AWS_DRAWIO_PROFILE=<dedicated-profile> python3 -B <skill-dir>/scripts/test_runner.py --group native --match ManualThemeNativeTests --keep-artifacts --output <new-check-dir>
+```
+
+OSやアプリのテーマ設定は変更しない。XMLの属性確認と書き出し検証は、異なるOSテーマでのエディター表示確認とは区別して報告する。

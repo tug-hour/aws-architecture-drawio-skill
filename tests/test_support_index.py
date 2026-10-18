@@ -29,7 +29,8 @@ class SupportIndexTests(unittest.TestCase):
     def test_packager_refuses_stale_index_before_creating_output(self):
         with tempfile.TemporaryDirectory() as d:
             base=Path(d);root=base/'skill';refs=root/'references';refs.mkdir(parents=True)
-            (root/'SKILL.md').write_text('fixture');(refs/'version.json').write_text('{"version":"1.2.3"}')
+            for name in ('SKILL.md','LICENSE','README.md','THIRD_PARTY_NOTICES.md'):(root/name).write_text('fixture')
+            (refs/'version.json').write_text('{"version":"1.2.3"}')
             (refs/'native-catalog.json').write_text(json.dumps(self.catalog()))
             (refs/'verified-assets.json').write_text(json.dumps(dict(derived_fields(self.catalog()),assets=[])))
             with self.assertRaises(ValueError):package(root,base/'out')

@@ -26,7 +26,7 @@ def author(a,lay,m,theme):
     dark=theme=='dark';fg='#FFFFFF' if dark else '#000000';bg='#000000' if dark else '#FFFFFF';arrow='#8FA7C4' if dark else '#000000'
     doc=ET.Element('mxfile',host='Electron',version='32.4.1',compressed='false')
     diagram=ET.SubElement(doc,'diagram',id='aws-'+theme,name=theme)
-    model=ET.SubElement(diagram,'mxGraphModel',grid='0',page='0',background=bg,connect='1',arrows='1');root=ET.SubElement(model,'root')
+    model=ET.SubElement(diagram,'mxGraphModel',grid='0',page='0',background=bg,connect='1',arrows='1',adaptiveColors='none');root=ET.SubElement(model,'root')
     ET.SubElement(root,'mxCell',id='0');ET.SubElement(root,'mxCell',id='1',parent='0')
     def vertex(ident,parent,sty,x,y,w,h,text='',connectable='0'):
         cell=ET.SubElement(root,'mxCell',id=ident,parent=parent,vertex='1',connectable=connectable,value=text,style=sty)
