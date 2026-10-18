@@ -21,13 +21,13 @@ AWS Cloudの既定はAWSロゴ。PPTXの説明でAWSロゴを使えない地域�
 
 AZ、Security group、汎用グループの既定には記号がないので追加しない。ASGは中央上部の記号と、その下のラベルに分ける。包含グループは親子関係を持つコンテナ、ASGは所属に影響しない横断枠として扱う。入れ子の余白は3.6 pt以上を保ち、計算には12 ptを使う。
 
-破線の比率はLibreOfficeのDrawingML実装（oox/source/drawingml/lineproperties.cxx）に基づく。sysDashとdashを同じ配列へ潰さない。draw.ioのdashPatternは線幅に対する比である。実際のSVGの線幅・配列も検査する。Quick Lookとの画像差にはレンダラーの丸め・アンチエイリアスも含まれる。
+破線の比率はLibreOfficeのDrawingML実装（oox/source/drawingml/lineproperties.cxx）に基づく。sysDashとdashを同じ配列へ潰さない。draw.ioのdashPatternは線幅に対する比である。共通描画処理を変更した場合は、実際のSVGの線幅・配列も検査する。Quick Lookとの画像差にはレンダラーの丸め・アンチエイリアスも含まれる。
 
 矢じりはdraw.io標準のOpenをstartSize・endSize=6 pxで使う。種類・サイズの定義元はnative-catalog.jsonのarrowで、生成処理はその値を参照する。元PPTXのQuick Look描画との比較で採用した近似であり、PowerPoint本体での一致は未確認。PPTXの「既定またはデフォルト矢印」は、draw.ioの任意の標準矢じりを許可する根拠にはしない。OOXMLのarrow/med/smとdraw.ioの設定名・数値だけでは形状一致を証明できない。PPTXの輪郭・余白・矢じりとの差、フォントの拡張、完全適合として扱わない範囲は[適合範囲](service-labels-and-conformance.md#適合範囲)にまとめる。未対応記号を画像へ自動フォールバックしない。
 
-アイコン・ラベル・グループ見出しを避ける経路と、固定の手動配置での指定経由点に対応する。コールアウト、用途別プロファイル、リージョンの自動選択、全記号の名称方針は未対応。接続の交差や枠境界の意味は人が確認する。[冗長化・切替の規則](availability.md)に従って、AZ配置とMulti-Regionの意味を別途検査する。検証済みサービス名はカタログと照合し、2行制約・単語境界・ブランド位置を検査する。説明はdescriptionへ分離し、登録済み略称の正式名は、名称仕様の省略条件を満たさない場合に図の前へ表示する。
+通常作図では標準AWS図形を直接使い、必要に応じて接続点・経由点・注記を編集する。全記号の使用を事前検証の完了条件にしない。[検証済み一覧](verified-assets.json)はカタログから生成した過去の確認範囲であり、使用許可リストではない。未確認の図形は、利用した図で形状・役割・寸法・色を確認する。記録がないことと利用できないことを区別する。
 
-productionで使える記号とグループは[検証済み一覧](verified-assets.json)で確認する。一覧はnative-catalog.jsonから生成し、配布時に整合性を検査する。未検証記号はdraftで警告付きで試せる。検証済みとは標準図形のID・出典の役割／寸法／色・両背景の実描画を確認した状態で、輪郭の完全一致を意味しない。
+JSON補助ツールでは、未登録の図形ID、未実装のコールアウトやprofileなどは扱えない。その制限を標準draw.ioによる直接編集に適用しない。名称・凡例の自動処理を使う場合は[名称仕様](service-labels-and-conformance.md)を参照する。
 
 接続ラベルも12 pt、黒／白のテーマ色で描画する。線の色・幅・実線・Openは元の値を保持し、通信の種類を独自の線色や破線へ変換しない。MQTT・HTTPS・SQL・複製などの意味はラベルと説明で区別する。
 

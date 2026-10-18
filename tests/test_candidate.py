@@ -37,8 +37,11 @@ class CandidateTests(unittest.TestCase):
     def test_unhashable_ids_are_schema_errors(self):
         for category,key in (('nodes','asset_id'),('nodes','group_id'),('edges','source'),('glossary','asset_id')):
             a=copy.deepcopy(self.a);a[category][0][key]=[];self.rejected(a,'E_SCHEMA' if category!='glossary' else 'E_GLOSSARY')
-    def test_unverified_asset_is_rejected_in_production(self):
-        self.a['nodes'][0]['asset_id']='aws4.a1_instance';self.rejected(self.a,'E_ASSET_UNVERIFIED')
+    def test_catalog_history_does_not_restrict_native_assets(self):
+        for asset in ('aws4.a1_instance','aws4.bedrock'):
+            a={'schema_version':'1.0','nodes':[{'id':'n','asset_id':asset}],'edges':[]}
+            normalized=normalize(a,self.m);lay,_=layout(normalized,self.m)
+            self.assertIn(self.m['assets'][asset]['shape'],author(normalized,lay,self.m,'light'))
     def test_unverified_asset_is_available_in_explicit_draft(self):
         self.a['mode']='draft';self.a['nodes'][0]['asset_id']='aws4.a1_instance';a=normalize(self.a,self.m)
         self.assertEqual(a['mode'],'draft')

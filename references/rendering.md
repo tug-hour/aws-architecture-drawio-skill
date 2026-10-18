@@ -1,4 +1,68 @@
-# ローカル描画と検証
+# 描画と確認
+
+## スキルの生成物用の検証
+
+通常作図は、依頼された図をdraw.ioで一度表示して確認する。日本語・使った記号・ラベルの切れ・重なり・接続方向・枠の所属を見て、必要な箇所だけ直す。指定テーマだけを作り、両テーマを納品する場合だけ両方を見る。図の小さな変更に、全カタログや無関係な図の検査を追加しない。
+
+独自JSON、ブラウザ実測、画像の再書き出し照合、検査レポート、unit、全受け入れ検証は必須ではない。原本を直接編集した場合も、元JSONとの一致を納品条件にしない。画像が必要ならdraw.ioの画面または既存CLIで一度書き出し、その同じ画像を確認する。
+
+CLIの一例（既存draw.ioと既存の専用profileを使い、新しい出力ファイルを指定する）：
+
+```sh
+test ! -e "<new-diagram.svg>" &&
+"<drawio>" --disable-update --user-data-dir="<dedicated-profile>" --export --format svg --theme light --embed-svg-fonts false --output "<new-diagram.svg>" "<diagram.drawio>"
+```
+
+PNGが必要ならformatをpngにし、SVG用のembed-svg-fonts指定を外す。原本の背景・配色は固定し、mxGraphModelにadaptiveColors="none"を指定する。CLIのtheme lightはエディター側の色変換を防ぐための指定であり、暗い背景の原本もその色で書き出す。
+
+## 配置表を使う場合
+
+大きな図の配置・配線を反復調整する場合だけ使う。基本は既存Pythonの標準ライブラリで原本を生成する。入力と配置表の形式は[配置と経路](layout-and-routing.md)を参照する。
+
+```sh
+python3 -B <skill-dir>/scripts/waypoints.py --input <architecture.json> --spec <placement.spec.py> --output <new-dir>
+```
+
+原本と、経由点を保存したarchitecture.json、layout.json、report.jsonが残る。status=authoredは原本生成、measurement=estimatedは推定文字幅を意味し、描画確認済みという意味ではない。レーンを直しても、元の入力と以前の出力は変えない。
+
+既存ブラウザでの文字幅計測が必要ならruntimeを追加する。SVG・PNGも必要ならexportとprofileを追加する。どちらも必須ではない。
+
+```sh
+python3 -B <skill-dir>/scripts/waypoints.py --input <architecture.json> --spec <placement.spec.py> --output <new-dir> --runtime <runtime.json> --export --profile <dedicated-profile>
+```
+
+exportはテーマごとにSVG・PNGを一度書き出す。status=exportedでも目視確認は別である。交差などの警告は確認補助であり、ゼロ件にするためだけの作り直しはしない。接続ラベルや構造を変更する必要がある場合は原本を直接編集してもよい。
+
+## 任意の厳密な生成物検証
+
+JSONからの再生成、原本と入力の一致、再描画の再現性を確認したい場合だけ既存のrun.pyを使う。複数図の網羅を機械検査したい場合はproject.pyを使う。以下は通常作図の必須手順ではない。
+
+```sh
+python3 -B <skill-dir>/scripts/run.py --input <architecture.json> --output <new-dir> --profile <dedicated-profile> --runtime <runtime.json>
+python3 -B <skill-dir>/scripts/project.py --input <project.json> --output <new-project-dir> --profile <dedicated-profile> --runtime <runtime.json>
+```
+
+生成処理は仮領域で完了した後に新規出力先へ渡す。原本のセル・標準図形・接続・親子・配置を入力から再構成したモデルと照合する。SHA-256で入力・配置・計測・原本・SVG・PNG・生成レポートの組を確認し、原本からSVG・PNGを新しく再描画する。保存済みSVGの構造とPNGのハッシュが新描画と一致することを検査してから、ブラウザで描画する。
+
+保存ハッシュは混入・変更の検出に使う。署名や悪意ある改ざんへの認証ではない。元の依頼JSONとの照合は一括実行で行う。生成フォルダと依頼の両方を変更した場合に、以前の意図を推定することはない。
+
+AZ名の重複省略は[AZ所属の表示](service-labels-and-conformance.md#az所属の表示)に従い、完成した図の枠とラベルを目視で確認する。W_AZ_LABEL_REDUNDANTとW_AZ_LABEL_MISMATCHは確認候補であり、機械検査がこの作図方針への適合を判定したとは扱わない。旧入力の名称エラーは[移行案内](service-labels-and-conformance.md#互換性)を参照する。
+
+経路確定後の`W_EDGE_FRAME_TRANSIT`は、両端の所属枠・祖先枠を除く包含枠の内部通過を示す。横断グループ枠や境界に触れるだけの線分は対象外とし、接続と枠の組ごとに該当線分をまとめる。`W_EDGE_CONTACT`は異なる接続の曲がり角・線分端での接触を示す。同じ位置の交差・線分重複・両接続の端点同士の接触は既存検査に任せ、同じ接触点は重複して報告しない。線分番号は0始まりで、接触座標は最終レイアウトのpt値である。
+
+これらは意味や読みやすさを確認するための警告であり、入力拒否・経路変更・生成物検証の不合格条件には追加しない。プロジェクトの`operational_quality`は要確認とする。枠の内部通過と枠沿いの近接は異なる観点なので、両方に該当すれば各警告を記録する。必要な迂回か、接触が接続と誤読されるか、枠の境界に意味の誤解がないかは目視で判断する。既存の距離・迂回閾値は読みやすさの補助基準であり、PPTXの必須数値規則とは扱わない。
+
+`W_FRAME_OVERLAP`は、最終配置で祖先関係のない包含枠同士に面積のある重なりがあることを示す。親子を含む全ての祖先関係、横断枠、境界・角に触れるだけの組は除外する。枠の組ごとに一件とし、両方のIDと重なり領域の最終座標・寸法を`details.overlap_rect_pt`へpt値で記録する。共通の親を持つ兄弟枠は対象とする。これは所属の見え方を確認する補助であり、入力拒否・自動配置変更・生成物の合否・運用品質の判定・終了コードは変更しない。既存の無関係なノードの包含エラー、横断枠の共有境界警告、接続の内部通過・接触・近接検査は維持する。
+
+検査対象はラベル・用語集の内容、寸法、実使用フォント、色、記号、枠・破線、矢じり、接続のアイコン貫通・ラベル衝突・線分重複・キャンバス外へのはみ出し、両背景の配置一致、画像の非埋め込み。全ての交差や枠境界の意味、構成の技術的妥当性は検証しない。
+
+プロジェクトCLIの最終出力の`presentation`とビューアは、既存レポートの判定結果を表示用に読み替える。個別ビューの生成・検証が失敗した場合は「生成・検証失敗」、生成物の検査が成功して運用品質が要確認の場合は「要確認」、機械検査が合格した場合は目視確認が必要であることを表示する。判定情報が不足している場合は「結果未確認」とする。ビューID・警告やエラーのコード・要素ID・理由を表示し、警告を再判定しない。失敗・未確認のビューでは、画像・SVGと編集原本へのリンク・テーマと拡大操作・図の確認案内・省略接続の案内を隠す。ビュー選択と判定理由は残し、機械検査合格または要確認のビューに戻すと図専用の操作と案内を復元する。既存の`status`と終了コードは維持し、要確認でもプロジェクト全体は従来どおり`failed`・終了コード2となる。
+
+失敗時もresult.jsonと可能な検査レポートを保存する。検査失敗時はブラウザPNGを完成品として公開しない。既存の出力先は拒否する。成功したdraftはproduction_eligible=falseであり、正式運用の合格ではない。
+
+分離実行はbuild_drawio.pyとverify_native.py。verify_native.pyにも--drawio・--profile・--runtimeを渡す。--expected-inputで元の構成JSONを指定できる。原本だけを手修正した図は、この生成物の照合で失敗する。JSON・手動座標・経由点を更新して再生成する。
+
+## 計測・厳密検証の既存環境
 
 現行版の対応環境（版番号は[version.json](version.json)）：Mac arm64、draw.io Desktop 32.4.1、Python 3.9.6、Node.js 24.19.0、Playwright 1.64.0、Chrome Headless Shell 155.0.8059.39。欧文Arial、日本語Arial Unicode MSを使用する。他OS・別フォントは未検証。
 
@@ -33,7 +97,7 @@ Macのdraw.io既定パスは/Applications/draw.io.app/Contents/MacOS/draw.io。-
 | `<yaml-site-packages>` | 既存の隔離済みPyYAMLのsite-packages |
 | `<quick-validate.py>` | 既存のskill-creatorにある`scripts/quick_validate.py` |
 
-環境を初めて使う場合、参照先が変わった場合、または起動失敗を調べる場合は、アプリを起動しない次の確認を行う。runtime・専用profile・実行ファイルが存在しない場合は停止し、自動作成・再導入・別環境への切替は行わない。doctorの成功は実描画の合格を意味しない。
+任意のブラウザ計測・厳密検証で環境を初めて使う場合、参照先が変わった場合、または起動失敗を調べる場合は、アプリを起動しない次の確認を行う。runtime・専用profile・実行ファイルが存在しない場合は停止し、自動作成・再導入・別環境への切替は行わない。doctorの成功は実描画の合格を意味しない。
 
 ```sh
 test -d "<dedicated-profile>" &&
@@ -56,42 +120,6 @@ PYTHONPATH="<yaml-site-packages>" python3 -B "<quick-validate.py>" "<skill-dir>"
 サンドボックス内のdraw.io起動が`SIGABRT`・`_RegisterApplication`で失敗し、同じアプリ・runtime・専用profileによる通常ターミナル実行で成功することを確認済みの場合は、同条件の失敗を繰り返さず、承認された通常ターミナルから下記の生成物用コマンド、または開発用の対象コマンドを実行する。エージェントからその環境を使えない場合は、入力・新規出力先・対象範囲を確定したコマンドを利用者へ渡す。
 
 成功時と同じ参照先を使い、専用profileを共有する描画は直列に実行する。再開用スクリプトを使う場合も、対象ソースと新規出力先を確認する。環境確認だけのために成功済みの図を再描画せず、必要な検証を新規出力先へ一度実行し、同じ生成物で目視確認まで行う。アプリの再導入、署名・隔離属性の変更、OS保護機能の無効化を起動失敗への対処として自動実行しない。
-
-## スキルの生成物用の検証
-
-図を生成・更新するたびに、その図を対象に実行する。run.pyは1図、project.pyは選択したプロジェクトの各ビューについて、生成から生成物検証までを行う。開発用テストの実行結果で代用しない。通常の利用ではtest_runner.pyやacceptance.pyを実行する必要はない。
-
-単独図：
-
-```text
-python3 <skill-dir>/scripts/run.py --input <architecture.json> --output <new-dir> --profile <dedicated-profile> --runtime <runtime.json>
-```
-
-プロジェクトの各ビュー：
-
-```text
-python3 <skill-dir>/scripts/project.py --input <project.json> --output <new-dir> --profile <dedicated-profile> --runtime <runtime.json>
-```
-
-生成処理は仮領域で完了した後に新規出力先へ渡す。原本のセル・標準図形・接続・親子・配置を入力から再構成したモデルと照合する。SHA-256で入力・配置・計測・原本・SVG・PNG・生成レポートの組を確認し、原本からSVG・PNGを新しく再描画する。保存済みSVGの構造とPNGのハッシュが新描画と一致することを検査してから、ブラウザで描画する。
-
-保存ハッシュは混入・変更の検出に使う。署名や悪意ある改ざんへの認証ではない。元の依頼JSONとの照合は一括実行で行う。生成フォルダと依頼の両方を変更した場合に、以前の意図を推定することはない。
-
-AZ名の重複省略は[AZ所属の表示](service-labels-and-conformance.md#az所属の表示)に従い、完成した図の枠とラベルを目視で確認する。W_AZ_LABEL_REDUNDANTとW_AZ_LABEL_MISMATCHは確認候補であり、機械検査がこの作図方針への適合を判定したとは扱わない。旧入力の名称エラーは[移行案内](service-labels-and-conformance.md#互換性)を参照する。
-
-経路確定後の`W_EDGE_FRAME_TRANSIT`は、両端の所属枠・祖先枠を除く包含枠の内部通過を示す。横断グループ枠や境界に触れるだけの線分は対象外とし、接続と枠の組ごとに該当線分をまとめる。`W_EDGE_CONTACT`は異なる接続の曲がり角・線分端での接触を示す。同じ位置の交差・線分重複・両接続の端点同士の接触は既存検査に任せ、同じ接触点は重複して報告しない。線分番号は0始まりで、接触座標は最終レイアウトのpt値である。
-
-これらは意味や読みやすさを確認するための警告であり、入力拒否・経路変更・生成物検証の不合格条件には追加しない。プロジェクトの`operational_quality`は要確認とする。枠の内部通過と枠沿いの近接は異なる観点なので、両方に該当すれば各警告を記録する。必要な迂回か、接触が接続と誤読されるか、枠の境界に意味の誤解がないかは目視で判断する。既存の距離・迂回閾値は読みやすさの補助基準であり、PPTXの必須数値規則とは扱わない。
-
-`W_FRAME_OVERLAP`は、最終配置で祖先関係のない包含枠同士に面積のある重なりがあることを示す。親子を含む全ての祖先関係、横断枠、境界・角に触れるだけの組は除外する。枠の組ごとに一件とし、両方のIDと重なり領域の最終座標・寸法を`details.overlap_rect_pt`へpt値で記録する。共通の親を持つ兄弟枠は対象とする。これは所属の見え方を確認する補助であり、入力拒否・自動配置変更・生成物の合否・運用品質の判定・終了コードは変更しない。既存の無関係なノードの包含エラー、横断枠の共有境界警告、接続の内部通過・接触・近接検査は維持する。
-
-検査対象はラベル・用語集の内容、寸法、実使用フォント、色、記号、枠・破線、矢じり、接続のアイコン貫通・ラベル衝突・線分重複・キャンバス外へのはみ出し、両背景の配置一致、画像の非埋め込み。全ての交差や枠境界の意味、構成の技術的妥当性は検証しない。
-
-プロジェクトCLIの最終出力の`presentation`とビューアは、既存レポートの判定結果を表示用に読み替える。個別ビューの生成・検証が失敗した場合は「生成・検証失敗」、生成物の検査が成功して運用品質が要確認の場合は「要確認」、機械検査が合格した場合は目視確認が必要であることを表示する。判定情報が不足している場合は「結果未確認」とする。ビューID・警告やエラーのコード・要素ID・理由を表示し、警告を再判定しない。失敗・未確認のビューでは、画像・SVGと編集原本へのリンク・テーマと拡大操作・図の確認案内・省略接続の案内を隠す。ビュー選択と判定理由は残し、機械検査合格または要確認のビューに戻すと図専用の操作と案内を復元する。既存の`status`と終了コードは維持し、要確認でもプロジェクト全体は従来どおり`failed`・終了コード2となる。
-
-失敗時もresult.jsonと可能な検査レポートを保存する。検査失敗時はブラウザPNGを完成品として公開しない。既存の出力先は拒否する。成功したdraftはproduction_eligible=falseであり、正式運用の合格ではない。
-
-分離実行はbuild_drawio.pyとverify_native.py。verify_native.pyにも--drawio・--profile・--runtimeを渡す。--expected-inputで元の構成JSONを指定できる。原本だけを手修正した図は、この生成物の照合で失敗する。JSON・手動座標・経由点を更新して再生成する。
 
 ## スキル開発用の検証
 
@@ -214,7 +242,7 @@ AWS_NATIVE_DRAWIO_RUNTIME=<runtime.json> AWS_DRAWIO_PROFILE=<dedicated-profile> 
 
 `--group all`は両群を実行する。unitとnativeの全件を同じソース・環境で完了した場合は、allを重ねて実行しない。`--match <test-idの一部>`は対象を絞る。実描画が必要なのに環境がない場合はunavailableで終了し、skipを成功に数えない。従来のunittest discoverも利用できるが、環境変数がない場合は実描画テストをskipする。
 
-目視確認や失敗調査に生成物を使う場合は、対応テストを選んで`--keep-artifacts`を付ける。保持対応は`AdvisoryNativeTests`（凡例とAZ警告）と`ArrowNativeTests`（矢じり）。影響する対象を`--match`で選ぶ。この保持処理自体を変更する場合は、unitと対応テスト一件を実行し、終了後に保存先と生成物を確認する。
+目視確認や失敗調査に生成物を使う場合は、対応テストを選んで`--keep-artifacts`を付ける。保持対応は各テストの`supports_artifacts=True`で宣言する。影響する対象を`--match`で選ぶ。この保持処理自体を変更する場合は、unitと対応テスト一件を実行し、終了後に保存先と生成物を確認する。
 
 ```text
 AWS_NATIVE_DRAWIO_RUNTIME=<runtime.json> AWS_DRAWIO_PROFILE=<dedicated-profile> PYTHONDONTWRITEBYTECODE=1 python3 -B <skill-dir>/scripts/test_runner.py --group native --match AdvisoryNativeTests --keep-artifacts --output <new-native-dir>
@@ -226,7 +254,7 @@ AWS_NATIVE_DRAWIO_RUNTIME=<runtime.json> AWS_DRAWIO_PROFILE=<dedicated-profile> 
 AWS_NATIVE_DRAWIO_RUNTIME=<runtime.json> AWS_DRAWIO_PROFILE=<dedicated-profile> PYTHONDONTWRITEBYTECODE=1 python3 -B <skill-dir>/scripts/test_runner.py --group native --match ArrowNativeTests --keep-artifacts --output <new-native-dir>
 ```
 
-保持先は新規出力先内の`artifacts/<選択テストの通し番号>`。tests-summary.jsonの`artifacts`に、実際に作成したディレクトリの絶対パスとテストIDを記録する。両テストの生成物用レポートは保持先の`out/result.json`、目視対象は`out/qa/light.browser.png`と`out/qa/dark.browser.png`。同じ実行のレポートと画像を使い、確認のためだけに再生成しない。
+保持先は新規出力先内の`artifacts/<選択テストの通し番号>`。tests-summary.jsonの`artifacts`に、実際に作成したディレクトリの絶対パスとテストIDを記録する。ここで案内する対応テストの生成物用レポートは保持先の`out/result.json`、目視対象は`out/qa/light.browser.png`と`out/qa/dark.browser.png`。同じ実行のレポートと画像を使い、確認のためだけに再生成しない。
 
 保持指定がなければ、従来どおり一時生成物を削除する。保持指定時は失敗時の調査用出力も残すが、保存されたことを検証成功や目視確認済みの根拠にしない。未対応テストを一つでも選ぶと、実行前に`E_ARTIFACT_RETENTION_UNSUPPORTED`で失敗する。既存の出力先・保持先は上書きしない。
 
@@ -256,7 +284,7 @@ python3 -B <skill-dir>/tests/check_review_viewer.py --runtime <runtime.json> --s
 python3 -B <skill-dir>/scripts/acceptance.py --output <new-dir> --profile <dedicated-profile> --runtime <runtime.json>
 ```
 
-配布・新規導入前の包括的な確認として、全テスト、examples/real-world、構成正本の全ビュー、配置検証用の入力群を直列に実行し、両テーマを目視する。密な入力の拒否と表示サイズ不足の検出も受け入れ条件に含める。実行環境が不足している場合は停止し、自動導入で補わない。acceptance-summary.jsonには完了済みの結果と、テスト・実利用例・プロジェクト・入力群ごとの時間を保存する。例外で中断した工程の時間と失敗理由も残す。
+大規模な生成・検証処理の変更で包括的な確認が必要な場合に、全テスト、examples/real-world、構成正本の全ビュー、配置検証用の入力群を直列に実行し、両テーマを目視する。密な入力の拒否と表示サイズ不足の検出も受け入れ条件に含める。実行環境が不足している場合は停止し、自動導入で補わない。acceptance-summary.jsonには完了済みの結果と、テスト・実利用例・プロジェクト・入力群ごとの時間を保存する。例外で中断した工程の時間と失敗理由も残す。
 
 全テストを同じソース・環境で別途完了した場合、`--cases-only`で受け入れ事例だけを実行できる。この結果のscopeはcases-onlyであり、全テストの成功を含まない。配布判断には両方の結果を確認する。修正がない成功済み検証を理由なく繰り返さない。
 
@@ -315,3 +343,11 @@ AWS_NATIVE_DRAWIO_RUNTIME=<runtime.json> AWS_DRAWIO_PROFILE=<dedicated-profile> 
 ```
 
 OSやアプリのテーマ設定は変更しない。XMLの属性確認と書き出し検証は、異なるOSテーマでのエディター表示確認とは区別して報告する。
+
+### 配置表・図形制限の変更
+
+通常unitで、未検証の標準図形を受け付けること、直線にも経由点を保存すること、配置表の方向・レーン、既存出力の保護、ブラウザ・draw.ioなしでの原本生成を確認する。新しい判定器は作らず、端点・障害物は既存検査を再利用する。接続点の切り出しは、既存例とプロジェクトの各ビューの両テーマ原本・layout・警告が切り出し前後で一致することを一度確認する。
+
+描画は上記の配置表コマンドでmulti-az-waypoints.jsonとmulti-az-waypoints.spec.pyを指定し、runtime・export付きで両テーマを生成・目視する。これに同じ例のrun.py再生成や全受け入れ検証を重ねない。初回確認が済むまでは、その環境での実描画は未確認として記録する。
+
+経路の比較が必要な場合だけ、同じ配置表のPOS・W・Hからapply_specで入力を作り、接続からsource_side・target_side・waypointsを除いた自動経路と、waypoints.buildの指定経路を比較する。両方とも同じ文字幅条件を使う。report.jsonのrouting_qualityに交差・曲がり・長さを記録し、W_EDGE_CROSSINGSの有無だけに依存しない。比較値は描画の合否や性能保証ではない。

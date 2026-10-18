@@ -1,6 +1,8 @@
-# 入力仕様
+# JSON補助ツールの入力仕様
 
-schema_version=1.0。nodesとedgesは必須。modeはproduction（既定）／draft。productionは検証済み記号、draw.io 32.4.1、ブラウザ計測が必要。draftは未検証記号を許可し、W_UNVERIFIED_ASSETを出す。未知のIDは両モードで拒否する。
+直接作図ではこの形式は不要である。以下はrun.py・waypoints.pyなどを使う場合だけ適用する。
+
+schema_version=1.0。nodesとedgesは必須。modeはproduction（既定）／draft。run.pyのproductionはdraw.io 32.4.1とブラウザ計測が必要。図形の検証履歴による使用制限は両モードとも設けない。未確認の図形にはW_UNVERIFIED_ASSETを出す。未知のIDは両モードで拒否する。
 
 themeはlight／dark／both、既定light。profileはstandardのみ。directionはleft-to-right／top-to-bottom。canvasはauto、またはfixedとwidth_pt・height_pt。layoutはauto、またはmanualとpositions。座標はpt。manualは全ノードのnode_id・x_pt・y_ptを指定する。自動配置は循環する包含範囲の制約を拒否する。
 
@@ -8,9 +10,9 @@ nodesはid、asset_id、任意label・description・label_kind・group_id。asse
 
 groupsはid・type・role、任意label。containmentはparent_id、overlayは2つ以上の異なるノードIDをmembersへ指定する。overlayはparent_idを持たず、ノードのgroup_idから参照しない。AWS Cloudのみcloud_icon=logo／cloudを指定できる。空の包含グループは拒否する。
 
-edgesはid・source・target、任意direction=forward／both／none、waypoints。自分自身への接続は未対応。labelは単一行・最大80文字。表示位置を自動で選び、空白がなければE_CONNECTION_LABEL_SPACEで拒否する。source_side／target_sideはleft／right／topを指定できる。bottomはラベルとの衝突を避けるため未対応。waypointsはx_pt・y_ptを持つ非空配列で、manual配置とfixedキャンバスの場合だけ指定できる。経路は軸に平行に指定し、アイコン・ラベル・見出しや別接続の線分に重なると失敗する。自動経路でも同じ障害物検査を行う。交差を避ける経路候補を比較し、交差が残る場合はW_EDGE_CROSSINGSとrouting_qualityへ記録する。接続相手の位置に合わせて同じ側の接続点を並べる。
+edgesはid・source・target、任意direction=forward／both／none、waypoints。自分自身への接続は未対応。labelは単一行・最大80文字。表示位置を自動で選び、空白がなければE_CONNECTION_LABEL_SPACEで拒否する。source_side／target_sideはleft／right／topを指定できる。bottomはラベルとの衝突を避けるため未対応。waypointsはx_pt・y_ptを持つ非空配列で、manual配置とfixedキャンバスの場合だけ指定できる。配置・接続点・障害物・警告の詳細は[配置と経路](layout-and-routing.md)を参照する。
 
-用語集glossaryはasset_id・full_name・short_name。各項目は単一行、略称の重複は拒否する。図の下に「short_name = full_name」を描画し、ブラウザ検査に含める。本文における正式名称の初出順はこのプログラムの検査対象外。
+用語集glossaryはasset_id・full_name・short_name。各項目は単一行、略称の重複は拒否する。図の上に「full_name (short_name)」を描画し、ブラウザ検査に含める。本文における正式名称の初出順はこのプログラムの検査対象外。
 
 未知・重複キー、非有限数、ID重複、不明参照、親子循環、空ラベル、制御文字、入力型の不一致を拒否する。最大200ノード・500接続・60グループ。ただし実描画の受け入れ検証は27ノードまでで、上限までの品質・性能を保証しない。経路グリッドが上限を超える場合は分割を要求する。
 
@@ -31,6 +33,6 @@ layout.frame_padding_ptは12〜72pt。既定12pt。主図とWeb詳細図は24pt�
 
 productionで接続がある構成に孤立ノードが残るとE_ORPHAN_NODE。図形一覧のように接続が全くない入力は作図の形状検査のみであり、アーキテクチャーの完全性を保証しない。孤立した障害物記号を使う経由点デモはdraftに変更した。
 
-semanticsによる経路契約と、構成正本からの図の生成は[projects-and-flows.md](projects-and-flows.md)を参照する。schema_version=1.0を維持するが、0.6.1ではサービス名の検査を強化する。旧labelに用途説明が混在する入力はdescriptionへ移行し、、重要経路の宣言がない単独図を正式運用向けの意味検査済みプロジェクトと扱わない。
+semanticsによる経路契約と、構成正本からの図の生成は[projects-and-flows.md](projects-and-flows.md)を参照する。schema_version=1.0を維持するが、0.6.1ではサービス名の検査を強化する。旧labelに用途説明が混在する入力はdescriptionへ移行し、重要経路の宣言がない単独図を正式運用向けの意味検査済みプロジェクトと扱わない。
 
-サービス名とdescription、正式名凡例、互換性は[名称とPPTX適合範囲](service-labels-and-conformance.md)を参照する。draftでもサービス名の検証を省略しない。名称方針が未登録のサービスはE_SERVICE_NAME_UNVERIFIEDで停止する。リソース・汎用ラベルにはサービス名の2行規定を転用しない。汎用名は用途に応じて変更できる。リソース記号との名称一致は人が確認する。
+サービス名とdescription、正式名凡例、互換性は[名称とPPTX適合範囲](service-labels-and-conformance.md)を参照する。draftでもサービス名の検証を省略しない。名称方針が未登録のサービスも受け付け、名前と記号の対応は人が確認する。リソース・汎用ラベルにはサービス名の2行規定を転用しない。汎用名は用途に応じて変更できる。リソース記号との名称一致は人が確認する。

@@ -1,22 +1,22 @@
 # AWS architecture diagrams with draw.io
 
-draw.io標準AWS図形を使い、日本語のAWS構成図を作成・検証するCodexスキルです。編集可能な`.drawio`原本と、ライト・ダーク両テーマのSVG・PNGを生成します。公式SVGは埋め込みません。
+PPTXの描画規則を参照し、draw.io標準AWS図形で編集可能なAWS構成図を作るCodexスキルです。通常は原本を直接作成・編集し、必要なテーマとSVG・PNGだけを出力します。公式SVGは埋め込みません。
 
-AWSおよびdraw.ioの公式製品ではなく、両者の承認・提携を示すものではありません。PPTXの寸法・配色・ラベル規則を参照していますが、標準図形の輪郭や矢じりまで完全一致するものではありません。
+AWSおよびdraw.ioの公式製品ではなく、承認・提携を示すものではありません。標準図形の輪郭や矢じりはPPTXと完全一致しません。
 
-## 利用と検証
+## 利用と確認
 
-版番号は[version.json](references/version.json)、対応済み記号は[verified-assets.json](references/verified-assets.json)を参照してください。
+1. [SKILL.md](SKILL.md)の基本手順で、依頼された構成を描きます。図形は過去の検証済み一覧に限定しません。
+2. [rendering.md](references/rendering.md)に従い、一度表示して日本語・接続・枠・使った図形を確認します。独自JSON、ブラウザ計測、再書き出し検査、開発テストは通常作図の必須条件ではありません。
+3. 大きな構成の配置調整には、任意の[配置表・経由点生成](references/layout-and-routing.md)を使えます。JSONからの再生成や厳密な照合を必要とする場合は、既存の生成・検証ツールも使えます。
 
-1. [SKILL.md](SKILL.md)で対応範囲と入力の作り方を確認します。
-2. [rendering.md](references/rendering.md)で既存の実行環境・専用profile・フォントの参照先を指定します。依存の自動導入は行いません。
-3. 同文書の「スキルの生成物用の検証」にあるコマンドで、新規出力先へ生成し、同じ実行の両テーマ画像を目視確認します。
+版番号は[version.json](references/version.json)、PPTXの規則は[aws-rules.md](references/aws-rules.md)を参照してください。[verified-assets.json](references/verified-assets.json)は確認済み範囲の記録です。未確認の図形は使用した図で確認し、全図形を検証済みとは扱いません。
 
-開発用unitは生成物検証の代用ではありません。変更時に行う検証とZIP生成の条件・コマンドも[rendering.md](references/rendering.md)に集約しています。Mac arm64以外の環境や別フォントは未検証です。生成物の機械検査に合格しても、図の意味や読みやすさ、AWSの承認を保証するものではありません。
+スキル開発時の回帰検証・配布確認は通常作図と分け、条件とコマンドをrendering.mdにまとめています。機械検査は図の意味やAWS構成の正しさを保証しません。
 
 ## 使用するもの
 
-次のソフトウェア・フォントは利用者の既存環境を参照します。リポジトリと配布ZIPには同梱しません。検証済みの版は[rendering.md](references/rendering.md)に記載しています。
+通常の直接作図にはdraw.ioを使います。Pythonは補助スクリプト、Node.js・Playwright・Chromiumは任意の計測・厳密検証に使います。次のソフトウェア・フォントは利用者の既存環境を参照します。リポジトリと配布ZIPには同梱しません。検証済みの版は[rendering.md](references/rendering.md)に記載しています。
 
 | 対象 | 用途・権利情報 |
 | --- | --- |

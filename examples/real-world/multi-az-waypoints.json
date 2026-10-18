@@ -1,0 +1,359 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "nodes": [
+    {
+      "id": "entry",
+      "asset_id": "aws4.application_load_balancer",
+      "label": "Application Load Balancer",
+      "description": "入口 / 両AZ",
+      "group_id": "vpc",
+      "label_kind": "resource-name"
+    },
+    {
+      "id": "api-a",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "description": "API",
+      "group_id": "az-a",
+      "label_kind": "service-name"
+    },
+    {
+      "id": "api-c",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "description": "API",
+      "group_id": "az-c",
+      "label_kind": "service-name"
+    },
+    {
+      "id": "worker-a",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "description": "Worker",
+      "group_id": "az-a",
+      "label_kind": "service-name"
+    },
+    {
+      "id": "worker-c",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "description": "Worker",
+      "group_id": "az-c",
+      "label_kind": "service-name"
+    },
+    {
+      "id": "queue",
+      "asset_id": "aws4.sqs",
+      "label": "Amazon SQS",
+      "description": "処理待ち",
+      "group_id": "region",
+      "label_kind": "service-name"
+    },
+    {
+      "id": "state",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB",
+      "description": "状態",
+      "group_id": "region",
+      "label_kind": "service-name"
+    },
+    {
+      "id": "archive",
+      "asset_id": "aws4.s3",
+      "label": "Amazon S3",
+      "description": "結果",
+      "group_id": "region",
+      "label_kind": "service-name"
+    }
+  ],
+  "groups": [
+    {
+      "id": "region",
+      "type": "group.region",
+      "role": "containment",
+      "label": "Region"
+    },
+    {
+      "id": "vpc",
+      "type": "group.vpc",
+      "role": "containment",
+      "label": "VPC",
+      "parent_id": "region"
+    },
+    {
+      "id": "az-a",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "AZ-A",
+      "parent_id": "vpc"
+    },
+    {
+      "id": "az-c",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "AZ-C",
+      "parent_id": "vpc"
+    }
+  ],
+  "edges": [
+    {
+      "id": "entry-a",
+      "source": "entry",
+      "target": "api-a",
+      "source_side": "right",
+      "target_side": "left",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 280,
+          "y_pt": 575.2
+        },
+        {
+          "x_pt": 280,
+          "y_pt": 330.0
+        }
+      ]
+    },
+    {
+      "id": "entry-c",
+      "source": "entry",
+      "target": "api-c",
+      "source_side": "right",
+      "target_side": "left",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 300,
+          "y_pt": 584.8
+        },
+        {
+          "x_pt": 300,
+          "y_pt": 830.0
+        }
+      ]
+    },
+    {
+      "id": "publish-a",
+      "source": "api-a",
+      "target": "queue",
+      "source_side": "right",
+      "target_side": "left",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 560,
+          "y_pt": 338.0
+        },
+        {
+          "x_pt": 560,
+          "y_pt": 580.0
+        }
+      ]
+    },
+    {
+      "id": "publish-c",
+      "source": "api-c",
+      "target": "queue",
+      "source_side": "right",
+      "target_side": "left",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 580,
+          "y_pt": 830.0
+        },
+        {
+          "x_pt": 580,
+          "y_pt": 592.0
+        }
+      ]
+    },
+    {
+      "id": "poll-a",
+      "source": "worker-a",
+      "target": "queue",
+      "source_side": "left",
+      "target_side": "left",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 700,
+          "y_pt": 330.0
+        },
+        {
+          "x_pt": 700,
+          "y_pt": 568.0
+        }
+      ]
+    },
+    {
+      "id": "poll-c",
+      "source": "worker-c",
+      "target": "queue",
+      "source_side": "right",
+      "target_side": "right",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 1240,
+          "y_pt": 822.0
+        },
+        {
+          "x_pt": 1240,
+          "y_pt": 580
+        }
+      ]
+    },
+    {
+      "id": "state-a",
+      "source": "api-a",
+      "target": "state",
+      "source_side": "right",
+      "target_side": "top",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 520,
+          "y_pt": 322.0
+        },
+        {
+          "x_pt": 520,
+          "y_pt": 200
+        },
+        {
+          "x_pt": 1430.0,
+          "y_pt": 200
+        }
+      ]
+    },
+    {
+      "id": "state-c",
+      "source": "api-c",
+      "target": "state",
+      "source_side": "top",
+      "target_side": "left",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 430.0,
+          "y_pt": 700
+        },
+        {
+          "x_pt": 1320,
+          "y_pt": 700
+        },
+        {
+          "x_pt": 1320,
+          "y_pt": 330.0
+        }
+      ]
+    },
+    {
+      "id": "save-a",
+      "source": "worker-a",
+      "target": "archive",
+      "source_side": "right",
+      "target_side": "left",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 1280,
+          "y_pt": 330.0
+        },
+        {
+          "x_pt": 1280,
+          "y_pt": 822.0
+        }
+      ]
+    },
+    {
+      "id": "save-c",
+      "source": "worker-c",
+      "target": "archive",
+      "source_side": "right",
+      "target_side": "left",
+      "direction": "forward",
+      "waypoints": [
+        {
+          "x_pt": 1130.0,
+          "y_pt": 838.0
+        }
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "asset_id": "aws4.s3",
+      "short_name": "Amazon S3",
+      "full_name": "Amazon Simple Storage Service"
+    },
+    {
+      "asset_id": "aws4.sqs",
+      "short_name": "Amazon SQS",
+      "full_name": "Amazon Simple Queue Service"
+    },
+    {
+      "asset_id": "aws4.fargate",
+      "kind": "note",
+      "short_name": "構成",
+      "full_name": "架空のActive/Active例。両AZのAPIとWorkerから同じ通信を描く。Workerはキューを取得する。"
+    }
+  ],
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "entry",
+        "x_pt": 162.0,
+        "y_pt": 562.0
+      },
+      {
+        "node_id": "api-a",
+        "x_pt": 400.0,
+        "y_pt": 300.0
+      },
+      {
+        "node_id": "api-c",
+        "x_pt": 400.0,
+        "y_pt": 800.0
+      },
+      {
+        "node_id": "worker-a",
+        "x_pt": 800.0,
+        "y_pt": 300.0
+      },
+      {
+        "node_id": "worker-c",
+        "x_pt": 800.0,
+        "y_pt": 800.0
+      },
+      {
+        "node_id": "queue",
+        "x_pt": 1100.0,
+        "y_pt": 550.0
+      },
+      {
+        "node_id": "state",
+        "x_pt": 1400.0,
+        "y_pt": 300.0
+      },
+      {
+        "node_id": "archive",
+        "x_pt": 1400.0,
+        "y_pt": 800.0
+      }
+    ]
+  },
+  "canvas": {
+    "mode": "fixed",
+    "width_pt": 1640,
+    "height_pt": 1080
+  },
+  "mode": "production",
+  "profile": "standard",
+  "direction": "left-to-right",
+  "callouts": [],
+  "regions": [],
+  "annotations": []
+}

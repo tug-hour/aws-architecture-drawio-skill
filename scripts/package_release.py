@@ -20,7 +20,7 @@ def release_files(root):
     files = {name: (root / name).read_bytes() for name in ROOT_DOCUMENTS}
     for folder, suffixes in (
         ('scripts', {'.py', '.cjs'}), ('tests', {'.py'}),
-        ('references', {'.json', '.md', '.yml'}), ('examples', {'.json'}),
+        ('references', {'.json', '.md', '.yml'}), ('examples', {'.json', '.py'}),
     ):
         for path in sorted((root / folder).rglob('*')):
             if path.is_symlink():

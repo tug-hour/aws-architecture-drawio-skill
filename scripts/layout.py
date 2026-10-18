@@ -25,7 +25,7 @@ def frame_overlap_warnings(architecture,frames):
                                  'message':'Unrelated containment frames overlap; review visual membership'})
     return warnings
 
-def layout(a,m,metrics=None):
+def geometry(a,m,metrics=None):
     if a['layout']['mode']=='auto':
         try:positions=automatic_positions(a,m,metrics)
         except ValueError as e:fail('E_LAYOUT_CYCLE',str(e))
@@ -94,6 +94,11 @@ def layout(a,m,metrics=None):
     for i,n in enumerate(ns):
         for other in ns[i+1:]:
             if min(n['x'],n['label_x'])<max(other['x']+other['w'],other['label_x']+other['label_w']) and min(other['x'],other['label_x'])<max(n['x']+n['w'],n['label_x']+n['label_w']) and n['y']<other['bottom'] and other['y']<n['bottom']:fail('E_LAYOUT_COLLISION','Node regions overlap',[n['id'],other['id']])
+    return ns,gs,cw,ch,warnings
+
+def layout(a,m,metrics=None):
+    ns,gs,cw,ch,warnings=geometry(a,m,metrics)
+    items=ns+list(gs.values())
     from routing import route_edges
     edges=route_edges(a,ns,list(gs.values()),cw,ch)
     from connection_labels import place
