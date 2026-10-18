@@ -1,0 +1,173 @@
+"""Optional direct drawing diagnostics never rewrite or gate a diagram."""
+import copy
+import sys
+import unittest
+import xml.etree.ElementTree as ET
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
+
+
+def drawing():
+    root=ET.Element('mxGraphModel',pageWidth='800',pageHeight='500')
+    cells=ET.SubElement(root,'root')
+    ET.SubElement(cells,'mxCell',id='0')
+    ET.SubElement(cells,'mxCell',id='1',parent='0')
+    def vertex(ident,x,y,w,h,parent='1',style='shape=mxgraph.aws4.lambda;',value=''):
+        c=ET.SubElement(cells,'mxCell',id=ident,parent=parent,vertex='1',style=style,value=value)
+        ET.SubElement(c,'mxGeometry',x=str(x),y=str(y),width=str(w),height=str(h),attrib={'as':'geometry'})
+    vertex('group',100,100,600,300,style='container=1;')
+    vertex('a',20,40,80,80,'group')
+    vertex('b',400,40,80,80,'group')
+    c=ET.SubElement(cells,'mxCell',id='ab',parent='group',edge='1',source='a',target='b',
+                    style='exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;endArrow=open;')
+    ET.SubElement(c,'mxGeometry',relative='1',attrib={'as':'geometry'})
+    return root,vertex
+
+
+class DirectRouteTests(unittest.TestCase):
+    def review(self,root):
+        from drawio_routes import inspect_xml
+        return inspect_xml(ET.tostring(root,encoding='unicode'))['pages'][0]
+
+    def test_nested_coordinates_full_text_obstacle_and_read_only(self):
+        root,vertex=drawing();before=ET.tostring(root)
+        result=self.review(root)
+        self.assertEqual(ET.tostring(root),before)
+        self.assertEqual(result['analyzed_edges'],['ab'])
+        self.assertEqual(result['quality']['total_length_pt'],225)
+        self.assertFalse(result['issues'])
+        vertex('role',200,40,100,100,'group',style='text;html=0;',value='Name\nRole\nMore')
+        result=self.review(root)
+        self.assertEqual(result['issues'][0]['code'],'E_EDGE_OBSTACLE')
+        self.assertEqual(result['issues'][0]['details']['obstacle'],'role')
+
+    def test_undersized_plain_text_is_not_claimed_as_fully_checked(self):
+        root,vertex=drawing()
+        vertex('heading',200,20,100,21,'group',style='text;html=0;fontSize=22;overflow=visible;',value='Heading')
+        vertex('role',200,130,100,21,'group',style='html=0;fontSize=16;',value='Name\nRole')
+        before=ET.tostring(root)
+        report=self.review(root)
+        self.assertEqual({u['element_id'] for u in report['unresolved']},{'heading','role'})
+        self.assertEqual(ET.tostring(root),before)
+        for ident in ('heading','role'):
+            root.find(".//mxCell[@id='%s']/mxGeometry"%ident).set('height','42')
+        self.assertFalse(self.review(root)['unresolved'])
+
+    def test_locked_icons_remain_obstacles_but_background_and_endpoint_glyph_do_not(self):
+        root,vertex=drawing();root.set('background','#FFFFFF')
+        vertex('background',0,0,800,500,style='shape=rect;fillColor=#FFFFFF;strokeColor=none;locked=1;')
+        background=root.find(".//mxCell[@id='background']");background.set('connectable','0')
+        container=root.find('root');container.remove(background);container.insert(2,background)
+        vertex('glyph',0,0,80,80,'a',style='shape=mxgraph.aws4.lambda;locked=1;')
+        root.find(".//mxCell[@id='glyph']").set('connectable','0')
+        self.assertFalse(self.review(root)['issues'])
+        vertex('obstacle',220,40,80,80,'group')
+        obstacle=root.find(".//mxCell[@id='obstacle']");obstacle.set('connectable','0')
+        for shape in ('mxgraph.aws4.lambda','rect'):
+            for locked in (0,1):
+                with self.subTest(shape=shape,locked=locked):
+                    obstacle.set('style','shape=%s;fillColor=#FFFFFF;strokeColor=none;locked=%s;'%(shape,locked))
+                    before=ET.tostring(root);report=self.review(root)
+                    self.assertEqual([i['code'] for i in report['issues']],['E_EDGE_OBSTACLE'])
+                    self.assertEqual(report['issues'][0]['details']['obstacle'],'obstacle')
+                    self.assertFalse(report['unresolved'])
+                    self.assertEqual(ET.tostring(root),before)
+
+    def test_cli_compact_output_keeps_findings_and_comparison(self):
+        import json,subprocess,tempfile
+        root,vertex=drawing()
+        vertex('role',200,40,100,100,'group',style='text;',value='Role')
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'example.drawio';path.write_bytes(ET.tostring(root));before=path.read_bytes()
+            command=[sys.executable,'-B',str(ROOT/'scripts/drawio_routes.py'),str(path),str(path)]
+            compact=json.loads(subprocess.check_output(command))
+            detailed=json.loads(subprocess.check_output(command+['--details']))
+            self.assertEqual(path.read_bytes(),before)
+        self.assertTrue(compact['same_topology']);self.assertTrue(compact['same_route_coverage'])
+        for a,b in zip(compact['results'],detailed['results']):
+            for pa,pb in zip(a['pages'],b['pages']):
+                self.assertNotIn('topology',pa)
+                self.assertTrue(pb.pop('topology'))
+                self.assertEqual(pa,pb)
+                self.assertEqual(pa['issues'][0]['code'],'E_EDGE_OBSTACLE')
+
+    def test_computed_routes_and_relative_text_are_not_reported_as_checked(self):
+        root,vertex=drawing()
+        c=root.find(".//mxCell[@id='ab']");c.set('style',c.get('style')+'edgeStyle=orthogonalEdgeStyle;')
+        result=self.review(root)
+        self.assertEqual(result['analyzed_edges'],[])
+        self.assertTrue(result['unresolved'])
+        c.set('style',c.get('style').replace('edgeStyle=orthogonalEdgeStyle;',''))
+        vertex('edge-label',0,0,100,30,'ab',style='text;',value='label')
+        self.assertTrue(self.review(root)['unresolved'])
+
+    def test_shared_segment_reuses_existing_diagnostic(self):
+        root,_=drawing();cells=root.find('root')
+        edge=copy.deepcopy(root.find(".//mxCell[@id='ab']"));edge.set('id','other');cells.append(edge)
+        result=self.review(root)
+        self.assertIn('E_EDGE_OVERLAP',[issue['code'] for issue in result['issues']])
+
+    def test_comparison_reports_topology_change_instead_of_recommending_missing_edges(self):
+        from drawio_routes import compare
+        root,_=drawing();other=copy.deepcopy(root)
+        other.find('root').remove(other.find(".//mxCell[@id='ab']"))
+        report=compare([ET.tostring(r,encoding='unicode') for r in (root,other)])
+        self.assertFalse(report['same_topology'])
+        self.assertTrue(report['visual_review_required'])
+
+    def test_reordering_icons_reduces_crossings_without_changing_topology(self):
+        from drawio_routes import compare
+        root,vertex=drawing();cells=root.find('root')
+        vertex('c',20,200,80,80,'group');vertex('d',400,200,80,80,'group')
+        b=root.find(".//mxCell[@id='b']/mxGeometry");d=root.find(".//mxCell[@id='d']/mxGeometry")
+        b.set('y','220');d.set('y','20')
+        ab=root.find(".//mxCell[@id='ab']")
+        cd=copy.deepcopy(ab);cd.set('id','cd');cd.set('source','c');cd.set('target','d');cells.append(cd)
+        for e,x,ys in ((ab,300,(80,260)),(cd,200,(240,60))):
+            arr=ET.SubElement(e.find('mxGeometry'),'Array',attrib={'as':'points'})
+            for y in ys:ET.SubElement(arr,'mxPoint',x=str(x),y=str(y))
+        old=ET.tostring(root,encoding='unicode')
+        b.set('y','40');d.set('y','200')
+        for e in (ab,cd):
+            g=e.find('mxGeometry');g.remove(g.find('Array'))
+        result=compare([old,ET.tostring(root,encoding='unicode')])
+        self.assertTrue(result['same_topology']);self.assertTrue(result['same_route_coverage'])
+        before,after=[r['pages'][0]['quality'] for r in result['results']]
+        self.assertGreater(before['crossings'],after['crossings'])
+        self.assertGreater(before['bends'],after['bends'])
+        self.assertGreater(before['total_length_pt'],after['total_length_pt'])
+
+    def test_compressed_pages_and_backward_segments_keep_geometry(self):
+        import base64,zlib
+        from urllib.parse import quote
+        from drawio_routes import inspect_xml
+        root,_=drawing();xml=ET.tostring(root,encoding='unicode')
+        compressor=zlib.compressobj(wbits=-15)
+        data=base64.b64encode(compressor.compress(quote(xml).encode())+compressor.flush()).decode()
+        result=inspect_xml('<mxfile><diagram id="page">'+data+'</diagram></mxfile>')['pages'][0]
+        self.assertEqual(result['quality'],self.review(root)['quality'])
+        g=root.find(".//mxCell[@id='ab']/mxGeometry")
+        arr=ET.SubElement(g,'Array',attrib={'as':'points'})
+        for x in (200,0,200):ET.SubElement(arr,'mxPoint',x=str(x),y='80')
+        self.assertIn('E_EDGE_REENTRY',[i['code'] for i in self.review(root)['issues']])
+
+    def test_generated_group_wrappers_are_not_visible_frames(self):
+        from build_drawio import normalize,author
+        from layout import layout
+        from catalog import manifest
+        from drawio_routes import inspect_xml
+        m=manifest()
+        a=normalize({'schema_version':'1.0','nodes':[{'id':k,'asset_id':'aws4.lambda'} for k in ('a','b')],
+                     'edges':[{'id':'ab','source':'a','target':'b'}]},m)
+        lay,_=layout(a,m);report=inspect_xml(author(a,lay,m,'light'))['pages'][0]
+        self.assertFalse(report['issues']);self.assertFalse(report['unresolved'])
+        self.assertEqual(report['quality'],lay['routing_quality'])
+
+    def test_unbounded_canvas_and_unclassified_frame_do_not_add_false_gates(self):
+        root,vertex=drawing()
+        root.find(".//mxCell[@id='group']/mxGeometry").set('x','-500')
+        self.assertFalse(self.review(root)['issues'])
+        vertex('overlay',-300,100,100,200,style='container=1;')
+        report=self.review(root)
+        self.assertFalse(report['issues'])
+        self.assertIn('overlay',[item['element_id'] for item in report['unresolved']])

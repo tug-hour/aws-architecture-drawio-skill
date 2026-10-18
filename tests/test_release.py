@@ -21,7 +21,7 @@ class ReleaseTests(unittest.TestCase):
             a=json.loads((ROOT/'examples/japanese-auto.json').read_text());a['edges'][0]['label']=label
             with self.assertRaises(Failure):normalize(a,manifest())
     def test_explicit_ports_are_validated(self):
-        a=json.loads((ROOT/'examples/japanese-auto.json').read_text());a['edges'][0]['source_side']='bottom'
+        a=json.loads((ROOT/'examples/japanese-auto.json').read_text());a['edges'][0]['source_side']='diagonal'
         with self.assertRaises(Failure) as ctx:normalize(a,manifest())
         self.assertEqual(ctx.exception.issue['code'],'E_EDGE_PORT')
     def test_spatial_port_order_reduces_fanout_crossings(self):

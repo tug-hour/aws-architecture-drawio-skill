@@ -12161,16 +12161,30 @@
     },
     "aws4.simple_email_service": {
       "id": "aws4.simple_email_service",
-      "name": "Simple Email Service",
+      "name": "Amazon Simple Email Service (Amazon SES)",
       "role": "service",
       "width_pt": 60,
       "height_pt": 60,
       "shape": "mxgraph.aws4.simple_email_service",
       "native_width": 56.0,
       "native_height": 56.0,
-      "color": "#3334B9",
-      "pptx_match": "unverified",
-      "support_status": "unverified"
+      "color": "#DD344C",
+      "pptx_match": "source-style",
+      "support_status": "unverified",
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 55,
+          "media": "ppt/media/image440.svg",
+          "shape_id": "7"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 53,
+          "media": "ppt/media/image437.svg",
+          "shape_id": "7"
+        }
+      }
     },
     "aws4.simple_storage_service_directory_bucket": {
       "id": "aws4.simple_storage_service_directory_bucket",

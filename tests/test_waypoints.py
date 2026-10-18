@@ -60,3 +60,25 @@ class WaypointTests(unittest.TestCase):
         self.assertEqual(error.exception.issue['details']['obstacle'],'icon.c')
         for change in ({'POS':{}},{'LANES':{'missing':[0]}},{'W':float('inf')},{'AUTO':['ab'],'LANES':{'ab':[300]}}):
             with self.subTest(change=change),self.assertRaises(Failure):build(raw,dict(spec,**change),m)
+
+    def test_bottom_ports_are_supported_but_labels_still_block_them(self):
+        from routing import allocate_ports,check_terminals,_route_edges
+        raw={'schema_version':'1.0','nodes':[{'id':n,'asset_id':'aws4.lambda'} for n in ('a','b')],
+             'edges':[{'id':'ab','source':'a','target':'b'}]}
+        spec={'POS':{'a':(100,100),'b':(100,350)},'W':500,'H':600,
+              'SIDES':{'ab':('bottom','top')},'LANES':{'ab':[250]}}
+        from waypoints import apply_spec
+        a=apply_spec(raw,spec,manifest())
+        self.assertEqual(a['edges'][0]['source_side'],'bottom')
+        def node(ident,y):
+            return dict(id=ident,x=100,y=y,w=60,h=60,label=[],label_x=100,label_w=60)
+        nodes=[node('a',100),node('b',350)]
+        ports=allocate_ports(a,nodes)['ab']
+        self.assertEqual(ports['source_port'],(.5,1))
+        path=build_path(ports['start'],ports['end'],'bottom','top',[250])
+        check_terminals(a['edges'][0],path,'bottom','top')
+        a['edges'][0]['waypoints']=[{'x_pt':130,'y_pt':250}]
+        self.assertEqual(_route_edges(a,nodes,[],500,600,a['edges'])[0]['points'],[[130,160],[130,350]])
+        nodes[0]['label']=['Name','Role']
+        with self.assertRaises(Failure) as error:_route_edges(a,nodes,[],500,600,a['edges'])
+        self.assertEqual(error.exception.issue['code'],'E_EDGE_OBSTACLE')

@@ -10,7 +10,7 @@ nodesはid、asset_id、任意label・description・label_kind・group_id。asse
 
 groupsはid・type・role、任意label。containmentはparent_id、overlayは2つ以上の異なるノードIDをmembersへ指定する。overlayはparent_idを持たず、ノードのgroup_idから参照しない。AWS Cloudのみcloud_icon=logo／cloudを指定できる。空の包含グループは拒否する。
 
-edgesはid・source・target、任意direction=forward／both／none、waypoints。自分自身への接続は未対応。labelは単一行・最大80文字。表示位置を自動で選び、空白がなければE_CONNECTION_LABEL_SPACEで拒否する。source_side／target_sideはleft／right／topを指定できる。bottomはラベルとの衝突を避けるため未対応。waypointsはx_pt・y_ptを持つ非空配列で、manual配置とfixedキャンバスの場合だけ指定できる。配置・接続点・障害物・警告の詳細は[配置と経路](layout-and-routing.md)を参照する。
+edgesはid・source・target、任意direction=forward／both／none、waypoints。自分自身への接続は未対応。labelは単一行・最大80文字。表示位置を自動で選び、空白がなければE_CONNECTION_LABEL_SPACEで拒否する。source_side／target_sideはleft／right／top／bottomを指定できる。bottomもラベルとの衝突検査を受ける。waypointsはx_pt・y_ptを持つ非空配列で、manual配置とfixedキャンバスの場合だけ指定できる。配置・接続点・障害物・警告の詳細は[配置と経路](layout-and-routing.md)を参照する。
 
 用語集glossaryはasset_id・full_name・short_name。各項目は単一行、略称の重複は拒否する。図の上に「full_name (short_name)」を描画し、ブラウザ検査に含める。本文における正式名称の初出順はこのプログラムの検査対象外。
 

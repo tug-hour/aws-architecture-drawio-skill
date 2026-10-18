@@ -41,14 +41,14 @@ def auto_sides(source, target):
 
 
 def build_path(start, end, source_side, target_side, lanes):
-    pts=[start];cur=start;axis='v' if source_side=='top' else 'h'
+    pts=[start];cur=start;axis='v' if source_side in ('top','bottom') else 'h'
     for value in lanes:
         cur=(value,cur[1]) if axis=='h' else (cur[0],value)
         pts.append(cur);axis='v' if axis=='h' else 'h'
-    if target_side=='top':
+    if target_side in ('top','bottom'):
         if axis=='h':pts.append((end[0],cur[1]))
         elif abs(cur[0]-end[0]) > .01:
-            raise ValueError('Top entry is not aligned with target x; adjust LANES')
+            raise ValueError('Vertical entry is not aligned with target x; adjust LANES')
     elif axis=='v':pts.append((cur[0],end[1]))
     elif abs(cur[1]-end[1]) > .01:
         mid=(cur[0]+end[0])/2;pts.extend([(mid,cur[1]),(mid,end[1])])
@@ -90,7 +90,7 @@ def apply_spec(raw, spec, catalog):
         if e.get('source') not in centers or e.get('target') not in centers:fail('E_EDGE_REFERENCE','Unknown endpoint',[e['id']])
         for key in ('source_side','target_side','waypoints'):e.pop(key,None)
         pair=sides.get(e['id'],auto_sides(centers[e['source']],centers[e['target']]))
-        if not isinstance(pair,(list,tuple)) or len(pair)!=2 or any(s not in (None,'left','right','top') for s in pair):fail('E_PLACEMENT_SPEC','SIDES needs two values: left, right, top or None',[e['id']])
+        if not isinstance(pair,(list,tuple)) or len(pair)!=2 or any(s not in (None,'left','right','top','bottom') for s in pair):fail('E_PLACEMENT_SPEC','SIDES needs two values: left, right, top, bottom or None',[e['id']])
         for key,value in zip(('source_side','target_side'),pair):
             if value is not None:e[key]=value
         values=lanes.get(e['id'],[])
