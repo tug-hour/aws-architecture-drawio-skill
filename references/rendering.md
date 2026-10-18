@@ -4,7 +4,7 @@
 
 通常作図は、依頼された図をdraw.ioで一度表示して確認する。日本語・使った記号・ラベルの切れ・重なり・接続方向・枠の所属を見て、必要な箇所だけ直す。指定テーマだけを作り、両テーマを納品する場合だけ両方を見る。図の小さな変更に、全カタログや無関係な図の検査を追加しない。
 
-新規作成は全体と主要経路を確認する。改修は同じ原本・スタイル・描画環境の確認済み結果を使い、変更点と移動・配線の影響が及ぶ周辺を確認する。PPTXとの照合では、使った記号の寸法・色、12ptのアイコン／接続ラベル、サービス名の改行、枠と矢印を確認する。「前の図と同じ」は適合の証明ではない。図の題名・節見出しとアイコン／接続ラベルは区別する。文字領域を小さくしただけで重なりが解消したとは判断しない。
+新規作成は全体と主要経路を確認する。改修は同じ原本・スタイル・描画環境の確認済み結果を使い、変更点と移動・配線の影響が及ぶ周辺を確認する。PPTXとの照合では、使った記号の寸法・色、12ptのアイコン／接続ラベル、サービス名の改行、枠と矢印を確認する。矢じりは[native-rules.md](native-rules.md)の採用値を使い、接続方向が明確で、潰れや線・文字との重なりがないことを確認する。「前の図と同じ」は適合の証明ではない。図の題名・節見出しとアイコン／接続ラベルは区別する。文字領域を小さくしただけで重なりが解消したとは判断しない。
 
 独自JSON、ブラウザ実測、画像の再書き出し照合、検査レポート、unit、全受け入れ検証は必須ではない。原本を直接編集した場合も、元JSONとの一致を納品条件にしない。画像が必要ならdraw.ioの画面または既存CLIで一度書き出し、その同じ画像を確認する。
 
@@ -285,7 +285,7 @@ AWS_NATIVE_DRAWIO_RUNTIME=<runtime.json> AWS_DRAWIO_PROFILE=<dedicated-profile> 
 AWS_NATIVE_DRAWIO_RUNTIME=<runtime.json> AWS_DRAWIO_PROFILE=<dedicated-profile> PYTHONDONTWRITEBYTECODE=1 python3 -B <skill-dir>/scripts/test_runner.py --group native --match AdvisoryNativeTests --keep-artifacts --output <new-native-dir>
 ```
 
-矢じりの種類・サイズを変更する場合は、unitで旧設定との差が矢じり設定だけであることを確認し、次の関連nativeテストを実行する。片方向・双方向・無矢印、水平・垂直の終端とアイコンへの接続を同じ図で確認する。保存した両テーマを目視し、線幅・色・方向・経路と矢じり周辺の余白を確認する。PPTXとの比較済み候補を採用するだけなら、候補比較図は再生成しない。
+利用者が別途指定した矢じりの種類・サイズの変更を実装する場合だけ、unitで旧設定との差が矢じり設定だけであることを確認し、次の関連nativeテストを実行する。片方向・双方向・無矢印、水平・垂直の終端とアイコンへの接続を同じ図で確認する。保存した両テーマを目視し、線幅・色・方向・経路と矢じり周辺の余白を確認する。
 
 ```text
 AWS_NATIVE_DRAWIO_RUNTIME=<runtime.json> AWS_DRAWIO_PROFILE=<dedicated-profile> PYTHONDONTWRITEBYTECODE=1 python3 -B <skill-dir>/scripts/test_runner.py --group native --match ArrowNativeTests --keep-artifacts --output <new-native-dir>
