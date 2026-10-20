@@ -1,6 +1,6 @@
 # 構成正本と用途別の図
 
-project.pyは、複数図の経路網羅を機械検査したい場合に使う任意のツールである。通常はdraw.io原本を直接編集でき、単独JSONからの厳密な生成・照合にはrun.pyを使える。このツールを使う場合はproject_version=1.0とmodel、viewsを宣言する。基本例はexamples/projects/modern-web-iot.json。
+project.pyは、旧JSON形式で複数図の経路網羅を機械検査したい場合に使う任意のツールである。単独図の通常生成は[drawio/1](input-format.md#通常作図のdrawio1形式)、旧JSONからの厳密な生成・照合はrun.pyを使う。このツールを使う場合はproject_version=1.0とmodel、viewsを宣言する。基本例はexamples/projects/modern-web-iot.json。
 
 ## 構成の意味
 

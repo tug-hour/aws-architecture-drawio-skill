@@ -28,9 +28,11 @@ def unique_pairs(pairs):
         if k in d:fail('E_SCHEMA','Duplicate JSON key: '+k)
         d[k]=v
     return d
-def load(path):
-    try:return json.loads(path.read_text(),object_pairs_hook=unique_pairs,parse_constant=lambda x:fail('E_SCHEMA','Non-finite JSON value'))
+def loads(data):
+    try:return json.loads(data.decode('utf-8') if isinstance(data,bytes) else data,object_pairs_hook=unique_pairs,parse_constant=lambda x:fail('E_SCHEMA','Non-finite JSON value'))
     except (json.JSONDecodeError,UnicodeError):fail('E_SCHEMA','Invalid JSON encoding or syntax')
+def load(path):
+    return loads(path.read_bytes())
 
 def validate(a,m):
     object_keys(a,('schema_version','mode','theme','profile','direction','canvas','layout','nodes','edges','groups','callouts','glossary','regions','annotations','availability','semantics'),('schema_version','nodes','edges'))

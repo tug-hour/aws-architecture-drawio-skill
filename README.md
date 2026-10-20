@@ -1,14 +1,16 @@
 # AWS architecture diagrams with draw.io
 
-PPTXの描画規則を参照し、draw.io標準AWS図形で編集可能なAWS構成図を作るCodexスキルです。通常は原本を直接作成・編集し、必要なテーマとSVG・PNGだけを出力します。公式SVGは埋め込みません。
+PPTXの描画規則を参照し、draw.io標準AWS図形で編集可能なAWS構成図を作るCodexスキルです。新規作成と繰り返し更新では、構成・配置・配線をJSONで管理し、draw.io原本を生成します。既存のdraw.ioだけを直接編集する使い方も継続できます。公式SVGは埋め込みません。
 
 AWSおよびdraw.ioの公式製品ではなく、承認・提携を示すものではありません。標準図形の輪郭や矢じりはPPTXと完全一致しません。
 
 ## 利用と確認
 
-1. [SKILL.md](SKILL.md)の基本手順で、依頼された構成を描きます。図形は過去の検証済み一覧に限定しません。
-2. [rendering.md](references/rendering.md)に従い、一度表示して日本語・接続・枠・使った図形を確認します。独自JSON、ブラウザ計測、再書き出し検査、開発テストは通常作図の必須条件ではありません。
-3. 大きな構成の配置調整には、任意の[配置表・経由点生成](references/layout-and-routing.md)を使えます。JSONからの再生成や厳密な照合を必要とする場合は、既存の生成・検証ツールも使えます。
+1. [SKILL.md](SKILL.md)の基本手順で、依頼された構成と配置を決めます。図形は過去の検証済み一覧に限定しません。
+2. [drawio/1の入力仕様](references/input-format.md#通常作図のdrawio1形式)に従ってJSONへ保存し、[生成コマンド](references/rendering.md#jsonを更新元にする場合)で原本を作ります。[ServiceHubの構成例](examples/servicehub.json)は、複数機能・Multi-AZ・Multi-Region・運用監視を1枚にまとめた更新用JSONです。再生成時に配置や経路を再計算せず、指定値を維持します。
+3. 同じ原本をdraw.ioで一度表示し、日本語・接続・枠・使った図形を確認します。ブラウザ計測、再書き出し照合、開発テストは通常作図の必須条件ではありません。SVG・PNGは必要な場合だけ出力します。
+
+JSON管理ではJSONを更新元とし、GUIでの調整は変更値をJSONに反映するか、直接編集版として分けて残します。GUIとの自動同期はありません。既存のdraw.ioだけを扱う場合はJSONへの移行を要求しません。旧JSONの自動配置・配置表・厳密照合を使う場合は、[旧形式の説明](references/input-format.md#互換用のschema_version-10形式)を参照してください。
 
 版番号は[version.json](references/version.json)、PPTXの規則は[aws-rules.md](references/aws-rules.md)を参照してください。[verified-assets.json](references/verified-assets.json)は確認済み範囲の記録です。未確認の図形は使用した図で確認し、全図形を検証済みとは扱いません。
 
@@ -16,7 +18,7 @@ AWSおよびdraw.ioの公式製品ではなく、承認・提携を示すもの�
 
 ## 使用するもの
 
-通常の直接作図にはdraw.ioを使います。Pythonは補助スクリプト、Node.js・Playwright・Chromiumは任意の計測・厳密検証に使います。次のソフトウェア・フォントは利用者の既存環境を参照します。リポジトリと配布ZIPには同梱しません。検証済みの版は[rendering.md](references/rendering.md)に記載しています。
+JSONからの原本生成には既存Pythonの標準ライブラリ、表示・画像出力にはdraw.ioを使います。Node.js・Playwright・Chromiumは任意の計測・厳密検証用です。次のソフトウェア・フォントは利用者の既存環境を参照します。リポジトリと配布ZIPには同梱しません。検証済みの版は[rendering.md](references/rendering.md)に記載しています。
 
 | 対象 | 用途・権利情報 |
 | --- | --- |
