@@ -134,10 +134,11 @@ class ServiceLabelTests(unittest.TestCase):
         for theme in ('light','dark'):
             doc=ET.fromstring(author(a,lay,self.m,theme));g=next(c for c in doc.iter('mxCell') if c.get('id')=='glossary.0')
             self.assertEqual(g.get('value'),'Amazon Simple Queue Service (Amazon SQS)')
-    def test_all_examples_and_project_views_use_name_contract(self):
+    def test_legacy_examples_and_project_views_use_name_contract(self):
         for path in (ROOT/'examples').rglob('*.json'):
             with self.subTest(path=str(path)):
                 a=json.loads(path.read_text())
+                if a.get('format')=='drawio/1':continue
                 if 'project_version' in a:project_views(a)
                 else:normalize(a,self.m)
 

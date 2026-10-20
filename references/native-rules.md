@@ -23,11 +23,11 @@ AZ、Security group、汎用グループの既定には記号がないので追�
 
 破線の比率はLibreOfficeのDrawingML実装（oox/source/drawingml/lineproperties.cxx）に基づく。sysDashとdashを同じ配列へ潰さない。draw.ioのdashPatternは線幅に対する比である。共通描画処理を変更した場合は、実際のSVGの線幅・配列も検査する。Quick Lookとの画像差にはレンダラーの丸め・アンチエイリアスも含まれる。
 
-矢じりはdraw.io標準のOpenをstartSize・endSize=6 pxで使う。種類・サイズの定義元はnative-catalog.jsonのarrowで、生成処理はその値を参照する。PPTXに対する近似としてこの設定を維持し、矢じりの完全一致を目指す追加調整や比較検証は行わない。作図時の確認範囲は[生成物用の検証](rendering.md#スキルの生成物用の検証)に従う。PPTXの輪郭・余白・矢じりとの差、フォントの拡張、完全適合として扱わない範囲は[適合範囲](service-labels-and-conformance.md#適合範囲)にまとめる。未対応記号を画像へ自動フォールバックしない。
+矢じりはdraw.io標準のOpenをstartSize・endSize=6 pxで使う。種類・サイズの定義元はnative-catalog.jsonのarrowで、旧schema_version: "1.0"の生成処理はその値を参照する。drawio/1ではJSONのスタイルへこの適用値を指定し、生成処理による自動設定・補正は行わない。PPTXに対する近似としてこの設定を維持し、矢じりの完全一致を目指す追加調整や比較検証は行わない。作図時の確認範囲は[生成物用の検証](rendering.md#スキルの生成物用の検証)に従う。PPTXの輪郭・余白・矢じりとの差、フォントの拡張、完全適合として扱わない範囲は[適合範囲](service-labels-and-conformance.md#適合範囲)にまとめる。未対応記号を画像へ自動フォールバックしない。
 
 通常作図では標準AWS図形を直接使い、必要に応じて接続点・経由点・注記を編集する。全記号の使用を事前検証の完了条件にしない。[検証済み一覧](verified-assets.json)はカタログから生成した過去の確認範囲であり、使用許可リストではない。未確認の図形は、利用した図で形状・役割・寸法・色を確認する。記録がないことと利用できないことを区別する。
 
-JSON補助ツールでは、未登録の図形ID、未実装のコールアウトやprofileなどは扱えない。その制限を標準draw.ioによる直接編集に適用しない。名称・凡例の自動処理を使う場合は[名称仕様](service-labels-and-conformance.md)を参照する。
+旧schema_version: "1.0"のJSON補助ツールでは、未登録の図形ID、未実装のコールアウトやprofileなどは扱えない。その制限をdrawio/1による通常生成や標準draw.ioによる直接編集に適用しない。形式の使い分けは[入力仕様](input-format.md)、旧形式の名称・凡例の自動処理は[名称仕様](service-labels-and-conformance.md)を参照する。
 
 接続ラベルも12 pt、黒／白のテーマ色で描画する。線の色・幅・実線・Openは元の値を保持し、通信の種類を独自の線色や破線へ変換しない。MQTT・HTTPS・SQL・複製などの意味はラベルと説明で区別する。
 

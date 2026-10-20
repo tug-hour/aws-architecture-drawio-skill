@@ -9,6 +9,7 @@ from layout import layout
 SCALE=4/3
 FONT='Arial,Arial Unicode MS'
 from service_labels import display_label
+from drawing import document, vertex as xml_vertex, edge as xml_edge, generate as generate_document
 
 def style(**values):return ';'.join(k+'='+str(v) for k,v in values.items())+';'
 def normalize(a,m):
@@ -24,14 +25,9 @@ def normalize(a,m):
 
 def author(a,lay,m,theme):
     dark=theme=='dark';fg='#FFFFFF' if dark else '#000000';bg='#000000' if dark else '#FFFFFF';arrow='#8FA7C4' if dark else '#000000'
-    doc=ET.Element('mxfile',host='Electron',version='32.4.1',compressed='false')
-    diagram=ET.SubElement(doc,'diagram',id='aws-'+theme,name=theme)
-    model=ET.SubElement(diagram,'mxGraphModel',grid='0',page='0',background=bg,connect='1',arrows='1',adaptiveColors='none');root=ET.SubElement(model,'root')
-    ET.SubElement(root,'mxCell',id='0');ET.SubElement(root,'mxCell',id='1',parent='0')
+    doc,root=document('aws-'+theme,theme,dict(grid='0',page='0',background=bg,connect='1',arrows='1',adaptiveColors='none'))
     def vertex(ident,parent,sty,x,y,w,h,text='',connectable='0'):
-        cell=ET.SubElement(root,'mxCell',id=ident,parent=parent,vertex='1',connectable=connectable,value=text,style=sty)
-        ET.SubElement(cell,'mxGeometry',x=str(x*SCALE),y=str(y*SCALE),width=str(w*SCALE),height=str(h*SCALE),attrib={'as':'geometry'})
-        return cell
+        return xml_vertex(root,ident,parent,sty,(x,y,w,h),text,connectable,scale=SCALE)
     def caption(ident,parent,x,y,w,h,text,align='left',bold=False,size=12,color=fg):
         vertex(ident,parent,'text;'+style(html=0,whiteSpace='nowrap',overflow='visible',align=align,verticalAlign='top',spacing=0,fontSize=size*SCALE,fontFamily=FONT,fontStyle=1 if bold else 0,fontColor=color,strokeColor='none',fillColor='none'),x,y,w,h,text)
     vertex('canvas','1',style(shape='rect',fillColor=bg,strokeColor='none',locked=1),0,0,lay['canvas']['width_pt'],lay['canvas']['height_pt'])
@@ -78,9 +74,8 @@ def author(a,lay,m,theme):
         target_anc=ancestors(edge['target']);common=next((g for g in ancestors(edge['source']) if g in target_anc),None);parent='frame.'+common if common else '1'
         ox,oy=(groups[common]['x'],groups[common]['y']) if common else (0,0)
         sty=style(html=0,rounded=0,strokeColor=arrow,strokeWidth=1.25*SCALE,startArrow=m['arrow']['native_type'] if edge['direction']=='both' else 'none',endArrow='none' if edge['direction']=='none' else m['arrow']['native_type'],startFill=0,endFill=0,startSize=m['arrow']['size_px'],endSize=m['arrow']['size_px'],exitX=route['source_port'][0],exitY=route['source_port'][1],entryX=route['target_port'][0],entryY=route['target_port'][1],exitPerimeter=0,entryPerimeter=0)
-        cell=ET.SubElement(root,'mxCell',id='edge.'+edge['id'],parent=parent,edge='1',source='icon.base.'+edge['source'],target='icon.base.'+edge['target'],value='',style=sty)
-        geo=ET.SubElement(cell,'mxGeometry',relative='1',attrib={'as':'geometry'});points=ET.SubElement(geo,'Array',attrib={'as':'points'})
-        for x,y in route['points'][1:-1]:ET.SubElement(points,'mxPoint',x=str((x-ox)*SCALE),y=str((y-oy)*SCALE))
+        xml_edge(root,'edge.'+edge['id'],parent,sty,'icon.base.'+edge['source'],'icon.base.'+edge['target'],
+                 [(x-ox,y-oy) for x,y in route['points'][1:-1]],scale=SCALE)
     for g in lay.get('connection_labels',[]):caption(g['id'],'1',g['x'],g['y'],g['w'],g['h'],g['text'])
     for g in lay.get('glossary',[]):caption(g['id'],'1',g['x'],g['y'],g['w'],g['h'],g['text'])
     if a['callouts']:fail('E_FEATURE_UNSUPPORTED','Native callout validation is not implemented')
@@ -145,6 +140,30 @@ def build(path,output,binary,profile,runtime=None):
     except Failure as e:return {'status':'failed','errors':[e.issue],'artifacts':[]},e.exit_code
     except (OSError,ValueError,TypeError,KeyError,ET.ParseError,subprocess.TimeoutExpired) as e:return {'status':'failed','errors':[{'code':'E_PROCESSING','message':str(e)}],'artifacts':[]},4
 
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument('--input',type=Path,required=True)
+    p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--drawio',type=Path,default=Path('/Applications/draw.io.app/Contents/MacOS/draw.io'))
+    p.add_argument('--profile',type=Path)
+    p.add_argument('--runtime',type=Path)
+    args=p.parse_args()
+    try:
+        source=load(args.input)
+        if isinstance(source,dict) and 'format' in source:
+            if args.profile or args.runtime:
+                p.error('drawio/1 authors only; open/export the generated file separately')
+            result,code=generate_document(args.input,args.output)
+        else:
+            if args.profile is None:p.error('Legacy schema_version input requires --profile')
+            result,code=build(args.input,args.output,args.drawio,args.profile,args.runtime)
+    except Failure as error:
+        result,code={'status':'failed','errors':[error.issue]},error.exit_code
+    except (OSError,ValueError,TypeError,KeyError) as error:
+        result,code={'status':'failed','errors':[{'code':'E_PROCESSING','message':str(error)}]},4
+    print(json.dumps(result,ensure_ascii=False))
+    return code
+
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--input',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--drawio',type=Path,default=Path('/Applications/draw.io.app/Contents/MacOS/draw.io'));p.add_argument('--profile',type=Path,required=True);p.add_argument('--runtime',type=Path);args=p.parse_args()
-    result,code=build(args.input,args.output,args.drawio,args.profile,args.runtime);print(json.dumps(result,ensure_ascii=False));raise SystemExit(code)
+    raise SystemExit(main())

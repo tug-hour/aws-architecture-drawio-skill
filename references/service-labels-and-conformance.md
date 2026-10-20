@@ -1,6 +1,6 @@
 # サービス名とPPTX適合範囲
 
-本書はJSON補助ツールの名称処理と、標準図形によるPPTX規則の適用範囲を説明する。通常の直接作図に名称辞書への登録を要求しない。AWSによる承認、元のSVGの同一性、PPTX完全準拠を表さない。成功時もaws_conformance=partialとする。
+本書は旧`schema_version: "1.0"`ツールの名称処理と、標準図形によるPPTX規則の適用範囲を説明する。drawio/1による通常生成や直接作図に名称辞書への登録を要求しない。AWSによる承認、元のSVGの同一性、PPTX完全準拠を表さない。旧ツールは成功時もaws_conformance=partialとする。
 
 ## サービス名
 
@@ -39,7 +39,7 @@ E_SERVICE_NAMEとE_SERVICE_LABELには、details.migrationとして対象フィ�
 
 16種類のグループ記号を両テーマで比較し、VPCを含む対応と輪郭の差を記録している。この比較は輪郭の完全一致を示すものではない。
 
-JSON補助ツールでは未対応のprofile、callouts、region_id、未知のgroup.typeを拒否する。通常の直接作図の制約ではない。AWS Cloudのロゴ例外は利用者がcloud_icon=cloudを明示する。厳密なPPTX完全準拠が必要な用途では本方式の制約を説明し、完全準拠として納品しない。輪郭の一致には公式SVG方式など別の検証が必要であり、画像を使わない方式へ黙って置き換えない。
+旧JSON補助ツールでは未対応のprofile、callouts、region_id、未知のgroup.typeを拒否する。drawio/1による通常生成や直接作図の制約ではない。AWS Cloudのロゴ例外は旧形式ではcloud_icon=cloudで明示する。厳密なPPTX完全準拠が必要な用途では本方式の制約を説明し、完全準拠として納品しない。輪郭の一致には公式SVG方式など別の検証が必要であり、画像を使わない方式へ黙って置き換えない。
 
 AWS Cloudのテーマ別配色と、図形の抜き部分に使う下地は[native-rules.md](native-rules.md)に定義する。リソース記号と任意ラベルの名前の一致は機械検査の対象外で、人が確認する。
 
