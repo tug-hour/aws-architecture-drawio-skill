@@ -41,7 +41,7 @@ class VersionTests(unittest.TestCase):
     def test_missing_version_prevents_renderer_invocation(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
-            with patch.object(version, 'VERSION_PATH', root / 'missing'), patch('build_drawio.drawio_version') as renderer:
+            with patch.object(version, 'VERSION_PATH', root / 'missing'), patch('legacy_drawio.drawio_version') as renderer:
                 result, code = run(ROOT / 'examples/japanese-auto.json', root / 'out', root / 'bin', root / 'profile', root / 'runtime')
                 self.assertNotEqual(code, 0)
                 self.assertFalse(result['production_eligible'])
@@ -52,7 +52,7 @@ class VersionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             base = Path(d); source = base / 'source';source.mkdir()
             (source / 'validation.json').write_text('{"candidate_version":"0.0.0"}')
-            with patch('build_drawio.drawio_version') as renderer:
+            with patch('legacy_drawio.drawio_version') as renderer:
                 result, code = verify(source, base / 'qa', base / 'runtime', base / 'bin', base / 'profile')
             self.assertEqual(code, 2)
             self.assertEqual(result['errors'][0]['code'], 'E_RELEASE_VERSION_MISMATCH')
@@ -64,7 +64,7 @@ class VersionTests(unittest.TestCase):
             base = Path(d); source = base / 'source'; source.mkdir()
             metadata = json.dumps(value)
             (source / 'validation.json').write_text(metadata)
-            with patch('build_drawio.drawio_version') as renderer, patch('build_drawio.export_file') as exporter, patch('verify_native.invoke') as browser:
+            with patch('legacy_drawio.drawio_version') as renderer, patch('legacy_drawio.export_file') as exporter, patch('verify_native.invoke') as browser:
                 result, code = verify(source, base / 'qa', base / 'runtime', base / 'bin', base / 'profile')
             self.assertEqual(code, 2)
             self.assertEqual(result['status'], 'failed')

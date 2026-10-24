@@ -124,5 +124,115 @@ class DrawingTests(unittest.TestCase):
             self.assertEqual(cells.find(".//mxCell[@id='label']").get('value'), '日本語 & <label>')
 
 
+class PartTests(unittest.TestCase):
+    def test_create_catalog_and_uncatalogued_shapes_is_expanded_and_nonmutating(self):
+        from parts import add_part
+        source = {'format': 'drawio/1', 'elements': {}}
+        made, info = add_part(source, 'kms', asset='aws4.key_management_service', name='AWS Key Management Service', at=(100, 100), role='暗号化')
+        self.assertEqual(source['elements'], {})
+        self.assertEqual(made['elements']['kms']['bounds'], [100, 100, 80, 80])
+        self.assertEqual(made['elements']['kms.name']['value'], 'AWS Key Management Service')
+        self.assertEqual(made['elements']['kms.glyph']['overrides']['fillColor'], '#FFFFFF')
+        made, _ = add_part(made, 'custom', shape='mxgraph.aws4.future_service', color='#ED7100',
+                           name='Example service', at=(400, 100), theme='dark')
+        xml = author_document(made)
+        self.assertIn('mxgraph.aws4.future_service', xml)
+        self.assertEqual(made['elements']['custom.name']['overrides']['fontColor'], '#FFFFFF')
+        self.assertNotIn('template', made)
+        for asset in ['group.region', 'group.availability-zone', 'group.aws-cloud']:
+            frame, _ = add_part(source, 'frame', asset=asset, at=(0, 0))
+            self.assertEqual(frame['elements']['frame']['overrides']['fillColor'], 'none')
+            self.assertIn('mxGraphModel', author_document(frame))
+        resource, _ = add_part(source, 'stream', asset='aws4.dynamodb_stream', at=(0, 0))
+        self.assertEqual(resource['elements']['stream']['bounds'][2:], [48, 48])
+        frame, _ = add_part(source, 'asg', asset='group.auto-scaling', at=(0, 0))
+        self.assertEqual(frame['elements']['asg']['overrides']['container'], 0)
+        self.assertEqual(frame['elements']['asg.glyph']['bounds'], [280, 0, 40, 40])
+        self.assertEqual(frame['elements']['asg.name']['bounds'][1], 44)
+        cloud, _ = add_part(source, 'cloud', asset='group.aws-cloud', at=(0, 0), theme='dark')
+        self.assertEqual(cloud['elements']['cloud.header-base']['overrides']['fillColor'], '#FFFFFF')
+        self.assertEqual(cloud['elements']['cloud.glyph']['overrides']['fillColor'], '#232F3E')
+
+    def test_copy_remaps_subtrees_internal_edges_and_conflicting_styles(self):
+        from parts import copy_part
+        source = document()
+        source['elements']['external'] = {'bounds': [900, 100, 80, 80], 'style': 'service'}
+        source['elements']['boundary'] = {'source': 'b', 'target': 'external', 'style': 'wire'}
+        before = copy.deepcopy(source)
+        target = {'format': 'drawio/1', 'styles': {'service': {'shape': 'rect'}}, 'elements': {}}
+        made, info = copy_part(source, 'region', target=target, prefix='copy.', offset=(10, 20))
+        self.assertEqual(source, before)
+        self.assertNotIn('copy.boundary', made['elements'])
+        self.assertEqual(info['affected_edges'], ['boundary'])
+        self.assertEqual(made['elements']['copy.ab']['source'], 'copy.a')
+        self.assertEqual(made['elements']['copy.label']['parent'], 'copy.a')
+        self.assertEqual(made['elements']['copy.region']['bounds'][:2], [110, 120])
+        self.assertEqual(made['elements']['copy.ab']['waypoints'], [[200, 80]])
+        self.assertEqual(made['elements']['copy.a']['style'], 'copy.service')
+        self.assertEqual(made['styles']['service'], {'shape': 'rect'})
+        self.assertTrue(author_document(made))
+        with self.assertRaises(Failure):
+            copy_part(made, 'copy.region', prefix='')
+
+    def test_copy_parent_coordinates_and_edge_outside_subtree(self):
+        from parts import copy_part
+        source = document()
+        source['elements']['ab']['parent'] = '1'
+        source['elements']['ab']['waypoints'] = [[300, 180]]
+        source['elements']['dest'] = {'bounds': [800, 500, 600, 300], 'style': 'group'}
+        made, _ = copy_part(source, ['a', 'b'], prefix='c.', parent='dest', offset=(10, 20))
+        self.assertEqual(made['elements']['c.a']['bounds'][:2], [30, 60])
+        self.assertEqual(made['elements']['c.b']['bounds'][:2], [410, 60])
+        self.assertEqual(made['elements']['c.ab']['waypoints'], [[210, 100]])
+        self.assertEqual(made['elements']['c.ab']['parent'], 'dest')
+        self.assertTrue(author_document(made))
+        source['elements']['c'] = {'parent': 'dest', 'bounds': [20, 40, 80, 80], 'style': 'service'}
+        reversed_order, _ = copy_part(source, ['c', 'a'], prefix='r.', parent='1', offset=(10, 20))
+        self.assertEqual(reversed_order['elements']['r.c']['bounds'][:2], [30, 60])
+        self.assertEqual(reversed_order['elements']['r.a']['bounds'][:2], [-670, -340])
+
+    def test_move_subtree_keeps_relative_routes_and_fixed_boundary_waypoints(self):
+        from parts import move_part
+        source = document()
+        source['elements']['external'] = {'bounds': [900, 100, 80, 80], 'style': 'service'}
+        source['elements']['boundary'] = {'parent': 'region', 'source': 'b', 'target': 'external',
+                                         'style': 'wire', 'waypoints': [[550, 80]]}
+        made, info = move_part(source, 'region', offset=(50, 60))
+        self.assertEqual(made['elements']['a'], source['elements']['a'])
+        self.assertEqual(made['elements']['ab'], source['elements']['ab'])
+        self.assertEqual(made['elements']['external'], source['elements']['external'])
+        self.assertEqual(made['elements']['boundary']['parent'], '1')
+        self.assertEqual(made['elements']['boundary']['waypoints'], [[650, 180]])
+        self.assertEqual(info['affected_edges'], ['boundary'])
+        with self.assertRaises(Failure):
+            move_part(source, 'region', parent='a')
+
+    def test_move_multiple_roots_preserves_valid_edge_parent(self):
+        from parts import move_part
+        source = document()
+        source['elements']['ab']['parent'] = '1'
+        source['elements']['ab']['waypoints'] = [[300, 180]]
+        source['elements']['dest'] = {'bounds': [800, 500, 600, 300], 'style': 'group'}
+        made, info = move_part(source, ['a', 'b'], parent='dest', offset=(100, 100))
+        self.assertEqual(made['elements']['a']['bounds'][:2], [-580, -260])
+        self.assertEqual(made['elements']['ab']['parent'], '1')
+        self.assertEqual(made['elements']['ab']['waypoints'], [[400, 280]])
+        self.assertEqual(made['elements']['label'], source['elements']['label'])
+        self.assertEqual(info['affected_edges'], [])
+        self.assertTrue(author_document(made))
+        translated, _ = move_part(source, ['a', 'b'], offset=(10, 20))
+        self.assertEqual(translated['elements']['ab']['parent'], '1')
+        self.assertEqual(translated['elements']['ab']['waypoints'], [[310, 200]])
+
+    def test_normal_cli_imports_no_legacy_and_old_api_remains_available(self):
+        command = [sys.executable, '-B', '-c',
+                   "import sys;sys.path.insert(0,sys.argv[1]);import build_drawio;"
+                   "assert 'schema' not in sys.modules;assert 'layout' not in sys.modules;"
+                   "from build_drawio import normalize;from schema import Failure;"
+                   "from input_common import Failure as Common;assert Failure is Common", str(ROOT/'scripts')]
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+
 if __name__ == '__main__':
     unittest.main()

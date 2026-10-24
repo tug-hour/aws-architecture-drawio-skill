@@ -6,7 +6,7 @@ import tempfile
 import time
 import xml.etree.ElementTree as ET
 
-from schema import fail, finite, loads, object_keys
+from input_common import fail, finite, loads, object_keys
 from version import get_version
 
 

@@ -2,7 +2,7 @@
 import heapq
 import math
 from bisect import bisect_left
-from schema import fail
+from input_common import fail
 
 EPS = 0.01
 CLEARANCE = 5.0
@@ -191,7 +191,7 @@ def _route_edges(a,nodes,groups,width,height,order):
 
 
 def route_edges(a,nodes,groups,width,height):
-    from schema import Failure
+    from input_common import Failure
     byid={n['id']:n for n in nodes}
     def distance(edge):
         source,target=byid[edge['source']],byid[edge['target']]

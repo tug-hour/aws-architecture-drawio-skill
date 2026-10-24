@@ -10,11 +10,13 @@ AWSおよびdraw.ioの公式製品ではなく、承認・提携を示すもの�
 2. [drawio/1の入力仕様](references/input-format.md#通常作図のdrawio1形式)に従ってJSONへ保存し、[生成コマンド](references/rendering.md#jsonを更新元にする場合)で原本を作ります。[ServiceHubの構成例](examples/servicehub.json)は、複数機能・Multi-AZ・Multi-Region・運用監視を1枚にまとめた更新用JSONです。再生成時に配置や経路を再計算せず、指定値を維持します。
 3. 同じ原本をdraw.ioで一度表示し、日本語・接続・枠・使った図形を確認します。ブラウザ計測、再書き出し照合、開発テストは通常作図の必須条件ではありません。SVG・PNGは必要な場合だけ出力します。
 
-JSON管理ではJSONを更新元とし、GUIでの調整は変更値をJSONに反映するか、直接編集版として分けて残します。GUIとの自動同期はありません。既存のdraw.ioだけを扱う場合はJSONへの移行を要求しません。旧JSONの自動配置・配置表・厳密照合を使う場合は、[旧形式の説明](references/input-format.md#互換用のschema_version-10形式)を参照してください。
+[部品操作](references/parts.md)で、記号・名称・役割と内部配線をまとめて作成・複製・移動できます。操作結果は既存のJSON形式へ展開されます。
+
+JSON管理ではJSONを更新元とし、GUIでの調整は変更値をJSONに反映するか、直接編集版として分けて残します。GUIとの自動同期はありません。既存のdraw.ioだけを扱う場合はJSONへの移行を要求しません。旧JSONの自動配置・配置表・厳密照合を使う場合は、[旧形式の説明](references/legacy-input.md#互換用のschema_version-10形式)を参照してください。
 
 版番号は[version.json](references/version.json)、PPTXの規則は[aws-rules.md](references/aws-rules.md)を参照してください。[verified-assets.json](references/verified-assets.json)は確認済み範囲の記録です。未確認の図形は使用した図で確認し、全図形を検証済みとは扱いません。
 
-スキル開発時の回帰検証・配布確認は通常作図と分け、条件とコマンドをrendering.mdにまとめています。機械検査は図の意味やAWS構成の正しさを保証しません。
+スキル開発時の回帰検証・配布確認は通常作図と分け、条件とコマンドを[開発用の検証](references/development.md)にまとめています。機械検査は図の意味やAWS構成の正しさを保証しません。
 
 ## 使用するもの
 
