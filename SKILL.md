@@ -11,7 +11,7 @@ description: PPTXの描画規則に沿って、draw.io標準AWS図形で編集�
 
 1. 構成、所属、通信方向、必要な図の範囲・テーマを依頼から読み取る。不明点だけ確認し、未指定のサービスや接続を足さない。
 2. [PPTXの規則](references/aws-rules.md)と[draw.ioへの適用値](references/native-rules.md)を参照し、既存のdraw.io標準AWS図形で描く。図形は`catalog.py`で検索できる。`verified-assets.json`は過去の確認記録であり、使用許可リストではない。未登録・未検証だけを理由に標準AWS図形を拒否しない。必要なら使用中のdraw.ioライブラリで図形IDを確認する。
-3. [配置と経路](references/layout-and-routing.md#新規作成と既存図の改修)に従い、アイコンと文字の領域、上下左右の接続点、配線順序を一緒に決める。不要な交差や迂回は、同じ所属枠内の並び替えも含めて減らす。JSONを更新元にする場合は[drawio/1形式](references/input-format.md#通常作図のdrawio1形式)へ採用値を保存し、[生成・確認手順](references/rendering.md#jsonを更新元にする場合)で原本を作る。指定テーマだけを作り、更新用JSON、編集可能な原本、必要なSVG・PNGを渡す。
+3. [配置と経路](references/layout-and-routing.md#新規作成と既存図の改修)に従い、アイコンと文字の領域、上下左右の接続点、配線順序を一緒に決める。不要な交差や迂回は、同じ所属枠内の並び替えも含めて減らす。部品の作成・複製・移動には[部品操作](references/parts.md)を使え、細かな座標は直接修正できる。JSONを更新元にする場合は[drawio/1形式](references/input-format.md#通常作図のdrawio1形式)へ採用値を保存し、[生成・確認手順](references/rendering.md#jsonを更新元にする場合)で原本を作る。指定テーマだけを作り、更新用JSON、編集可能な原本、必要なSVG・PNGを渡す。
 
 公式SVGや外部アイコン画像は埋め込まない。PPTXの寸法・色・ラベル・枠・接続規則を守る。標準図形の輪郭と矢じりは近似であり、画素の完全一致とは説明しない。サービス名は2行以内、AWS/Amazonは最初のサービス語と同じ行に置き、単語途中で改行しない。略称は本文または図で正式名を先に示し、同じ説明の凡例を重複させない。AZ枠で所属が分かる場合はラベルのAZ名を省き、役割・切替条件は残す。
 
@@ -21,10 +21,10 @@ description: PPTXの描画規則に沿って、draw.io標準AWS図形で編集�
 
 - 配置・配線が難しい場合は[配置と経路](references/layout-and-routing.md)を読む。`drawio/1`はラベル位置・枠・接続点を明示でき、局所更新で無関係な配置・経路を再計算しない。候補の比較には既存の経路診断を使い、独立した障害物検査を追加しない。
 - Multi-AZ・切替を描く場合は[可用性の表現](references/availability.md)、WebRTCなどの構成上の注意は[構成例の前提](references/architecture-patterns.md)を必要な箇所だけ読む。構成例の要素や台数を、別の構成への必須条件にしない。
-- 旧`schema_version: "1.0"`の自動配置・配置表・厳密照合は互換用として利用できる。使い分けは[入力仕様](references/input-format.md)、複数図の網羅は[プロジェクト形式](references/projects-and-flows.md)を参照する。旧ツールの制約を通常作図やAWS自体の制限として扱わない。
+- 旧`schema_version: "1.0"`が必要な場合だけ[互換用の入力](references/legacy-input.md)を参照する。通常作図の制限として扱わない。
 
 交差数や警告の有無だけで完成・不合格を決めない。意味を変える接続欠落や所属の誤り、読めない文字・重なりを直す。図を確認できない環境では、その範囲を報告する。依存の自動導入、設定変更、画像への自動置換は行わない。
 
 ## スキルの開発・配布
 
-版番号は[version.json](references/version.json)が定義元である。[開発用の検証](references/rendering.md#スキル開発用の検証)はスキル自体を変更した場合だけ使い、個々の作図には課さない。配布・設置更新は[運用手順](references/release-operations.md)に従う。設置更新や追加依存の導入には必要な安全確認と承認を得る。
+版番号は[version.json](references/version.json)が定義元である。[開発用の検証](references/development.md#スキル開発用の検証)はスキル自体を変更した場合だけ使い、個々の作図には課さない。配布・設置更新は[運用手順](references/release-operations.md)に従う。設置更新や追加依存の導入には必要な安全確認と承認を得る。

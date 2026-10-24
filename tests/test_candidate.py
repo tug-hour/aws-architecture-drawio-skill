@@ -138,7 +138,7 @@ class ArtifactValidationTests(unittest.TestCase):
             (self.source/name).write_text(json.dumps(value));files.append(name)
         (self.source/'artifact-manifest.json').write_text(json.dumps(record(self.source,files)))
         self.render_calls=[]
-        for target in ('build_drawio.drawio_version','build_drawio.export_file','verify_native.invoke'):
+        for target in ('legacy_drawio.drawio_version','legacy_drawio.export_file','verify_native.invoke'):
             guard=patch(target);mock=guard.start();self.addCleanup(guard.stop);self.render_calls.append(mock)
 
     def check(self):

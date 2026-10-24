@@ -10,7 +10,7 @@ checksumは取得元の信頼を確認してから使う。SHA-256と内部manif
 
 版番号の定義元は[version.json](version.json)のみ。安定版のmajor.minor.patch形式で管理する。入力のschema_version、対応draw.io版、過去の検証履歴の版は別の情報として維持する。verification-summary.jsonは記載された版の過去の検証記録であり、現行版の合格証明へ書き換えない。
 
-生成と確認の条件・コマンドは[ZIPの同梱確認](rendering.md#zipの同梱確認)を参照する。
+生成と確認の条件・コマンドは[ZIPの同梱確認](development.md#zipの同梱確認)を参照する。
 
 設置先のSKILL.md・LICENSE・README.md・THIRD_PARTY_NOTICES.mdと、scripts・tests・references・examplesからZIP、外部checksum、release-manifest.json、package-result.jsonを新規出力先へ生成する。追加依存、ダウンロード、設定変更、自動更新は行わない。ソースと既存の出力先への書き込みは拒否する。キャッシュは含めず、symlinkは拒否する。
 
@@ -24,7 +24,7 @@ checksumは取得元の信頼を確認してから使う。SHA-256と内部manif
 
 既存の開発リポジトリは履歴を含めて非公開で保管する。公開候補には、検査済みZIPとchecksum、および同じZIPから展開したソースだけを専用フォルダへ置く。package-result.json、検証ログ、runtime、作業フォルダ、既存の.gitは含めない。新しい公開用リポジトリへ履歴を引き継がず、候補のファイルから開始する。新規リポジトリの作成と一般公開は、対象版・保存先・公開範囲・権利の未確定事項について承認を得てから実施する。
 
-公開前の確認条件と、端末設定を変更しないコミットの名義指定は[公開候補の確認](rendering.md#公開候補の確認)を参照する。
+公開前の確認条件と、端末設定を変更しないコミットの名義指定は[公開候補の確認](development.md#公開候補の確認)を参照する。
 
 ## 検証済み一覧
 
@@ -52,7 +52,7 @@ python3 <skill-dir>/scripts/check_bundle.py --archive <aws-architecture-drawio-<
 
 1. アーカイブを新規の専用ステージング領域へ展開する。ホーム全体を共有せず、不要な秘密情報を渡さない。
 2. ソース・manifest・対応範囲を確認する。ブラウザ計測や厳密検証を使う場合だけ、既存runtime JSONと専用draw.ioプロファイルを参照する。
-3. [導入・更新時の確認](rendering.md#導入更新時の確認)に従い、利用する機能を導入先で確認する。
+3. [導入・更新時の確認](development.md#導入更新時の確認)に従い、利用する機能を導入先で確認する。
 4. 個人スキル領域などへ設置する場合は、配置先・書き込み・影響をまとめてユーザー承認を得る。
 5. 導入した版、checksum、検証環境、結果、設置先を記録する。新しいタスクでスキルの発見・呼び出しを確認する。発見に必要なアプリ操作や設定変更も、実行前に影響を確認する。
 
@@ -60,7 +60,7 @@ python3 <skill-dir>/scripts/check_bundle.py --archive <aws-architecture-drawio-<
 
 既存のスキル・手修正した図・構成JSONを保護する。旧フォルダへ上書きせず、新版を別の専用領域へ展開して検査する。利用中の版にローカル変更がある場合は差分を確認し、内容を保存してから更新する。
 
-確認範囲と既存結果の再利用条件は[導入・更新時の確認](rendering.md#導入更新時の確認)に従う。直接編集したdraw.io原本はそのまま保持する。JSONから再生成する場合の名称・descriptionの移行条件は[互換性](service-labels-and-conformance.md#互換性)を参照する。
+確認範囲と既存結果の再利用条件は[導入・更新時の確認](development.md#導入更新時の確認)に従う。直接編集したdraw.io原本はそのまま保持する。JSONから再生成する場合の名称・descriptionの移行条件は[互換性](service-labels-and-conformance.md#互換性)を参照する。
 
 更新先への切替・置換には事前承認が必要。検証後の切替で、旧版と元の入力・図を残す。問題があれば、確認済みの旧版フォルダと対応する入力を選び直す。古い生成物を新しい検証結果で合格したものとして扱わない。旧版の削除・整理は別の明示的な許可を得る。
 
@@ -68,7 +68,7 @@ python3 <skill-dir>/scripts/check_bundle.py --archive <aws-architecture-drawio-<
 
 ## 開発用の自動検証とCI
 
-開発・配布時の検証条件とコマンドは[スキル開発用の検証](rendering.md#スキル開発用の検証)を参照する。個々の図に適用する手順は[生成物用の検証](rendering.md#スキルの生成物用の検証)を参照する。
+開発・配布時の検証条件とコマンドは[スキル開発用の検証](development.md#スキル開発用の検証)を参照する。個々の図に適用する手順は[生成物用の検証](rendering.md#スキルの生成物用の検証)を参照する。
 
 CIは、承認済みのMac arm64・検証済みdraw.io・runtime・フォントを持つ専用runnerを使う。references/ci-template.ymlは未有効化の雛形で、リポジトリの設定を変更するまで実行されない。外部CIへのrunner登録、Secrets・Variables、workflow有効化では、対象と権限、保存領域、機密情報、通知・公開の影響を確認し、承認後に設定する。
 

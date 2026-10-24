@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 import zlib
 
 from routing import EPS, check_path, compact, route_quality, review_warnings
-from schema import Failure
+from input_common import Failure
 
 
 def style(cell):

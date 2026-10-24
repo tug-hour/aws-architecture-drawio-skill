@@ -196,7 +196,7 @@ class MigrationGuidanceTests(unittest.TestCase):
         raw, _ = self.failure('Amazon Aurora・Writer')
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory); source = base/'input.json'; source.write_text(json.dumps(raw))
-            with patch('build_drawio.drawio_version') as renderer:
+            with patch('legacy_drawio.drawio_version') as renderer:
                 result, code = run(source, base/'out', base/'bin', base/'profile', base/'runtime')
             renderer.assert_not_called()
             self.assertEqual(code, 2)
