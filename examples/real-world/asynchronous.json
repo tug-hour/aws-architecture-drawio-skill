@@ -1,0 +1,261 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "workera",
+        "x_pt": 1050,
+        "y_pt": 200
+      },
+      {
+        "node_id": "workerc",
+        "x_pt": 1050,
+        "y_pt": 540
+      },
+      {
+        "node_id": "api",
+        "x_pt": 40,
+        "y_pt": 220
+      },
+      {
+        "node_id": "bus",
+        "x_pt": 370,
+        "y_pt": 220
+      },
+      {
+        "node_id": "queue",
+        "x_pt": 700,
+        "y_pt": 220
+      },
+      {
+        "node_id": "dlq",
+        "x_pt": 700,
+        "y_pt": 880
+      },
+      {
+        "node_id": "state",
+        "x_pt": 1420,
+        "y_pt": 380
+      },
+      {
+        "node_id": "ui",
+        "x_pt": 2080,
+        "y_pt": 760
+      },
+      {
+        "node_id": "browser",
+        "x_pt": 2410,
+        "y_pt": 760
+      },
+      {
+        "node_id": "publisher",
+        "x_pt": 1750,
+        "y_pt": 760
+      }
+    ]
+  },
+  "canvas": {
+    "mode": "auto"
+  },
+  "nodes": [
+    {
+      "id": "workera",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "suba",
+      "description": "ECSワーカー"
+    },
+    {
+      "id": "workerc",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "subc",
+      "description": "ECSワーカー"
+    },
+    {
+      "id": "api",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "apivpc",
+      "description": "ECS API・Outbox発行"
+    },
+    {
+      "id": "bus",
+      "asset_id": "aws4.eventbridge",
+      "label": "Amazon EventBridge",
+      "group_id": "region",
+      "description": "業務イベント"
+    },
+    {
+      "id": "queue",
+      "asset_id": "aws4.sqs",
+      "label": "Amazon SQS",
+      "group_id": "region",
+      "description": "処理キュー"
+    },
+    {
+      "id": "dlq",
+      "asset_id": "aws4.sqs",
+      "label": "Amazon SQS",
+      "group_id": "region",
+      "description": "処理失敗 DLQ"
+    },
+    {
+      "id": "state",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB",
+      "group_id": "region",
+      "description": "処理結果・冪等性キー"
+    },
+    {
+      "id": "ui",
+      "asset_id": "aws4.iot_core",
+      "label": "AWS IoT Core",
+      "group_id": "region",
+      "description": "処理結果トピック"
+    },
+    {
+      "id": "browser",
+      "asset_id": "aws4.user",
+      "label": "ブラウザ\n画面更新"
+    },
+    {
+      "id": "publisher",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda",
+      "group_id": "region",
+      "description": "DynamoDB Streams処理"
+    }
+  ],
+  "edges": [
+    {
+      "id": "event",
+      "source": "api",
+      "target": "bus",
+      "direction": "forward",
+      "label": "Outbox・再送"
+    },
+    {
+      "id": "enqueue",
+      "source": "bus",
+      "target": "queue",
+      "direction": "forward",
+      "label": "ルール"
+    },
+    {
+      "id": "dead",
+      "source": "queue",
+      "target": "dlq",
+      "direction": "forward",
+      "label": "失敗・再処理",
+      "source_side": "left",
+      "target_side": "left"
+    },
+    {
+      "id": "polla",
+      "source": "queue",
+      "target": "workera",
+      "direction": "forward",
+      "label": "取得・長期ポーリング"
+    },
+    {
+      "id": "donea",
+      "source": "workera",
+      "target": "state",
+      "direction": "forward",
+      "label": "冪等更新"
+    },
+    {
+      "id": "pollc",
+      "source": "queue",
+      "target": "workerc",
+      "direction": "forward",
+      "label": "取得・長期ポーリング"
+    },
+    {
+      "id": "donec",
+      "source": "workerc",
+      "target": "state",
+      "direction": "forward",
+      "label": "冪等更新"
+    },
+    {
+      "id": "push",
+      "source": "ui",
+      "target": "browser",
+      "direction": "forward",
+      "label": "MQTT over WSS"
+    },
+    {
+      "id": "resultstream",
+      "source": "state",
+      "target": "publisher",
+      "label": "DynamoDB Streams"
+    },
+    {
+      "id": "publish",
+      "source": "publisher",
+      "target": "ui",
+      "label": "HTTPS Publish"
+    }
+  ],
+  "groups": [
+    {
+      "id": "aws",
+      "type": "group.aws-cloud",
+      "role": "containment",
+      "label": "AWS Cloud"
+    },
+    {
+      "id": "region",
+      "type": "group.region",
+      "role": "containment",
+      "label": "リージョン内の非同期処理（各リージョンに配備）",
+      "parent_id": "aws"
+    },
+    {
+      "id": "vpc",
+      "type": "group.vpc",
+      "role": "containment",
+      "label": "ワーカー VPC",
+      "parent_id": "region"
+    },
+    {
+      "id": "apivpc",
+      "type": "group.vpc",
+      "role": "containment",
+      "label": "API VPC（Web図）",
+      "parent_id": "region"
+    },
+    {
+      "id": "aza",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "AZ-A",
+      "parent_id": "vpc"
+    },
+    {
+      "id": "suba",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "非公開ワーカーサブネット",
+      "parent_id": "aza"
+    },
+    {
+      "id": "azc",
+      "type": "group.availability-zone",
+      "role": "containment",
+      "label": "AZ-C",
+      "parent_id": "vpc"
+    },
+    {
+      "id": "subc",
+      "type": "group.private-subnet",
+      "role": "containment",
+      "label": "非公開ワーカーサブネット",
+      "parent_id": "azc"
+    }
+  ]
+}
