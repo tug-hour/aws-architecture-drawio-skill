@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-01",
+  "base_commit": "470f76ca9ce92d089921156a995e72c23dc7bd63",
+  "baseline_version": "0.7.0",
+  "candidate_version": "0.1.0",
+  "candidate_commit": "da10a590d1911443f5e14c3e3a436e26d329231a",
+  "instruction_scope": "Measured before the subsequent spacing and alignment guidance; the effect of that documentation change has not been measured.",
+  "source_sha256": "387829d1e5b5bdd0cf143e1d9344bacd03464129c0977fdaecf360670c754335",
+  "task": "reuse CaseHub to add two analytics queues and replace two edges with four; then move only the added queues 100px right and adjust incident routes",
+  "symbols": 78,
+  "edges": 80,
+  "fresh_contexts": 2,
+  "agent_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium"
+  },
+  "results": {
+    "baseline": {
+      "new": {
+        "first_draft_seconds": 48.563116,
+        "authoring_through_structure_seconds": 67.067287,
+        "start_to_visual_elapsed_seconds": 298.425,
+        "post_authoring_shared_wait_and_review_seconds": 231.357,
+        "generations": 1,
+        "rework": 0
+      },
+      "local": {
+        "first_draft_seconds": 9.721337,
+        "authoring_through_structure_seconds": 31.809376,
+        "handoff_until_open_seconds": 36.818,
+        "open_export_seconds": 9.755,
+        "visual_and_record_seconds": 16.22,
+        "start_to_visual_elapsed_seconds": 94.602,
+        "generations": 2,
+        "rework": 1
+      }
+    },
+    "candidate": {
+      "new": {
+        "first_draft_seconds": 34.040657,
+        "authoring_through_structure_seconds": 57.168876,
+        "start_to_visual_elapsed_seconds": 292.287,
+        "post_authoring_shared_wait_and_review_seconds": 235.118,
+        "generations": 1,
+        "rework": 0
+      },
+      "local": {
+        "first_draft_seconds": 13.465689,
+        "authoring_through_structure_seconds": 23.646527,
+        "handoff_until_open_seconds": 22.987,
+        "open_export_seconds": 9.562,
+        "visual_and_record_seconds": 10.973,
+        "start_to_visual_elapsed_seconds": 67.169,
+        "generations": 1,
+        "rework": 0
+      }
+    }
+  },
+  "visual_result": "passed",
+  "unrelated_cells_preserved_in_local_edit": true,
+  "crossings_before_and_after": 4,
+  "candidate_local_terminal_advisories": {
+    "count": 2,
+    "code": "E_EDGE_TERMINAL",
+    "disposition": "Existing straight-run heuristic only; native 100% image showed distinct open arrowheads and no label/icon overlap. Not treated as input rejection or a mandatory clearance."
+  },
+  "limits": [
+    "One paired task with extensive reuse, not a greenfield design benchmark or a general speedup claim.",
+    "Authoring elapsed includes model processing and tool wait; pure active work is not separately observable.",
+    "New-diagram completion included parent implementation, UI setup, queue and review; this shared phase is reported, not attributed to either skill.",
+    "Local task rendering order was candidate then baseline; new task rendering order was baseline then candidate.",
+    "Development and measurement preparation costs are separate from drawing time."
+  ]
+}

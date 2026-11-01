@@ -152,16 +152,18 @@ class DirectRouteTests(unittest.TestCase):
         self.assertIn('E_EDGE_REENTRY',[i['code'] for i in self.review(root)['issues']])
 
     def test_generated_group_wrappers_are_not_visible_frames(self):
-        from build_drawio import normalize,author
-        from layout import layout
-        from catalog import manifest
+        from parts import add_part
+        from drawing import author_document
         from drawio_routes import inspect_xml
-        m=manifest()
-        a=normalize({'schema_version':'1.0','nodes':[{'id':k,'asset_id':'aws4.lambda'} for k in ('a','b')],
-                     'edges':[{'id':'ab','source':'a','target':'b'}]},m)
-        lay,_=layout(a,m);report=inspect_xml(author(a,lay,m,'light'))['pages'][0]
+        source={'format':'drawio/1','elements':{}}
+        for ident,x in (('a',100),('b',400)):
+            source,_=add_part(source,ident,asset='aws4.lambda',at=(x,100))
+        source['elements']['ab']={'source':'a.icon','target':'b.icon',
+                                  'source_port':[1,.5],'target_port':[0,.5],'waypoints':[]}
+        report=inspect_xml(author_document(source))['pages'][0]
         self.assertFalse(report['issues']);self.assertFalse(report['unresolved'])
-        self.assertEqual(report['quality'],lay['routing_quality'])
+        self.assertEqual(report['analyzed_edges'],['ab'])
+        self.assertEqual(report['quality']['bends'],0)
 
     def test_unbounded_canvas_and_unclassified_frame_do_not_add_false_gates(self):
         root,vertex=drawing()

@@ -1,0 +1,7305 @@
+{
+  "format": "drawio/1",
+  "page": {
+    "id": "casehub",
+    "name": "CaseHub 全機能",
+    "model": {
+      "background": "#FFFFFF",
+      "adaptiveColors": "none",
+      "page": "0",
+      "grid": "0"
+    }
+  },
+  "styles": {
+    "line_2": {
+      "html": "0",
+      "rounded": "0",
+      "strokeColor": "#000000",
+      "strokeWidth": "1.6667",
+      "startArrow": "none",
+      "endArrow": "open",
+      "startFill": "0",
+      "endFill": "0",
+      "startSize": "6",
+      "endSize": "6"
+    },
+    "rect_7": {
+      "shape": "rect",
+      "fillColor": "none",
+      "strokeColor": "#000000",
+      "strokeWidth": "1.6667",
+      "rounded": "0",
+      "container": "1",
+      "collapsible": "0",
+      "recursiveResize": "0"
+    },
+    "group_aws_cloud_alt_9": {
+      "shape": "mxgraph.aws4.group_aws_cloud_alt",
+      "strokeColor": "none",
+      "fillColor": "#242F3E"
+    },
+    "rect_11": {
+      "shape": "rect",
+      "fillColor": "none",
+      "strokeColor": "none",
+      "perimeter": "rectanglePerimeter",
+      "recursiveResize": "0"
+    },
+    "users_12": {
+      "shape": "mxgraph.aws4.users",
+      "fillColor": "#242F3E",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "text_13": {
+      "text": null,
+      "html": "0",
+      "whiteSpace": "nowrap",
+      "overflow": "visible",
+      "align": "center",
+      "verticalAlign": "top",
+      "spacing": "0",
+      "fontSize": "16",
+      "fontFamily": "Arial,Arial Unicode MS",
+      "fontStyle": "0",
+      "fontColor": "#000000",
+      "strokeColor": "none",
+      "fillColor": "none"
+    },
+    "rect_14": {
+      "shape": "rect",
+      "fillColor": "#8C4FFF",
+      "strokeColor": "none",
+      "perimeter": "rectanglePerimeter",
+      "recursiveResize": "0"
+    },
+    "route_53_15": {
+      "shape": "mxgraph.aws4.route_53",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "cloudfront_16": {
+      "shape": "mxgraph.aws4.cloudfront",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "rect_17": {
+      "shape": "rect",
+      "fillColor": "#DD344C",
+      "strokeColor": "none",
+      "perimeter": "rectanglePerimeter",
+      "recursiveResize": "0"
+    },
+    "waf_18": {
+      "shape": "mxgraph.aws4.waf",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "text_20": {
+      "text": null,
+      "html": "0",
+      "whiteSpace": "nowrap",
+      "overflow": "visible",
+      "align": "left",
+      "verticalAlign": "top",
+      "spacing": "0",
+      "fontSize": "16",
+      "fontFamily": "Arial,Arial Unicode MS",
+      "fontStyle": "0",
+      "fontColor": "#000000",
+      "strokeColor": "none",
+      "fillColor": "none"
+    },
+    "rect_21": {
+      "shape": "rect",
+      "fillColor": "none",
+      "strokeColor": "#00A4A6",
+      "strokeWidth": "1.6667",
+      "rounded": "0",
+      "container": "1",
+      "collapsible": "0",
+      "recursiveResize": "0",
+      "dashed": "1",
+      "dashPattern": "3 1"
+    },
+    "group_region_22": {
+      "shape": "mxgraph.aws4.group_region",
+      "strokeColor": "none",
+      "fillColor": "#00A4A6"
+    },
+    "rect_23": {
+      "shape": "rect",
+      "fillColor": "#7AA116",
+      "strokeColor": "none",
+      "perimeter": "rectanglePerimeter",
+      "recursiveResize": "0"
+    },
+    "s3_24": {
+      "shape": "mxgraph.aws4.s3",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "cognito_25": {
+      "shape": "mxgraph.aws4.cognito",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "rect_27": {
+      "shape": "rect",
+      "fillColor": "none",
+      "strokeColor": "#8C4FFF",
+      "strokeWidth": "1.6667",
+      "rounded": "0",
+      "container": "1",
+      "collapsible": "0",
+      "recursiveResize": "0"
+    },
+    "group_vpc2_28": {
+      "shape": "mxgraph.aws4.group_vpc2",
+      "strokeColor": "none",
+      "fillColor": "#8C4FFF"
+    },
+    "application_load_balancer_29": {
+      "shape": "mxgraph.aws4.application_load_balancer",
+      "fillColor": "#8C4FFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "rect_30": {
+      "shape": "rect",
+      "fillColor": "#C925D1",
+      "strokeColor": "none",
+      "perimeter": "rectanglePerimeter",
+      "recursiveResize": "0"
+    },
+    "elasticache_31": {
+      "shape": "mxgraph.aws4.elasticache",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "rect_32": {
+      "shape": "rect",
+      "fillColor": "none",
+      "strokeColor": "#00A4A6",
+      "strokeWidth": "1.6667",
+      "rounded": "0",
+      "container": "1",
+      "collapsible": "0",
+      "recursiveResize": "0",
+      "dashed": "1",
+      "dashPattern": "4 3"
+    },
+    "rect_35": {
+      "shape": "rect",
+      "fillColor": "#ED7100",
+      "strokeColor": "none",
+      "perimeter": "rectanglePerimeter",
+      "recursiveResize": "0"
+    },
+    "fargate_36": {
+      "shape": "mxgraph.aws4.fargate",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "dynamodb_38": {
+      "shape": "mxgraph.aws4.dynamodb",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "dynamodb_stream_39": {
+      "shape": "mxgraph.aws4.dynamodb_stream",
+      "fillColor": "#C925D1",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "lambda_40": {
+      "shape": "mxgraph.aws4.lambda",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "rect_41": {
+      "shape": "rect",
+      "fillColor": "#E7157B",
+      "strokeColor": "none",
+      "perimeter": "rectanglePerimeter",
+      "recursiveResize": "0"
+    },
+    "eventbridge_42": {
+      "shape": "mxgraph.aws4.eventbridge",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "sqs_43": {
+      "shape": "mxgraph.aws4.sqs",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "eventbridge_pipes_44": {
+      "shape": "mxgraph.aws4.eventbridge_pipes",
+      "fillColor": "#E7157B",
+      "strokeColor": "none",
+      "aspect": "fixed"
+    },
+    "step_functions_45": {
+      "shape": "mxgraph.aws4.step_functions",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "simple_email_service_46": {
+      "shape": "mxgraph.aws4.simple_email_service",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "athena_47": {
+      "shape": "mxgraph.aws4.athena",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "cloudwatch_2_49": {
+      "shape": "mxgraph.aws4.cloudwatch_2",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "sns_50": {
+      "shape": "mxgraph.aws4.sns",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "security_hub_52": {
+      "shape": "mxgraph.aws4.security_hub",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "backup_53": {
+      "shape": "mxgraph.aws4.backup",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "line_54": {
+      "html": "0",
+      "whiteSpace": "nowrap",
+      "overflow": "visible",
+      "align": "center",
+      "verticalAlign": "top",
+      "spacing": "0",
+      "fontSize": "16",
+      "fontFamily": "Arial,Arial Unicode MS",
+      "fontStyle": "0",
+      "fontColor": "#000000",
+      "strokeColor": "none",
+      "fillColor": "none"
+    },
+    "xray_55": {
+      "shape": "mxgraph.aws4.xray",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "cloudtrail_56": {
+      "shape": "mxgraph.aws4.cloudtrail",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "guardduty_58": {
+      "shape": "mxgraph.aws4.guardduty",
+      "fillColor": "#FFFFFF",
+      "strokeColor": "none",
+      "aspect": "fixed",
+      "resizable": "0",
+      "rotatable": "0"
+    },
+    "node_group": {
+      "group": null,
+      "recursiveResize": 0,
+      "resizable": 0,
+      "rotatable": 0
+    }
+  },
+  "elements": {
+    "title": {
+      "parent": "1",
+      "bounds": [
+        140,
+        10,
+        3500,
+        46
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "CaseHub | 申請受付・非同期審査・証跡保管・通知・分析",
+      "overrides": {
+        "fontSize": 30,
+        "fontStyle": 1
+      }
+    },
+    "subtitle": {
+      "parent": "1",
+      "bounds": [
+        140,
+        65,
+        3500,
+        26
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "24/365を想定 · 東京稼働／ソウル待機 · 同じ配置・処理方向",
+      "overrides": {
+        "fontSize": 20,
+        "fontStyle": 0
+      }
+    },
+    "aws": {
+      "parent": "1",
+      "bounds": [
+        100,
+        120,
+        7700,
+        2390
+      ],
+      "style": "rect_7",
+      "connectable": false
+    },
+    "aws.mark": {
+      "parent": "aws",
+      "bounds": [
+        0,
+        0,
+        40,
+        40
+      ],
+      "style": "group_aws_cloud_alt_9",
+      "connectable": false
+    },
+    "aws.title": {
+      "parent": "aws",
+      "bounds": [
+        50,
+        12,
+        3430,
+        24
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "AWS Cloud",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 1
+      }
+    },
+    "users.node": {
+      "parent": "aws",
+      "bounds": [
+        3740,
+        382,
+        48.0,
+        48.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "users": {
+      "parent": "users.node",
+      "bounds": [
+        0,
+        0,
+        48.0,
+        48.0
+      ],
+      "connectable": true,
+      "style": "rect_11"
+    },
+    "users.glyph": {
+      "parent": "users",
+      "bounds": [
+        0.0,
+        0.0,
+        48.0,
+        48.0
+      ],
+      "connectable": false,
+      "style": "users_12"
+    },
+    "users.name": {
+      "parent": "users.node",
+      "bounds": [
+        60,
+        0,
+        220,
+        21
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "利用者"
+    },
+    "users.role": {
+      "parent": "users.node",
+      "bounds": [
+        60,
+        32,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請者・運用担当"
+    },
+    "cdn.node": {
+      "parent": "aws",
+      "bounds": [
+        3500,
+        350,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "cdn": {
+      "parent": "cdn.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_14"
+    },
+    "cdn.glyph": {
+      "parent": "cdn",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "cloudfront_16"
+    },
+    "cdn.name": {
+      "parent": "cdn.node",
+      "bounds": [
+        -75,
+        88,
+        230,
+        42
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon CloudFront"
+    },
+    "cdn.role": {
+      "parent": "cdn.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "静的Webを配信"
+    },
+    "static.node": {
+      "parent": "aws",
+      "bounds": [
+        3500,
+        180,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "static": {
+      "parent": "static.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "static.glyph": {
+      "parent": "static",
+      "bounds": [
+        13.057999999999993,
+        12.0,
+        53.884,
+        56.0
+      ],
+      "connectable": false,
+      "style": "s3_24"
+    },
+    "static.name": {
+      "parent": "static.node",
+      "bounds": [
+        90,
+        0,
+        250,
+        42
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Simple Storage\nService (Amazon S3)"
+    },
+    "static.role": {
+      "parent": "static.node",
+      "bounds": [
+        90,
+        50,
+        250,
+        22
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "静的Web / Versioning",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 0,
+        "align": "center"
+      }
+    },
+    "dns.node": {
+      "parent": "aws",
+      "bounds": [
+        3716,
+        520,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "dns": {
+      "parent": "dns.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_14"
+    },
+    "dns.glyph": {
+      "parent": "dns",
+      "bounds": [
+        12.061863017603855,
+        12.0,
+        55.87627396479224,
+        56.0
+      ],
+      "connectable": false,
+      "style": "route_53_15"
+    },
+    "dns.name": {
+      "parent": "dns.node",
+      "bounds": [
+        -85,
+        88,
+        250,
+        21
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Route 53"
+    },
+    "dns.role": {
+      "parent": "dns.node",
+      "bounds": [
+        -85,
+        120,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "APIの切替先を管理",
+      "overrides": {
+        "align": "left"
+      }
+    },
+    "auth.node": {
+      "parent": "aws",
+      "bounds": [
+        3900,
+        470,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "auth": {
+      "parent": "auth.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_17"
+    },
+    "auth.glyph": {
+      "parent": "auth",
+      "bounds": [
+        12.0,
+        14.08837714224694,
+        56.0,
+        51.82324571550604
+      ],
+      "connectable": false,
+      "style": "cognito_25"
+    },
+    "auth.name": {
+      "parent": "auth.node",
+      "bounds": [
+        90,
+        0,
+        220,
+        25
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Cognito"
+    },
+    "auth.role": {
+      "parent": "auth.node",
+      "bounds": [
+        90,
+        34,
+        260,
+        25
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "外部IdP連携 / DR手順"
+    },
+    "waf.node": {
+      "parent": "aws",
+      "bounds": [
+        3900,
+        280,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "waf": {
+      "parent": "waf.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_17"
+    },
+    "waf.glyph": {
+      "parent": "waf",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "waf_18"
+    },
+    "waf.name": {
+      "parent": "waf.node",
+      "bounds": [
+        90,
+        0,
+        250,
+        30
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS WAF"
+    },
+    "waf.role": {
+      "parent": "waf.node",
+      "bounds": [
+        90,
+        34,
+        260,
+        30
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "CloudFront・両ALBを保護",
+      "overrides": {
+        "align": "left"
+      }
+    },
+    "users-cdn": {
+      "parent": "aws",
+      "source": "users",
+      "target": "cdn",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.7
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "cdn-static": {
+      "parent": "aws",
+      "source": "cdn",
+      "target": "static",
+      "source_port": [
+        0.5,
+        0
+      ],
+      "target_port": [
+        0.5,
+        1
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "user-dns": {
+      "parent": "aws",
+      "source": "users",
+      "target": "dns",
+      "source_port": [
+        0.3333333333333333,
+        1
+      ],
+      "target_port": [
+        0.5,
+        0
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "ops-scope": {
+      "parent": "aws",
+      "bounds": [
+        100,
+        2290,
+        2900,
+        130
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "監視対象: API・審査キュー・ワークフロー・通知・データ層。ログ／メトリクス／トレースを相関IDで結ぶ。\n待機側の消費処理は切替時に有効化し、冪等性と書込制御で二重処理を防止する。\n独立した線の交差は接続点ではない。WAFの線は保護対象との関連を示す。",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 0
+      }
+    },
+    "assumptions": {
+      "parent": "1",
+      "bounds": [
+        140,
+        2540,
+        3450,
+        85
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "設計前提: 非同期複製のためRPOゼロではない。切替は認証・再接続・冪等性を含めて訓練する。\nコスト方針: 待機側の最小容量、需要連動の処理、ログ保持・S3 Lifecycle、オンデマンド分析。",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 0
+      }
+    },
+    "waf-cdn": {
+      "parent": "aws",
+      "source": "waf",
+      "target": "cdn",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.3
+      ],
+      "waypoints": [
+        [
+          3650,
+          320
+        ],
+        [
+          3650,
+          374
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "none",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "user-auth": {
+      "parent": "aws",
+      "source": "users",
+      "target": "auth",
+      "source_port": [
+        0.6666666666666666,
+        1
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [
+        [
+          3772,
+          510
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo": {
+      "parent": "aws",
+      "bounds": [
+        80,
+        80,
+        3320,
+        2160
+      ],
+      "style": "rect_21",
+      "connectable": false
+    },
+    "primary.tokyo.mark": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        0,
+        0,
+        40,
+        40
+      ],
+      "style": "group_region_22",
+      "connectable": false
+    },
+    "primary.tokyo.title": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        50,
+        12,
+        800,
+        24
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "東京 ap-northeast-1 | 稼働系",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 1
+      }
+    },
+    "primary.tokyo.vpc": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        340,
+        370,
+        1250,
+        580
+      ],
+      "style": "rect_27",
+      "connectable": false
+    },
+    "primary.tokyo.vpc.mark": {
+      "parent": "primary.tokyo.vpc",
+      "bounds": [
+        0,
+        0,
+        40,
+        40
+      ],
+      "style": "group_vpc2_28",
+      "connectable": false
+    },
+    "primary.tokyo.vpc.title": {
+      "parent": "primary.tokyo.vpc",
+      "bounds": [
+        50,
+        12,
+        400,
+        24
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "VPC | 申請受付・申請台帳API",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 1
+      }
+    },
+    "primary.tokyo.aza": {
+      "parent": "primary.tokyo.vpc",
+      "bounds": [
+        100,
+        160,
+        290,
+        260
+      ],
+      "style": "rect_32",
+      "connectable": false
+    },
+    "primary.tokyo.aza.title": {
+      "parent": "primary.tokyo.aza",
+      "bounds": [
+        16,
+        12,
+        220,
+        24
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "AZ-A",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 1
+      }
+    },
+    "primary.tokyo.azc": {
+      "parent": "primary.tokyo.vpc",
+      "bounds": [
+        700,
+        160,
+        290,
+        260
+      ],
+      "style": "rect_32",
+      "connectable": false
+    },
+    "primary.tokyo.azc.title": {
+      "parent": "primary.tokyo.azc",
+      "bounds": [
+        16,
+        12,
+        220,
+        24
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "AZ-C",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 1
+      }
+    },
+    "primary.tokyo.alb.node": {
+      "parent": "primary.tokyo.vpc",
+      "bounds": [
+        510,
+        241,
+        48.0,
+        48.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.alb": {
+      "parent": "primary.tokyo.alb.node",
+      "bounds": [
+        0,
+        0,
+        48.0,
+        48.0
+      ],
+      "connectable": true,
+      "style": "rect_11"
+    },
+    "primary.tokyo.alb.glyph": {
+      "parent": "primary.tokyo.alb",
+      "bounds": [
+        0.0,
+        0.0005454421490185268,
+        48.0,
+        47.99890911570191
+      ],
+      "connectable": false,
+      "style": "application_load_balancer_29"
+    },
+    "primary.tokyo.alb.name": {
+      "parent": "primary.tokyo.alb.node",
+      "bounds": [
+        -43.00999999999999,
+        56.0,
+        134.02,
+        42.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Application Load\nBalancer"
+    },
+    "primary.tokyo.api-a.node": {
+      "parent": "primary.tokyo.aza",
+      "bounds": [
+        105,
+        65,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.api-a": {
+      "parent": "primary.tokyo.api-a.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "primary.tokyo.api-a.glyph": {
+      "parent": "primary.tokyo.api-a",
+      "bounds": [
+        12.560856101289687,
+        12.0,
+        54.878287797420725,
+        56.0
+      ],
+      "connectable": false,
+      "style": "fargate_36"
+    },
+    "primary.tokyo.api-a.name": {
+      "parent": "primary.tokyo.api-a.node",
+      "bounds": [
+        -15.18,
+        88.0,
+        110.36,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Fargate"
+    },
+    "primary.tokyo.api-a.role": {
+      "parent": "primary.tokyo.api-a.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請受付・台帳API / WSS"
+    },
+    "primary.tokyo.api-c.node": {
+      "parent": "primary.tokyo.azc",
+      "bounds": [
+        105,
+        65,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.api-c": {
+      "parent": "primary.tokyo.api-c.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "primary.tokyo.api-c.glyph": {
+      "parent": "primary.tokyo.api-c",
+      "bounds": [
+        12.560856101289573,
+        12.0,
+        54.878287797420725,
+        56.0
+      ],
+      "connectable": false,
+      "style": "fargate_36"
+    },
+    "primary.tokyo.api-c.name": {
+      "parent": "primary.tokyo.api-c.node",
+      "bounds": [
+        -15.180000000000007,
+        88.0,
+        110.36,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Fargate"
+    },
+    "primary.tokyo.api-c.role": {
+      "parent": "primary.tokyo.api-c.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請受付・台帳API / WSS"
+    },
+    "primary.tokyo.cache.node": {
+      "parent": "primary.tokyo.vpc",
+      "bounds": [
+        510,
+        380,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.cache": {
+      "parent": "primary.tokyo.cache.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_30"
+    },
+    "primary.tokyo.cache.glyph": {
+      "parent": "primary.tokyo.cache",
+      "bounds": [
+        12.0,
+        13.5,
+        56.0,
+        53.0
+      ],
+      "connectable": false,
+      "style": "elasticache_31"
+    },
+    "primary.tokyo.cache.name": {
+      "parent": "primary.tokyo.cache.node",
+      "bounds": [
+        -42.610000000000014,
+        88.0,
+        165.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon ElastiCache"
+    },
+    "primary.tokyo.cache.role": {
+      "parent": "primary.tokyo.cache.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Valkey / Multi-AZ"
+    },
+    "primary.tokyo.db.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        900,
+        110,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.db": {
+      "parent": "primary.tokyo.db.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_30"
+    },
+    "primary.tokyo.db.glyph": {
+      "parent": "primary.tokyo.db",
+      "bounds": [
+        15.961499999999887,
+        12.0,
+        48.077,
+        56.0
+      ],
+      "connectable": false,
+      "style": "dynamodb_38"
+    },
+    "primary.tokyo.db.name": {
+      "parent": "primary.tokyo.db.node",
+      "bounds": [
+        -270,
+        0,
+        250,
+        21
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon DynamoDB"
+    },
+    "primary.tokyo.db.role": {
+      "parent": "primary.tokyo.db.node",
+      "bounds": [
+        -270,
+        30,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請台帳 / Global Tables"
+    },
+    "primary.tokyo.stream.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        1680,
+        301,
+        48.0,
+        48.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.stream": {
+      "parent": "primary.tokyo.stream.node",
+      "bounds": [
+        0,
+        0,
+        48.0,
+        48.0
+      ],
+      "connectable": true,
+      "style": "rect_11"
+    },
+    "primary.tokyo.stream.glyph": {
+      "parent": "primary.tokyo.stream",
+      "bounds": [
+        0.0,
+        0.03975222925600974,
+        48.0,
+        47.92049554148799
+      ],
+      "connectable": false,
+      "style": "dynamodb_stream_39"
+    },
+    "primary.tokyo.stream.name": {
+      "parent": "primary.tokyo.stream.node",
+      "bounds": [
+        -56.65999999999997,
+        56.0,
+        161.32,
+        42.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon DynamoDB\nStreams"
+    },
+    "primary.tokyo.relay.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        1930,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.relay": {
+      "parent": "primary.tokyo.relay.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "primary.tokyo.relay.glyph": {
+      "parent": "primary.tokyo.relay",
+      "bounds": [
+        12.974999999999909,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "primary.tokyo.relay.name": {
+      "parent": "primary.tokyo.relay.node",
+      "bounds": [
+        -16.6099999999999,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "primary.tokyo.relay.role": {
+      "parent": "primary.tokyo.relay.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "冪等なイベント中継"
+    },
+    "primary.tokyo.bus.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2220,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.bus": {
+      "parent": "primary.tokyo.bus.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.bus.glyph": {
+      "parent": "primary.tokyo.bus",
+      "bounds": [
+        12.955500000000029,
+        12.0,
+        54.089,
+        56.0
+      ],
+      "connectable": false,
+      "style": "eventbridge_42"
+    },
+    "primary.tokyo.bus.name": {
+      "parent": "primary.tokyo.bus.node",
+      "bounds": [
+        -43.65000000000009,
+        88.0,
+        167.3,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon EventBridge"
+    },
+    "primary.tokyo.bus.role": {
+      "parent": "primary.tokyo.bus.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請イベントを振り分け"
+    },
+    "primary.tokyo.queue.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        1750,
+        600,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.queue": {
+      "parent": "primary.tokyo.queue.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.queue.glyph": {
+      "parent": "primary.tokyo.queue",
+      "bounds": [
+        12.0,
+        17.43162026248001,
+        56.0,
+        45.13675947503987
+      ],
+      "connectable": false,
+      "style": "sqs_43"
+    },
+    "primary.tokyo.queue.name": {
+      "parent": "primary.tokyo.queue.node",
+      "bounds": [
+        -85,
+        88,
+        250,
+        42
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Simple Queue\nService (Amazon SQS)"
+    },
+    "primary.tokyo.queue.role": {
+      "parent": "primary.tokyo.queue.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "審査依頼 / Standard"
+    },
+    "primary.tokyo.notify.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2450,
+        1100,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.notify": {
+      "parent": "primary.tokyo.notify.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "primary.tokyo.notify.glyph": {
+      "parent": "primary.tokyo.notify",
+      "bounds": [
+        12.975000000000023,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "primary.tokyo.notify.name": {
+      "parent": "primary.tokyo.notify.node",
+      "bounds": [
+        -16.610000000000014,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "primary.tokyo.notify.role": {
+      "parent": "primary.tokyo.notify.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "通知内容を作成・重複排除"
+    },
+    "primary.tokyo.email.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2150,
+        1100,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.email": {
+      "parent": "primary.tokyo.email.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_17"
+    },
+    "primary.tokyo.email.glyph": {
+      "parent": "primary.tokyo.email",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "simple_email_service_46"
+    },
+    "primary.tokyo.email.name": {
+      "parent": "primary.tokyo.email.node",
+      "bounds": [
+        -50.41000000000008,
+        88.0,
+        180.82,
+        42.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Simple Email\nService (Amazon SES)"
+    },
+    "primary.tokyo.email.role": {
+      "parent": "primary.tokyo.email.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "審査完了メール",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 0,
+        "align": "center"
+      }
+    },
+    "primary.tokyo.alb-a": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.alb",
+      "target": "primary.tokyo.api-a",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.alb-c": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.alb",
+      "target": "primary.tokyo.api-c",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.api-a-db": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.api-a",
+      "target": "primary.tokyo.db",
+      "source_port": [
+        1,
+        0.2
+      ],
+      "target_port": [
+        0.3,
+        1
+      ],
+      "waypoints": [
+        [
+          924,
+          611
+        ],
+        [
+          924,
+          190
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.api-c-db": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.api-c",
+      "target": "primary.tokyo.db",
+      "source_port": [
+        0,
+        0.2
+      ],
+      "target_port": [
+        0.7,
+        1
+      ],
+      "waypoints": [
+        [
+          956,
+          611
+        ],
+        [
+          956,
+          190
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.cache-a": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.api-a",
+      "target": "primary.tokyo.cache",
+      "source_port": [
+        1,
+        0.65
+      ],
+      "target_port": [
+        0,
+        0.3
+      ],
+      "waypoints": [
+        [
+          780,
+          647
+        ],
+        [
+          780,
+          774
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.cache-c": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.api-c",
+      "target": "primary.tokyo.cache",
+      "source_port": [
+        0,
+        0.65
+      ],
+      "target_port": [
+        1,
+        0.7
+      ],
+      "waypoints": [
+        [
+          980,
+          647
+        ],
+        [
+          980,
+          806
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.db-stream": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.db",
+      "target": "primary.tokyo.stream",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [
+        [
+          1610,
+          150
+        ],
+        [
+          1610,
+          325
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.stream-relay": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.stream",
+      "target": "primary.tokyo.relay",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.relay-bus": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.relay",
+      "target": "primary.tokyo.bus",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.notify-email": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.notify",
+      "target": "primary.tokyo.email",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.files.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        900,
+        1100,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.files": {
+      "parent": "primary.tokyo.files.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "primary.tokyo.files.glyph": {
+      "parent": "primary.tokyo.files",
+      "bounds": [
+        13.057999999999993,
+        12.0,
+        53.884,
+        56.0
+      ],
+      "connectable": false,
+      "style": "s3_24"
+    },
+    "primary.tokyo.files.name": {
+      "parent": "primary.tokyo.files.node",
+      "bounds": [
+        90,
+        88,
+        250,
+        21
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon S3"
+    },
+    "primary.tokyo.files.role": {
+      "parent": "primary.tokyo.files.node",
+      "bounds": [
+        90,
+        120,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請原本 / CRR"
+    },
+    "primary.tokyo.workflow.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2300,
+        600,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.workflow": {
+      "parent": "primary.tokyo.workflow.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.workflow.glyph": {
+      "parent": "primary.tokyo.workflow",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "step_functions_45"
+    },
+    "primary.tokyo.workflow.name": {
+      "parent": "primary.tokyo.workflow.node",
+      "bounds": [
+        -42.220000000000255,
+        88.0,
+        164.44,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Step Functions"
+    },
+    "primary.tokyo.workflow.role": {
+      "parent": "primary.tokyo.workflow.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "審査の進行・再試行"
+    },
+    "primary.tokyo.convert.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2000,
+        600,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.convert": {
+      "parent": "primary.tokyo.convert.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "primary.tokyo.convert.glyph": {
+      "parent": "primary.tokyo.convert",
+      "bounds": [
+        12.974999999999909,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "primary.tokyo.convert.name": {
+      "parent": "primary.tokyo.convert.node",
+      "bounds": [
+        -16.609999999999673,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "primary.tokyo.convert.role": {
+      "parent": "primary.tokyo.convert.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "キュー取得・審査の起動"
+    },
+    "primary.tokyo.result.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        3000,
+        850,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.result": {
+      "parent": "primary.tokyo.result.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "primary.tokyo.result.glyph": {
+      "parent": "primary.tokyo.result",
+      "bounds": [
+        13.057999999999993,
+        12.0,
+        53.884,
+        56.0
+      ],
+      "connectable": false,
+      "style": "s3_24"
+    },
+    "primary.tokyo.result.name": {
+      "parent": "primary.tokyo.result.node",
+      "bounds": [
+        -200,
+        88,
+        180,
+        42
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon S3"
+    },
+    "primary.tokyo.result.role": {
+      "parent": "primary.tokyo.result.node",
+      "bounds": [
+        -200,
+        134,
+        180,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "審査証跡 / CRR"
+    },
+    "primary.tokyo.aggregate.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2530,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.aggregate": {
+      "parent": "primary.tokyo.aggregate.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "primary.tokyo.aggregate.glyph": {
+      "parent": "primary.tokyo.aggregate",
+      "bounds": [
+        12.974999999999909,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "primary.tokyo.aggregate.name": {
+      "parent": "primary.tokyo.aggregate.node",
+      "bounds": [
+        -16.610000000000014,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "primary.tokyo.aggregate.role": {
+      "parent": "primary.tokyo.aggregate.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請・審査の利用集計"
+    },
+    "primary.tokyo.lake.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2820,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.lake": {
+      "parent": "primary.tokyo.lake.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "primary.tokyo.lake.glyph": {
+      "parent": "primary.tokyo.lake",
+      "bounds": [
+        13.057999999999993,
+        12.0,
+        53.884,
+        56.0
+      ],
+      "connectable": false,
+      "style": "s3_24"
+    },
+    "primary.tokyo.lake.name": {
+      "parent": "primary.tokyo.lake.node",
+      "bounds": [
+        -8.289999999999964,
+        88.0,
+        96.58,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon S3"
+    },
+    "primary.tokyo.lake.role": {
+      "parent": "primary.tokyo.lake.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "集計データ / Lifecycle"
+    },
+    "primary.tokyo.athena.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        3100,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.athena": {
+      "parent": "primary.tokyo.athena.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_14"
+    },
+    "primary.tokyo.athena.glyph": {
+      "parent": "primary.tokyo.athena",
+      "bounds": [
+        12.0,
+        12.950527939257427,
+        56.0,
+        54.098944121485346
+      ],
+      "connectable": false,
+      "style": "athena_47"
+    },
+    "primary.tokyo.athena.name": {
+      "parent": "primary.tokyo.athena.node",
+      "bounds": [
+        -24.670000000000073,
+        88.0,
+        129.34,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Athena"
+    },
+    "primary.tokyo.athena.role": {
+      "parent": "primary.tokyo.athena.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "オンデマンド分析"
+    },
+    "primary.tokyo.synthetic.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        200,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.synthetic": {
+      "parent": "primary.tokyo.synthetic.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.synthetic.glyph": {
+      "parent": "primary.tokyo.synthetic",
+      "bounds": [
+        12.0,
+        14.584500798013778,
+        56.0,
+        50.83099840397234
+      ],
+      "connectable": false,
+      "style": "cloudwatch_2_49"
+    },
+    "primary.tokyo.synthetic.name": {
+      "parent": "primary.tokyo.synthetic.node",
+      "bounds": [
+        -43.51999999999998,
+        88.0,
+        167.04,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Amazon CloudWatch"
+    },
+    "primary.tokyo.synthetic.role": {
+      "parent": "primary.tokyo.synthetic.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "認証・各機能の外形監視"
+    },
+    "primary.tokyo.rum.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        540,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.rum": {
+      "parent": "primary.tokyo.rum.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.rum.glyph": {
+      "parent": "primary.tokyo.rum",
+      "bounds": [
+        12.0,
+        14.584500798013778,
+        56.0,
+        50.83099840397234
+      ],
+      "connectable": false,
+      "style": "cloudwatch_2_49"
+    },
+    "primary.tokyo.rum.name": {
+      "parent": "primary.tokyo.rum.node",
+      "bounds": [
+        -43.51999999999998,
+        88.0,
+        167.04,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Amazon CloudWatch"
+    },
+    "primary.tokyo.rum.role": {
+      "parent": "primary.tokyo.rum.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "利用者側の遅延・エラー"
+    },
+    "primary.tokyo.metrics.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        1000,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.metrics": {
+      "parent": "primary.tokyo.metrics.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.metrics.glyph": {
+      "parent": "primary.tokyo.metrics",
+      "bounds": [
+        12.0,
+        14.584500798013778,
+        56.0,
+        50.83099840397234
+      ],
+      "connectable": false,
+      "style": "cloudwatch_2_49"
+    },
+    "primary.tokyo.metrics.name": {
+      "parent": "primary.tokyo.metrics.node",
+      "bounds": [
+        -43.51999999999998,
+        88.0,
+        167.04,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon CloudWatch"
+    },
+    "primary.tokyo.metrics.role": {
+      "parent": "primary.tokyo.metrics.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Metrics・Logs / 相関ID"
+    },
+    "primary.tokyo.trace.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        1000,
+        1660,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.trace": {
+      "parent": "primary.tokyo.trace.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_30"
+    },
+    "primary.tokyo.trace.glyph": {
+      "parent": "primary.tokyo.trace",
+      "bounds": [
+        12.0,
+        12.940799999999854,
+        55.99999999999999,
+        54.118399999999994
+      ],
+      "connectable": false,
+      "style": "xray_55"
+    },
+    "primary.tokyo.trace.name": {
+      "parent": "primary.tokyo.trace.node",
+      "bounds": [
+        -9.460000000000036,
+        88.0,
+        98.92,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "AWS X-Ray"
+    },
+    "primary.tokyo.trace.role": {
+      "parent": "primary.tokyo.trace.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "OpenTelemetryトレース"
+    },
+    "primary.tokyo.alarm.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        1410,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.alarm": {
+      "parent": "primary.tokyo.alarm.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.alarm.glyph": {
+      "parent": "primary.tokyo.alarm",
+      "bounds": [
+        12.0,
+        14.584500798013778,
+        56.0,
+        50.83099840397234
+      ],
+      "connectable": false,
+      "style": "cloudwatch_2_49"
+    },
+    "primary.tokyo.alarm.name": {
+      "parent": "primary.tokyo.alarm.node",
+      "bounds": [
+        -43.51999999999998,
+        88.0,
+        167.04,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon CloudWatch"
+    },
+    "primary.tokyo.alarm.role": {
+      "parent": "primary.tokyo.alarm.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "遅延・失敗・欠測"
+    },
+    "primary.tokyo.alert.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        1820,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.alert": {
+      "parent": "primary.tokyo.alert.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.alert.glyph": {
+      "parent": "primary.tokyo.alert",
+      "bounds": [
+        12.0,
+        13.527272727272702,
+        55.99999999999999,
+        52.94545454545454
+      ],
+      "connectable": false,
+      "style": "sns_50"
+    },
+    "primary.tokyo.alert.name": {
+      "parent": "primary.tokyo.alert.node",
+      "bounds": [
+        -67.18,
+        88.0,
+        214.36,
+        42.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Simple Notification\nService (Amazon SNS)"
+    },
+    "primary.tokyo.alert.role": {
+      "parent": "primary.tokyo.alert.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "当番へ通知",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 0,
+        "align": "center"
+      }
+    },
+    "primary.tokyo.guard.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        200,
+        1880,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.guard": {
+      "parent": "primary.tokyo.guard.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_17"
+    },
+    "primary.tokyo.guard.glyph": {
+      "parent": "primary.tokyo.guard",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "guardduty_58"
+    },
+    "primary.tokyo.guard.name": {
+      "parent": "primary.tokyo.guard.node",
+      "bounds": [
+        -38.44999999999999,
+        88.0,
+        156.9,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Amazon GuardDuty"
+    },
+    "primary.tokyo.guard.role": {
+      "parent": "primary.tokyo.guard.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "脅威検出"
+    },
+    "primary.tokyo.security.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        540,
+        1880,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.security": {
+      "parent": "primary.tokyo.security.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_17"
+    },
+    "primary.tokyo.security.glyph": {
+      "parent": "primary.tokyo.security",
+      "bounds": [
+        15.404855356883218,
+        12.0,
+        49.190289286233465,
+        55.99999999999999
+      ],
+      "connectable": false,
+      "style": "security_hub_52"
+    },
+    "primary.tokyo.security.name": {
+      "parent": "primary.tokyo.security.node",
+      "bounds": [
+        -34.15999999999997,
+        88.0,
+        148.32,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Security Hub"
+    },
+    "primary.tokyo.security.role": {
+      "parent": "primary.tokyo.security.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "検出を集約"
+    },
+    "primary.tokyo.securitybus.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        1410,
+        1880,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.securitybus": {
+      "parent": "primary.tokyo.securitybus.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.securitybus.glyph": {
+      "parent": "primary.tokyo.securitybus",
+      "bounds": [
+        12.955500000000029,
+        12.0,
+        54.089,
+        56.0
+      ],
+      "connectable": false,
+      "style": "eventbridge_42"
+    },
+    "primary.tokyo.securitybus.name": {
+      "parent": "primary.tokyo.securitybus.node",
+      "bounds": [
+        -43.65000000000009,
+        88.0,
+        167.3,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon EventBridge"
+    },
+    "primary.tokyo.securitybus.role": {
+      "parent": "primary.tokyo.securitybus.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "検出通知ルール"
+    },
+    "primary.tokyo.trail.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2220,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.trail": {
+      "parent": "primary.tokyo.trail.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.trail.glyph": {
+      "parent": "primary.tokyo.trail",
+      "bounds": [
+        12.0,
+        22.96900000000005,
+        56.0,
+        34.062
+      ],
+      "connectable": false,
+      "style": "cloudtrail_56"
+    },
+    "primary.tokyo.trail.name": {
+      "parent": "primary.tokyo.trail.node",
+      "bounds": [
+        -24.2800000000002,
+        88.0,
+        128.56,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "AWS CloudTrail"
+    },
+    "primary.tokyo.trail.role": {
+      "parent": "primary.tokyo.trail.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "操作・Data events"
+    },
+    "primary.tokyo.audit.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2600,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.audit": {
+      "parent": "primary.tokyo.audit.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "primary.tokyo.audit.glyph": {
+      "parent": "primary.tokyo.audit",
+      "bounds": [
+        13.057999999999993,
+        12.0,
+        53.884,
+        56.0
+      ],
+      "connectable": false,
+      "style": "s3_24"
+    },
+    "primary.tokyo.audit.name": {
+      "parent": "primary.tokyo.audit.node",
+      "bounds": [
+        -8.289999999999964,
+        88.0,
+        96.58,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Amazon S3"
+    },
+    "primary.tokyo.audit.role": {
+      "parent": "primary.tokyo.audit.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Object Lock / 監査保管"
+    },
+    "primary.tokyo.backup.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        3000,
+        1840,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.backup": {
+      "parent": "primary.tokyo.backup.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "primary.tokyo.backup.glyph": {
+      "parent": "primary.tokyo.backup",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "backup_53"
+    },
+    "primary.tokyo.backup.name": {
+      "parent": "primary.tokyo.backup.node",
+      "bounds": [
+        -14.269999999999982,
+        88.0,
+        108.54,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Backup"
+    },
+    "primary.tokyo.backup.role": {
+      "parent": "primary.tokyo.backup.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請台帳・S3の保護"
+    },
+    "primary.tokyo.aggregate-lake": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.aggregate",
+      "target": "primary.tokyo.lake",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.lake-athena": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.lake",
+      "target": "primary.tokyo.athena",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.metrics-alarm": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.metrics",
+      "target": "primary.tokyo.alarm",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.alarm-alert": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.alarm",
+      "target": "primary.tokyo.alert",
+      "source_port": [
+        1,
+        0.25
+      ],
+      "target_port": [
+        0,
+        0.25
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.guard-security": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.guard",
+      "target": "primary.tokyo.security",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.trail-audit": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.trail",
+      "target": "primary.tokyo.audit",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.synthetic-metrics": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.synthetic",
+      "target": "primary.tokyo.metrics",
+      "source_port": [
+        1,
+        0.3
+      ],
+      "target_port": [
+        0,
+        0.3
+      ],
+      "waypoints": [
+        [
+          420,
+          1484
+        ],
+        [
+          420,
+          1380
+        ],
+        [
+          930,
+          1380
+        ],
+        [
+          930,
+          1484
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.rum-metrics": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.rum",
+      "target": "primary.tokyo.metrics",
+      "source_port": [
+        1,
+        0.7
+      ],
+      "target_port": [
+        0,
+        0.7
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.metrics-trace": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.metrics",
+      "target": "primary.tokyo.trace",
+      "source_port": [
+        1,
+        0.7
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [
+        [
+          1180,
+          1516
+        ],
+        [
+          1180,
+          1700
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "none",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.security-event": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.security",
+      "target": "primary.tokyo.securitybus",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.security-alert": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.securitybus",
+      "target": "primary.tokyo.alert",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.75
+      ],
+      "waypoints": [
+        [
+          1660,
+          1920
+        ],
+        [
+          1660,
+          1520
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.oncall.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2180,
+        1880,
+        48.0,
+        48.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.oncall": {
+      "parent": "primary.tokyo.oncall.node",
+      "bounds": [
+        0,
+        0,
+        48.0,
+        48.0
+      ],
+      "connectable": true,
+      "style": "rect_11"
+    },
+    "primary.tokyo.oncall.glyph": {
+      "parent": "primary.tokyo.oncall",
+      "bounds": [
+        0.0,
+        0.0,
+        48.0,
+        48.0
+      ],
+      "connectable": false,
+      "style": "users_12"
+    },
+    "primary.tokyo.oncall.name": {
+      "parent": "primary.tokyo.oncall.node",
+      "bounds": [
+        -25.72,
+        56.0,
+        99.44,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "24/365 当番"
+    },
+    "primary.tokyo.oncall.role": {
+      "parent": "primary.tokyo.oncall.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "ACK・再通知・復旧判断"
+    },
+    "primary.tokyo.vault.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2700,
+        1840,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.vault": {
+      "parent": "primary.tokyo.vault.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "primary.tokyo.vault.glyph": {
+      "parent": "primary.tokyo.vault",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "backup_53"
+    },
+    "primary.tokyo.vault.name": {
+      "parent": "primary.tokyo.vault.node",
+      "bounds": [
+        -14.27000000000001,
+        88.0,
+        108.54,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "AWS Backup"
+    },
+    "primary.tokyo.vault.role": {
+      "parent": "primary.tokyo.vault.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "別アカウント / Vault Lock"
+    },
+    "primary.tokyo.page": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.alert",
+      "target": "primary.tokyo.oncall",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [
+        [
+          2100,
+          1500
+        ],
+        [
+          2100,
+          1904
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.backup-vault": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.backup",
+      "target": "primary.tokyo.vault",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.attach": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.api-c",
+      "target": "primary.tokyo.files",
+      "source_port": [
+        0,
+        0.8
+      ],
+      "target_port": [
+        0.7,
+        0
+      ],
+      "waypoints": [
+        [
+          1020,
+          659
+        ],
+        [
+          1020,
+          1050
+        ],
+        [
+          956,
+          1050
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.ingest.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2750,
+        1100,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.ingest": {
+      "parent": "primary.tokyo.ingest.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "primary.tokyo.ingest.glyph": {
+      "parent": "primary.tokyo.ingest",
+      "bounds": [
+        12.955500000000029,
+        12.0,
+        54.089,
+        56.0
+      ],
+      "connectable": false,
+      "style": "eventbridge_42"
+    },
+    "primary.tokyo.ingest.name": {
+      "parent": "primary.tokyo.ingest.node",
+      "bounds": [
+        -43.65000000000009,
+        88.0,
+        167.3,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon EventBridge"
+    },
+    "primary.tokyo.ingest.role": {
+      "parent": "primary.tokyo.ingest.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "証跡の作成イベント"
+    },
+    "primary.tokyo.inspect.node": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2600,
+        600,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "primary.tokyo.inspect": {
+      "parent": "primary.tokyo.inspect.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "primary.tokyo.inspect.glyph": {
+      "parent": "primary.tokyo.inspect",
+      "bounds": [
+        12.974999999999909,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "primary.tokyo.inspect.name": {
+      "parent": "primary.tokyo.inspect.node",
+      "bounds": [
+        -16.609999999999673,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "primary.tokyo.inspect.role": {
+      "parent": "primary.tokyo.inspect.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請データの審査・証跡作成"
+    },
+    "primary.tokyo.bus-aggregate": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.bus",
+      "target": "primary.tokyo.aggregate",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.attach-a": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.api-a",
+      "target": "primary.tokyo.files",
+      "source_port": [
+        1,
+        0.8
+      ],
+      "target_port": [
+        0.3,
+        0
+      ],
+      "waypoints": [
+        [
+          760,
+          659
+        ],
+        [
+          760,
+          1050
+        ],
+        [
+          924,
+          1050
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.bus-queue": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.bus",
+      "target": "primary.tokyo.queue",
+      "source_port": [
+        1,
+        0.75
+      ],
+      "target_port": [
+        0.5,
+        0
+      ],
+      "waypoints": [
+        [
+          2400,
+          345
+        ],
+        [
+          2400,
+          490
+        ],
+        [
+          1790,
+          490
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.queue-dispatch": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.queue",
+      "target": "primary.tokyo.convert",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.dispatch-workflow": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.convert",
+      "target": "primary.tokyo.workflow",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.workflow-review": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.workflow",
+      "target": "primary.tokyo.inspect",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.review-proof": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.inspect",
+      "target": "primary.tokyo.result",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.25
+      ],
+      "waypoints": [
+        [
+          2850,
+          640
+        ],
+        [
+          2850,
+          870
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.proof-event": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.result",
+      "target": "primary.tokyo.ingest",
+      "source_port": [
+        0,
+        0.75
+      ],
+      "target_port": [
+        0.5,
+        0
+      ],
+      "waypoints": [
+        [
+          2790,
+          910
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.tokyo.event-notify": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.ingest",
+      "target": "primary.tokyo.notify",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "primary.key": {
+      "parent": "primary.tokyo",
+      "bounds": [
+        2500,
+        1700,
+        80.0,
+        80.0
+      ],
+      "connectable": false,
+      "overrides": {
+        "group": null,
+        "recursiveResize": 0
+      }
+    },
+    "primary.key.icon": {
+      "parent": "primary.key",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "overrides": {
+        "shape": "rect",
+        "fillColor": "#DD344C",
+        "strokeColor": "none",
+        "perimeter": "rectanglePerimeter"
+      }
+    },
+    "primary.key.glyph": {
+      "parent": "primary.key.icon",
+      "bounds": [
+        12.000000000000004,
+        13.311793214862686,
+        55.99999999999999,
+        53.37641357027463
+      ],
+      "connectable": false,
+      "overrides": {
+        "shape": "mxgraph.aws4.key_management_service",
+        "fillColor": "#FFFFFF",
+        "strokeColor": "none",
+        "aspect": "fixed",
+        "resizable": 0,
+        "rotatable": 0
+      }
+    },
+    "primary.key.name": {
+      "bounds": [
+        -85.0,
+        88.0,
+        250,
+        22
+      ],
+      "value": "AWS Key Management Service",
+      "connectable": false,
+      "overrides": {
+        "text": null,
+        "html": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "visible",
+        "align": "center",
+        "verticalAlign": "top",
+        "spacing": 0,
+        "fontSize": 16,
+        "fontFamily": "Arial,Arial Unicode MS",
+        "fontColor": "#000000",
+        "strokeColor": "none",
+        "fillColor": "none"
+      },
+      "parent": "primary.key"
+    },
+    "primary.key.role": {
+      "bounds": [
+        -85.0,
+        122.0,
+        250,
+        22
+      ],
+      "value": "監査バケットの暗号化",
+      "connectable": false,
+      "overrides": {
+        "text": null,
+        "html": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "visible",
+        "align": "center",
+        "verticalAlign": "top",
+        "spacing": 0,
+        "fontSize": 16,
+        "fontFamily": "Arial,Arial Unicode MS",
+        "fontColor": "#000000",
+        "strokeColor": "none",
+        "fillColor": "none"
+      },
+      "parent": "primary.key"
+    },
+    "primary.audit-key": {
+      "parent": "primary.tokyo",
+      "source": "primary.tokyo.audit",
+      "target": "primary.key.icon",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [
+        [
+          2850,
+          1500
+        ],
+        [
+          2850,
+          1740
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo": {
+      "parent": "aws",
+      "bounds": [
+        4300,
+        80,
+        3320,
+        2160
+      ],
+      "style": "rect_21",
+      "connectable": false
+    },
+    "standby.tokyo.mark": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        0,
+        0,
+        40,
+        40
+      ],
+      "style": "group_region_22",
+      "connectable": false
+    },
+    "standby.tokyo.title": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        50,
+        12,
+        800,
+        24
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "ソウル ap-northeast-2 | ウォームスタンバイ",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 1
+      }
+    },
+    "standby.tokyo.vpc": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        340,
+        370,
+        1250,
+        580
+      ],
+      "style": "rect_27",
+      "connectable": false
+    },
+    "standby.tokyo.vpc.mark": {
+      "parent": "standby.tokyo.vpc",
+      "bounds": [
+        0,
+        0,
+        40,
+        40
+      ],
+      "style": "group_vpc2_28",
+      "connectable": false
+    },
+    "standby.tokyo.vpc.title": {
+      "parent": "standby.tokyo.vpc",
+      "bounds": [
+        50,
+        12,
+        400,
+        24
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "VPC | 申請受付・申請台帳API",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 1
+      }
+    },
+    "standby.tokyo.aza": {
+      "parent": "standby.tokyo.vpc",
+      "bounds": [
+        100,
+        160,
+        290,
+        260
+      ],
+      "style": "rect_32",
+      "connectable": false
+    },
+    "standby.tokyo.aza.title": {
+      "parent": "standby.tokyo.aza",
+      "bounds": [
+        16,
+        12,
+        220,
+        24
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "AZ-A",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 1
+      }
+    },
+    "standby.tokyo.azc": {
+      "parent": "standby.tokyo.vpc",
+      "bounds": [
+        700,
+        160,
+        290,
+        260
+      ],
+      "style": "rect_32",
+      "connectable": false
+    },
+    "standby.tokyo.azc.title": {
+      "parent": "standby.tokyo.azc",
+      "bounds": [
+        16,
+        12,
+        220,
+        24
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "AZ-C",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 1
+      }
+    },
+    "standby.tokyo.alb.node": {
+      "parent": "standby.tokyo.vpc",
+      "bounds": [
+        510,
+        241,
+        48.0,
+        48.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.alb": {
+      "parent": "standby.tokyo.alb.node",
+      "bounds": [
+        0,
+        0,
+        48.0,
+        48.0
+      ],
+      "connectable": true,
+      "style": "rect_11"
+    },
+    "standby.tokyo.alb.glyph": {
+      "parent": "standby.tokyo.alb",
+      "bounds": [
+        0.0,
+        0.0005454421490185268,
+        48.0,
+        47.99890911570191
+      ],
+      "connectable": false,
+      "style": "application_load_balancer_29"
+    },
+    "standby.tokyo.alb.name": {
+      "parent": "standby.tokyo.alb.node",
+      "bounds": [
+        -43.00999999999999,
+        56.0,
+        134.02,
+        42.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Application Load\nBalancer"
+    },
+    "standby.tokyo.api-a.node": {
+      "parent": "standby.tokyo.aza",
+      "bounds": [
+        105,
+        65,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.api-a": {
+      "parent": "standby.tokyo.api-a.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "standby.tokyo.api-a.glyph": {
+      "parent": "standby.tokyo.api-a",
+      "bounds": [
+        12.560856101289687,
+        12.0,
+        54.878287797420725,
+        56.0
+      ],
+      "connectable": false,
+      "style": "fargate_36"
+    },
+    "standby.tokyo.api-a.name": {
+      "parent": "standby.tokyo.api-a.node",
+      "bounds": [
+        -15.18,
+        88.0,
+        110.36,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Fargate"
+    },
+    "standby.tokyo.api-a.role": {
+      "parent": "standby.tokyo.api-a.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請受付・台帳API / WSS"
+    },
+    "standby.tokyo.api-c.node": {
+      "parent": "standby.tokyo.azc",
+      "bounds": [
+        105,
+        65,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.api-c": {
+      "parent": "standby.tokyo.api-c.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "standby.tokyo.api-c.glyph": {
+      "parent": "standby.tokyo.api-c",
+      "bounds": [
+        12.560856101289573,
+        12.0,
+        54.878287797420725,
+        56.0
+      ],
+      "connectable": false,
+      "style": "fargate_36"
+    },
+    "standby.tokyo.api-c.name": {
+      "parent": "standby.tokyo.api-c.node",
+      "bounds": [
+        -15.180000000000007,
+        88.0,
+        110.36,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Fargate"
+    },
+    "standby.tokyo.api-c.role": {
+      "parent": "standby.tokyo.api-c.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請受付・台帳API / WSS"
+    },
+    "standby.tokyo.cache.node": {
+      "parent": "standby.tokyo.vpc",
+      "bounds": [
+        510,
+        380,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.cache": {
+      "parent": "standby.tokyo.cache.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_30"
+    },
+    "standby.tokyo.cache.glyph": {
+      "parent": "standby.tokyo.cache",
+      "bounds": [
+        12.0,
+        13.5,
+        56.0,
+        53.0
+      ],
+      "connectable": false,
+      "style": "elasticache_31"
+    },
+    "standby.tokyo.cache.name": {
+      "parent": "standby.tokyo.cache.node",
+      "bounds": [
+        -42.610000000000014,
+        88.0,
+        165.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon ElastiCache"
+    },
+    "standby.tokyo.cache.role": {
+      "parent": "standby.tokyo.cache.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Valkey / Multi-AZ"
+    },
+    "standby.tokyo.db.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        900,
+        110,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.db": {
+      "parent": "standby.tokyo.db.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_30"
+    },
+    "standby.tokyo.db.glyph": {
+      "parent": "standby.tokyo.db",
+      "bounds": [
+        15.961499999999887,
+        12.0,
+        48.077,
+        56.0
+      ],
+      "connectable": false,
+      "style": "dynamodb_38"
+    },
+    "standby.tokyo.db.name": {
+      "parent": "standby.tokyo.db.node",
+      "bounds": [
+        -270,
+        0,
+        250,
+        21
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon DynamoDB"
+    },
+    "standby.tokyo.db.role": {
+      "parent": "standby.tokyo.db.node",
+      "bounds": [
+        -270,
+        30,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請台帳 / Global Tables"
+    },
+    "standby.tokyo.stream.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        1680,
+        301,
+        48.0,
+        48.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.stream": {
+      "parent": "standby.tokyo.stream.node",
+      "bounds": [
+        0,
+        0,
+        48.0,
+        48.0
+      ],
+      "connectable": true,
+      "style": "rect_11"
+    },
+    "standby.tokyo.stream.glyph": {
+      "parent": "standby.tokyo.stream",
+      "bounds": [
+        0.0,
+        0.03975222925600974,
+        48.0,
+        47.92049554148799
+      ],
+      "connectable": false,
+      "style": "dynamodb_stream_39"
+    },
+    "standby.tokyo.stream.name": {
+      "parent": "standby.tokyo.stream.node",
+      "bounds": [
+        -56.65999999999997,
+        56.0,
+        161.32,
+        42.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon DynamoDB\nStreams"
+    },
+    "standby.tokyo.relay.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        1930,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.relay": {
+      "parent": "standby.tokyo.relay.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "standby.tokyo.relay.glyph": {
+      "parent": "standby.tokyo.relay",
+      "bounds": [
+        12.974999999999909,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "standby.tokyo.relay.name": {
+      "parent": "standby.tokyo.relay.node",
+      "bounds": [
+        -16.6099999999999,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "standby.tokyo.relay.role": {
+      "parent": "standby.tokyo.relay.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "冪等なイベント中継"
+    },
+    "standby.tokyo.bus.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2220,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.bus": {
+      "parent": "standby.tokyo.bus.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.bus.glyph": {
+      "parent": "standby.tokyo.bus",
+      "bounds": [
+        12.955500000000029,
+        12.0,
+        54.089,
+        56.0
+      ],
+      "connectable": false,
+      "style": "eventbridge_42"
+    },
+    "standby.tokyo.bus.name": {
+      "parent": "standby.tokyo.bus.node",
+      "bounds": [
+        -43.65000000000009,
+        88.0,
+        167.3,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon EventBridge"
+    },
+    "standby.tokyo.bus.role": {
+      "parent": "standby.tokyo.bus.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請イベントを振り分け"
+    },
+    "standby.tokyo.queue.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        1750,
+        600,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.queue": {
+      "parent": "standby.tokyo.queue.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.queue.glyph": {
+      "parent": "standby.tokyo.queue",
+      "bounds": [
+        12.0,
+        17.43162026248001,
+        56.0,
+        45.13675947503987
+      ],
+      "connectable": false,
+      "style": "sqs_43"
+    },
+    "standby.tokyo.queue.name": {
+      "parent": "standby.tokyo.queue.node",
+      "bounds": [
+        -85,
+        88,
+        250,
+        42
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Simple Queue\nService (Amazon SQS)"
+    },
+    "standby.tokyo.queue.role": {
+      "parent": "standby.tokyo.queue.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "審査依頼 / Standard"
+    },
+    "standby.tokyo.notify.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2450,
+        1100,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.notify": {
+      "parent": "standby.tokyo.notify.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "standby.tokyo.notify.glyph": {
+      "parent": "standby.tokyo.notify",
+      "bounds": [
+        12.975000000000023,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "standby.tokyo.notify.name": {
+      "parent": "standby.tokyo.notify.node",
+      "bounds": [
+        -16.610000000000014,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "standby.tokyo.notify.role": {
+      "parent": "standby.tokyo.notify.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "通知内容を作成・重複排除"
+    },
+    "standby.tokyo.email.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2150,
+        1100,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.email": {
+      "parent": "standby.tokyo.email.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_17"
+    },
+    "standby.tokyo.email.glyph": {
+      "parent": "standby.tokyo.email",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "simple_email_service_46"
+    },
+    "standby.tokyo.email.name": {
+      "parent": "standby.tokyo.email.node",
+      "bounds": [
+        -50.41000000000008,
+        88.0,
+        180.82,
+        42.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Simple Email\nService (Amazon SES)"
+    },
+    "standby.tokyo.email.role": {
+      "parent": "standby.tokyo.email.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "審査完了メール",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 0,
+        "align": "center"
+      }
+    },
+    "standby.tokyo.alb-a": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.alb",
+      "target": "standby.tokyo.api-a",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.alb-c": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.alb",
+      "target": "standby.tokyo.api-c",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.api-a-db": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.api-a",
+      "target": "standby.tokyo.db",
+      "source_port": [
+        1,
+        0.2
+      ],
+      "target_port": [
+        0.3,
+        1
+      ],
+      "waypoints": [
+        [
+          924,
+          611
+        ],
+        [
+          924,
+          190
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.api-c-db": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.api-c",
+      "target": "standby.tokyo.db",
+      "source_port": [
+        0,
+        0.2
+      ],
+      "target_port": [
+        0.7,
+        1
+      ],
+      "waypoints": [
+        [
+          956,
+          611
+        ],
+        [
+          956,
+          190
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.cache-a": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.api-a",
+      "target": "standby.tokyo.cache",
+      "source_port": [
+        1,
+        0.65
+      ],
+      "target_port": [
+        0,
+        0.3
+      ],
+      "waypoints": [
+        [
+          780,
+          647
+        ],
+        [
+          780,
+          774
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.cache-c": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.api-c",
+      "target": "standby.tokyo.cache",
+      "source_port": [
+        0,
+        0.65
+      ],
+      "target_port": [
+        1,
+        0.7
+      ],
+      "waypoints": [
+        [
+          980,
+          647
+        ],
+        [
+          980,
+          806
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.db-stream": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.db",
+      "target": "standby.tokyo.stream",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [
+        [
+          1610,
+          150
+        ],
+        [
+          1610,
+          325
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.stream-relay": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.stream",
+      "target": "standby.tokyo.relay",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.relay-bus": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.relay",
+      "target": "standby.tokyo.bus",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.notify-email": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.notify",
+      "target": "standby.tokyo.email",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.files.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        900,
+        1100,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.files": {
+      "parent": "standby.tokyo.files.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "standby.tokyo.files.glyph": {
+      "parent": "standby.tokyo.files",
+      "bounds": [
+        13.057999999999993,
+        12.0,
+        53.884,
+        56.0
+      ],
+      "connectable": false,
+      "style": "s3_24"
+    },
+    "standby.tokyo.files.name": {
+      "parent": "standby.tokyo.files.node",
+      "bounds": [
+        90,
+        88,
+        250,
+        21
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon S3"
+    },
+    "standby.tokyo.files.role": {
+      "parent": "standby.tokyo.files.node",
+      "bounds": [
+        90,
+        120,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請原本 / CRR"
+    },
+    "standby.tokyo.workflow.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2300,
+        600,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.workflow": {
+      "parent": "standby.tokyo.workflow.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.workflow.glyph": {
+      "parent": "standby.tokyo.workflow",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "step_functions_45"
+    },
+    "standby.tokyo.workflow.name": {
+      "parent": "standby.tokyo.workflow.node",
+      "bounds": [
+        -42.220000000000255,
+        88.0,
+        164.44,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Step Functions"
+    },
+    "standby.tokyo.workflow.role": {
+      "parent": "standby.tokyo.workflow.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "審査の進行・再試行"
+    },
+    "standby.tokyo.convert.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2000,
+        600,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.convert": {
+      "parent": "standby.tokyo.convert.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "standby.tokyo.convert.glyph": {
+      "parent": "standby.tokyo.convert",
+      "bounds": [
+        12.974999999999909,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "standby.tokyo.convert.name": {
+      "parent": "standby.tokyo.convert.node",
+      "bounds": [
+        -16.609999999999673,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "standby.tokyo.convert.role": {
+      "parent": "standby.tokyo.convert.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "キュー取得・審査の起動"
+    },
+    "standby.tokyo.result.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        3000,
+        850,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.result": {
+      "parent": "standby.tokyo.result.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "standby.tokyo.result.glyph": {
+      "parent": "standby.tokyo.result",
+      "bounds": [
+        13.057999999999993,
+        12.0,
+        53.884,
+        56.0
+      ],
+      "connectable": false,
+      "style": "s3_24"
+    },
+    "standby.tokyo.result.name": {
+      "parent": "standby.tokyo.result.node",
+      "bounds": [
+        -200,
+        88,
+        180,
+        42
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon S3"
+    },
+    "standby.tokyo.result.role": {
+      "parent": "standby.tokyo.result.node",
+      "bounds": [
+        -200,
+        134,
+        180,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "審査証跡 / CRR"
+    },
+    "standby.tokyo.aggregate.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2530,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.aggregate": {
+      "parent": "standby.tokyo.aggregate.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "standby.tokyo.aggregate.glyph": {
+      "parent": "standby.tokyo.aggregate",
+      "bounds": [
+        12.974999999999909,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "standby.tokyo.aggregate.name": {
+      "parent": "standby.tokyo.aggregate.node",
+      "bounds": [
+        -16.610000000000014,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "standby.tokyo.aggregate.role": {
+      "parent": "standby.tokyo.aggregate.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請・審査の利用集計"
+    },
+    "standby.tokyo.lake.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2820,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.lake": {
+      "parent": "standby.tokyo.lake.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "standby.tokyo.lake.glyph": {
+      "parent": "standby.tokyo.lake",
+      "bounds": [
+        13.057999999999993,
+        12.0,
+        53.884,
+        56.0
+      ],
+      "connectable": false,
+      "style": "s3_24"
+    },
+    "standby.tokyo.lake.name": {
+      "parent": "standby.tokyo.lake.node",
+      "bounds": [
+        -8.289999999999964,
+        88.0,
+        96.58,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon S3"
+    },
+    "standby.tokyo.lake.role": {
+      "parent": "standby.tokyo.lake.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "集計データ / Lifecycle"
+    },
+    "standby.tokyo.athena.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        3100,
+        285,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.athena": {
+      "parent": "standby.tokyo.athena.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_14"
+    },
+    "standby.tokyo.athena.glyph": {
+      "parent": "standby.tokyo.athena",
+      "bounds": [
+        12.0,
+        12.950527939257427,
+        56.0,
+        54.098944121485346
+      ],
+      "connectable": false,
+      "style": "athena_47"
+    },
+    "standby.tokyo.athena.name": {
+      "parent": "standby.tokyo.athena.node",
+      "bounds": [
+        -24.670000000000073,
+        88.0,
+        129.34,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Athena"
+    },
+    "standby.tokyo.athena.role": {
+      "parent": "standby.tokyo.athena.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "オンデマンド分析"
+    },
+    "standby.tokyo.synthetic.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        200,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.synthetic": {
+      "parent": "standby.tokyo.synthetic.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.synthetic.glyph": {
+      "parent": "standby.tokyo.synthetic",
+      "bounds": [
+        12.0,
+        14.584500798013778,
+        56.0,
+        50.83099840397234
+      ],
+      "connectable": false,
+      "style": "cloudwatch_2_49"
+    },
+    "standby.tokyo.synthetic.name": {
+      "parent": "standby.tokyo.synthetic.node",
+      "bounds": [
+        -43.51999999999998,
+        88.0,
+        167.04,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Amazon CloudWatch"
+    },
+    "standby.tokyo.synthetic.role": {
+      "parent": "standby.tokyo.synthetic.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "認証・各機能の外形監視"
+    },
+    "standby.tokyo.rum.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        540,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.rum": {
+      "parent": "standby.tokyo.rum.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.rum.glyph": {
+      "parent": "standby.tokyo.rum",
+      "bounds": [
+        12.0,
+        14.584500798013778,
+        56.0,
+        50.83099840397234
+      ],
+      "connectable": false,
+      "style": "cloudwatch_2_49"
+    },
+    "standby.tokyo.rum.name": {
+      "parent": "standby.tokyo.rum.node",
+      "bounds": [
+        -43.51999999999998,
+        88.0,
+        167.04,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Amazon CloudWatch"
+    },
+    "standby.tokyo.rum.role": {
+      "parent": "standby.tokyo.rum.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "利用者側の遅延・エラー"
+    },
+    "standby.tokyo.metrics.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        1000,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.metrics": {
+      "parent": "standby.tokyo.metrics.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.metrics.glyph": {
+      "parent": "standby.tokyo.metrics",
+      "bounds": [
+        12.0,
+        14.584500798013778,
+        56.0,
+        50.83099840397234
+      ],
+      "connectable": false,
+      "style": "cloudwatch_2_49"
+    },
+    "standby.tokyo.metrics.name": {
+      "parent": "standby.tokyo.metrics.node",
+      "bounds": [
+        -43.51999999999998,
+        88.0,
+        167.04,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon CloudWatch"
+    },
+    "standby.tokyo.metrics.role": {
+      "parent": "standby.tokyo.metrics.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Metrics・Logs / 相関ID"
+    },
+    "standby.tokyo.trace.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        1000,
+        1660,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.trace": {
+      "parent": "standby.tokyo.trace.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_30"
+    },
+    "standby.tokyo.trace.glyph": {
+      "parent": "standby.tokyo.trace",
+      "bounds": [
+        12.0,
+        12.940799999999854,
+        55.99999999999999,
+        54.118399999999994
+      ],
+      "connectable": false,
+      "style": "xray_55"
+    },
+    "standby.tokyo.trace.name": {
+      "parent": "standby.tokyo.trace.node",
+      "bounds": [
+        -9.460000000000036,
+        88.0,
+        98.92,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "AWS X-Ray"
+    },
+    "standby.tokyo.trace.role": {
+      "parent": "standby.tokyo.trace.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "OpenTelemetryトレース"
+    },
+    "standby.tokyo.alarm.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        1410,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.alarm": {
+      "parent": "standby.tokyo.alarm.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.alarm.glyph": {
+      "parent": "standby.tokyo.alarm",
+      "bounds": [
+        12.0,
+        14.584500798013778,
+        56.0,
+        50.83099840397234
+      ],
+      "connectable": false,
+      "style": "cloudwatch_2_49"
+    },
+    "standby.tokyo.alarm.name": {
+      "parent": "standby.tokyo.alarm.node",
+      "bounds": [
+        -43.51999999999998,
+        88.0,
+        167.04,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon CloudWatch"
+    },
+    "standby.tokyo.alarm.role": {
+      "parent": "standby.tokyo.alarm.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "遅延・失敗・欠測"
+    },
+    "standby.tokyo.alert.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        1820,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.alert": {
+      "parent": "standby.tokyo.alert.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.alert.glyph": {
+      "parent": "standby.tokyo.alert",
+      "bounds": [
+        12.0,
+        13.527272727272702,
+        55.99999999999999,
+        52.94545454545454
+      ],
+      "connectable": false,
+      "style": "sns_50"
+    },
+    "standby.tokyo.alert.name": {
+      "parent": "standby.tokyo.alert.node",
+      "bounds": [
+        -67.18,
+        88.0,
+        214.36,
+        42.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon Simple Notification\nService (Amazon SNS)"
+    },
+    "standby.tokyo.alert.role": {
+      "parent": "standby.tokyo.alert.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "style": "text_20",
+      "connectable": false,
+      "value": "当番へ通知",
+      "overrides": {
+        "fontSize": 16,
+        "fontStyle": 0,
+        "align": "center"
+      }
+    },
+    "standby.tokyo.guard.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        200,
+        1880,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.guard": {
+      "parent": "standby.tokyo.guard.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_17"
+    },
+    "standby.tokyo.guard.glyph": {
+      "parent": "standby.tokyo.guard",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "guardduty_58"
+    },
+    "standby.tokyo.guard.name": {
+      "parent": "standby.tokyo.guard.node",
+      "bounds": [
+        -38.44999999999999,
+        88.0,
+        156.9,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Amazon GuardDuty"
+    },
+    "standby.tokyo.guard.role": {
+      "parent": "standby.tokyo.guard.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "脅威検出"
+    },
+    "standby.tokyo.security.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        540,
+        1880,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.security": {
+      "parent": "standby.tokyo.security.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_17"
+    },
+    "standby.tokyo.security.glyph": {
+      "parent": "standby.tokyo.security",
+      "bounds": [
+        15.404855356883218,
+        12.0,
+        49.190289286233465,
+        55.99999999999999
+      ],
+      "connectable": false,
+      "style": "security_hub_52"
+    },
+    "standby.tokyo.security.name": {
+      "parent": "standby.tokyo.security.node",
+      "bounds": [
+        -34.15999999999997,
+        88.0,
+        148.32,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Security Hub"
+    },
+    "standby.tokyo.security.role": {
+      "parent": "standby.tokyo.security.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "検出を集約"
+    },
+    "standby.tokyo.securitybus.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        1410,
+        1880,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.securitybus": {
+      "parent": "standby.tokyo.securitybus.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.securitybus.glyph": {
+      "parent": "standby.tokyo.securitybus",
+      "bounds": [
+        12.955500000000029,
+        12.0,
+        54.089,
+        56.0
+      ],
+      "connectable": false,
+      "style": "eventbridge_42"
+    },
+    "standby.tokyo.securitybus.name": {
+      "parent": "standby.tokyo.securitybus.node",
+      "bounds": [
+        -43.65000000000009,
+        88.0,
+        167.3,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon EventBridge"
+    },
+    "standby.tokyo.securitybus.role": {
+      "parent": "standby.tokyo.securitybus.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "検出通知ルール"
+    },
+    "standby.tokyo.trail.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2220,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.trail": {
+      "parent": "standby.tokyo.trail.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.trail.glyph": {
+      "parent": "standby.tokyo.trail",
+      "bounds": [
+        12.0,
+        22.96900000000005,
+        56.0,
+        34.062
+      ],
+      "connectable": false,
+      "style": "cloudtrail_56"
+    },
+    "standby.tokyo.trail.name": {
+      "parent": "standby.tokyo.trail.node",
+      "bounds": [
+        -24.2800000000002,
+        88.0,
+        128.56,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "AWS CloudTrail"
+    },
+    "standby.tokyo.trail.role": {
+      "parent": "standby.tokyo.trail.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "操作・Data events"
+    },
+    "standby.tokyo.audit.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2600,
+        1460,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.audit": {
+      "parent": "standby.tokyo.audit.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "standby.tokyo.audit.glyph": {
+      "parent": "standby.tokyo.audit",
+      "bounds": [
+        13.057999999999993,
+        12.0,
+        53.884,
+        56.0
+      ],
+      "connectable": false,
+      "style": "s3_24"
+    },
+    "standby.tokyo.audit.name": {
+      "parent": "standby.tokyo.audit.node",
+      "bounds": [
+        -8.289999999999964,
+        88.0,
+        96.58,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Amazon S3"
+    },
+    "standby.tokyo.audit.role": {
+      "parent": "standby.tokyo.audit.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "Object Lock / 監査保管"
+    },
+    "standby.tokyo.backup.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        3000,
+        1840,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.backup": {
+      "parent": "standby.tokyo.backup.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "standby.tokyo.backup.glyph": {
+      "parent": "standby.tokyo.backup",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "backup_53"
+    },
+    "standby.tokyo.backup.name": {
+      "parent": "standby.tokyo.backup.node",
+      "bounds": [
+        -14.269999999999982,
+        88.0,
+        108.54,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Backup"
+    },
+    "standby.tokyo.backup.role": {
+      "parent": "standby.tokyo.backup.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請台帳・S3の保護"
+    },
+    "standby.tokyo.aggregate-lake": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.aggregate",
+      "target": "standby.tokyo.lake",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.lake-athena": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.lake",
+      "target": "standby.tokyo.athena",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.metrics-alarm": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.metrics",
+      "target": "standby.tokyo.alarm",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.alarm-alert": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.alarm",
+      "target": "standby.tokyo.alert",
+      "source_port": [
+        1,
+        0.25
+      ],
+      "target_port": [
+        0,
+        0.25
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.guard-security": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.guard",
+      "target": "standby.tokyo.security",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.trail-audit": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.trail",
+      "target": "standby.tokyo.audit",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.synthetic-metrics": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.synthetic",
+      "target": "standby.tokyo.metrics",
+      "source_port": [
+        1,
+        0.3
+      ],
+      "target_port": [
+        0,
+        0.3
+      ],
+      "waypoints": [
+        [
+          420,
+          1484
+        ],
+        [
+          420,
+          1380
+        ],
+        [
+          930,
+          1380
+        ],
+        [
+          930,
+          1484
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.rum-metrics": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.rum",
+      "target": "standby.tokyo.metrics",
+      "source_port": [
+        1,
+        0.7
+      ],
+      "target_port": [
+        0,
+        0.7
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.metrics-trace": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.metrics",
+      "target": "standby.tokyo.trace",
+      "source_port": [
+        1,
+        0.7
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [
+        [
+          1180,
+          1516
+        ],
+        [
+          1180,
+          1700
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "none",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.security-event": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.security",
+      "target": "standby.tokyo.securitybus",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.security-alert": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.securitybus",
+      "target": "standby.tokyo.alert",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.75
+      ],
+      "waypoints": [
+        [
+          1660,
+          1920
+        ],
+        [
+          1660,
+          1520
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.oncall.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2180,
+        1880,
+        48.0,
+        48.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.oncall": {
+      "parent": "standby.tokyo.oncall.node",
+      "bounds": [
+        0,
+        0,
+        48.0,
+        48.0
+      ],
+      "connectable": true,
+      "style": "rect_11"
+    },
+    "standby.tokyo.oncall.glyph": {
+      "parent": "standby.tokyo.oncall",
+      "bounds": [
+        0.0,
+        0.0,
+        48.0,
+        48.0
+      ],
+      "connectable": false,
+      "style": "users_12"
+    },
+    "standby.tokyo.oncall.name": {
+      "parent": "standby.tokyo.oncall.node",
+      "bounds": [
+        -25.72,
+        56.0,
+        99.44,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "24/365 当番"
+    },
+    "standby.tokyo.oncall.role": {
+      "parent": "standby.tokyo.oncall.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "ACK・再通知・復旧判断"
+    },
+    "standby.tokyo.vault.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2700,
+        1840,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.vault": {
+      "parent": "standby.tokyo.vault.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_23"
+    },
+    "standby.tokyo.vault.glyph": {
+      "parent": "standby.tokyo.vault",
+      "bounds": [
+        12.0,
+        12.0,
+        56.0,
+        56.0
+      ],
+      "connectable": false,
+      "style": "backup_53"
+    },
+    "standby.tokyo.vault.name": {
+      "parent": "standby.tokyo.vault.node",
+      "bounds": [
+        -14.27000000000001,
+        88.0,
+        108.54,
+        21.0
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "AWS Backup"
+    },
+    "standby.tokyo.vault.role": {
+      "parent": "standby.tokyo.vault.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "line_54",
+      "value": "別アカウント / Vault Lock"
+    },
+    "standby.tokyo.page": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.alert",
+      "target": "standby.tokyo.oncall",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [
+        [
+          2100,
+          1500
+        ],
+        [
+          2100,
+          1904
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.backup-vault": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.backup",
+      "target": "standby.tokyo.vault",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.attach": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.api-c",
+      "target": "standby.tokyo.files",
+      "source_port": [
+        0,
+        0.8
+      ],
+      "target_port": [
+        0.7,
+        0
+      ],
+      "waypoints": [
+        [
+          1020,
+          659
+        ],
+        [
+          1020,
+          1050
+        ],
+        [
+          956,
+          1050
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.ingest.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2750,
+        1100,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.ingest": {
+      "parent": "standby.tokyo.ingest.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_41"
+    },
+    "standby.tokyo.ingest.glyph": {
+      "parent": "standby.tokyo.ingest",
+      "bounds": [
+        12.955500000000029,
+        12.0,
+        54.089,
+        56.0
+      ],
+      "connectable": false,
+      "style": "eventbridge_42"
+    },
+    "standby.tokyo.ingest.name": {
+      "parent": "standby.tokyo.ingest.node",
+      "bounds": [
+        -43.65000000000009,
+        88.0,
+        167.3,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "Amazon EventBridge"
+    },
+    "standby.tokyo.ingest.role": {
+      "parent": "standby.tokyo.ingest.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "証跡の作成イベント"
+    },
+    "standby.tokyo.inspect.node": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2600,
+        600,
+        80.0,
+        80.0
+      ],
+      "style": "node_group",
+      "connectable": false
+    },
+    "standby.tokyo.inspect": {
+      "parent": "standby.tokyo.inspect.node",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "connectable": true,
+      "style": "rect_35"
+    },
+    "standby.tokyo.inspect.glyph": {
+      "parent": "standby.tokyo.inspect",
+      "bounds": [
+        12.974999999999909,
+        12.0,
+        54.05,
+        56.0
+      ],
+      "connectable": false,
+      "style": "lambda_40"
+    },
+    "standby.tokyo.inspect.name": {
+      "parent": "standby.tokyo.inspect.node",
+      "bounds": [
+        -16.609999999999673,
+        88.0,
+        113.22,
+        21.0
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "AWS Lambda"
+    },
+    "standby.tokyo.inspect.role": {
+      "parent": "standby.tokyo.inspect.node",
+      "bounds": [
+        -85,
+        134,
+        250,
+        22
+      ],
+      "connectable": false,
+      "style": "text_13",
+      "value": "申請データの審査・証跡作成"
+    },
+    "standby.tokyo.bus-aggregate": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.bus",
+      "target": "standby.tokyo.aggregate",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.attach-a": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.api-a",
+      "target": "standby.tokyo.files",
+      "source_port": [
+        1,
+        0.8
+      ],
+      "target_port": [
+        0.3,
+        0
+      ],
+      "waypoints": [
+        [
+          760,
+          659
+        ],
+        [
+          760,
+          1050
+        ],
+        [
+          924,
+          1050
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.bus-queue": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.bus",
+      "target": "standby.tokyo.queue",
+      "source_port": [
+        1,
+        0.75
+      ],
+      "target_port": [
+        0.5,
+        0
+      ],
+      "waypoints": [
+        [
+          2400,
+          345
+        ],
+        [
+          2400,
+          490
+        ],
+        [
+          1790,
+          490
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.queue-dispatch": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.queue",
+      "target": "standby.tokyo.convert",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.dispatch-workflow": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.convert",
+      "target": "standby.tokyo.workflow",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.workflow-review": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.workflow",
+      "target": "standby.tokyo.inspect",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.review-proof": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.inspect",
+      "target": "standby.tokyo.result",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.25
+      ],
+      "waypoints": [
+        [
+          2850,
+          640
+        ],
+        [
+          2850,
+          870
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.proof-event": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.result",
+      "target": "standby.tokyo.ingest",
+      "source_port": [
+        0,
+        0.75
+      ],
+      "target_port": [
+        0.5,
+        0
+      ],
+      "waypoints": [
+        [
+          2790,
+          910
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.tokyo.event-notify": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.ingest",
+      "target": "standby.tokyo.notify",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "standby.key": {
+      "parent": "standby.tokyo",
+      "bounds": [
+        2500,
+        1700,
+        80.0,
+        80.0
+      ],
+      "connectable": false,
+      "overrides": {
+        "group": null,
+        "recursiveResize": 0
+      }
+    },
+    "standby.key.icon": {
+      "parent": "standby.key",
+      "bounds": [
+        0,
+        0,
+        80.0,
+        80.0
+      ],
+      "overrides": {
+        "shape": "rect",
+        "fillColor": "#DD344C",
+        "strokeColor": "none",
+        "perimeter": "rectanglePerimeter"
+      }
+    },
+    "standby.key.glyph": {
+      "parent": "standby.key.icon",
+      "bounds": [
+        12.000000000000004,
+        13.311793214862686,
+        55.99999999999999,
+        53.37641357027463
+      ],
+      "connectable": false,
+      "overrides": {
+        "shape": "mxgraph.aws4.key_management_service",
+        "fillColor": "#FFFFFF",
+        "strokeColor": "none",
+        "aspect": "fixed",
+        "resizable": 0,
+        "rotatable": 0
+      }
+    },
+    "standby.key.name": {
+      "bounds": [
+        -85.0,
+        88.0,
+        250,
+        22
+      ],
+      "value": "AWS Key Management Service",
+      "connectable": false,
+      "overrides": {
+        "text": null,
+        "html": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "visible",
+        "align": "center",
+        "verticalAlign": "top",
+        "spacing": 0,
+        "fontSize": 16,
+        "fontFamily": "Arial,Arial Unicode MS",
+        "fontColor": "#000000",
+        "strokeColor": "none",
+        "fillColor": "none"
+      },
+      "parent": "standby.key"
+    },
+    "standby.key.role": {
+      "bounds": [
+        -85.0,
+        122.0,
+        250,
+        22
+      ],
+      "value": "監査バケットの暗号化",
+      "connectable": false,
+      "overrides": {
+        "text": null,
+        "html": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "visible",
+        "align": "center",
+        "verticalAlign": "top",
+        "spacing": 0,
+        "fontSize": 16,
+        "fontFamily": "Arial,Arial Unicode MS",
+        "fontColor": "#000000",
+        "strokeColor": "none",
+        "fillColor": "none"
+      },
+      "parent": "standby.key"
+    },
+    "standby.audit-key": {
+      "parent": "standby.tokyo",
+      "source": "standby.tokyo.audit",
+      "target": "standby.key.icon",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.5
+      ],
+      "waypoints": [
+        [
+          2850,
+          1500
+        ],
+        [
+          2850,
+          1740
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "dns-tokyo": {
+      "parent": "aws",
+      "source": "dns",
+      "target": "primary.tokyo.alb",
+      "source_port": [
+        0,
+        0.5
+      ],
+      "target_port": [
+        1,
+        0.25
+      ],
+      "waypoints": [
+        [
+          1080,
+          560
+        ],
+        [
+          1080,
+          703
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "dns-seoul": {
+      "parent": "aws",
+      "source": "dns",
+      "target": "standby.tokyo.alb",
+      "source_port": [
+        1,
+        0.5
+      ],
+      "target_port": [
+        0,
+        0.25
+      ],
+      "waypoints": [
+        [
+          5110,
+          560
+        ],
+        [
+          5110,
+          703
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "global-table": {
+      "parent": "aws",
+      "source": "primary.tokyo.db",
+      "target": "standby.tokyo.db",
+      "source_port": [
+        0.5,
+        0
+      ],
+      "target_port": [
+        0.5,
+        0
+      ],
+      "waypoints": [
+        [
+          1020,
+          150
+        ],
+        [
+          5240,
+          150
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "open",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "s3-raw-crr": {
+      "parent": "aws",
+      "source": "primary.tokyo.files",
+      "target": "standby.tokyo.files",
+      "source_port": [
+        1,
+        0.65
+      ],
+      "target_port": [
+        0,
+        0.65
+      ],
+      "waypoints": [
+        [
+          1500,
+          1232
+        ],
+        [
+          1500,
+          1420
+        ],
+        [
+          5120,
+          1420
+        ],
+        [
+          5120,
+          1232
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    },
+    "s3-result-crr": {
+      "parent": "aws",
+      "source": "primary.tokyo.result",
+      "target": "standby.tokyo.result",
+      "source_port": [
+        0.5,
+        1
+      ],
+      "target_port": [
+        0.5,
+        1
+      ],
+      "waypoints": [
+        [
+          3120,
+          1380
+        ],
+        [
+          7340,
+          1380
+        ]
+      ],
+      "style": "line_2",
+      "overrides": {
+        "startArrow": "none",
+        "endArrow": "open",
+        "startSize": 6,
+        "endSize": 6,
+        "startFill": 0,
+        "endFill": 0
+      }
+    }
+  }
+}

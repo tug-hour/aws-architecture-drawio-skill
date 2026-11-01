@@ -12,7 +12,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from drawing import author_document, generate
-from schema import Failure
+from input_common import Failure
 
 
 def document():
@@ -224,14 +224,6 @@ class PartTests(unittest.TestCase):
         self.assertEqual(translated['elements']['ab']['parent'], '1')
         self.assertEqual(translated['elements']['ab']['waypoints'], [[310, 200]])
 
-    def test_normal_cli_imports_no_legacy_and_old_api_remains_available(self):
-        command = [sys.executable, '-B', '-c',
-                   "import sys;sys.path.insert(0,sys.argv[1]);import build_drawio;"
-                   "assert 'schema' not in sys.modules;assert 'layout' not in sys.modules;"
-                   "from build_drawio import normalize;from schema import Failure;"
-                   "from input_common import Failure as Common;assert Failure is Common", str(ROOT/'scripts')]
-        result = subprocess.run(command, capture_output=True, text=True)
-        self.assertEqual(result.returncode, 0, result.stderr)
 
 
 if __name__ == '__main__':
