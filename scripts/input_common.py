@@ -16,10 +16,6 @@ def object_keys(obj,allowed,required=()):
     if set(obj)-set(allowed) or set(required)-set(obj):fail('E_SCHEMA','Unknown or missing fields: '+str(sorted((set(obj)-set(allowed))|(set(required)-set(obj)))))
 def finite(n,positive=False):
     if isinstance(n,bool) or not isinstance(n,(int,float)) or not math.isfinite(n) or positive and n<=0:fail('E_SCHEMA','Invalid coordinate or dimension')
-def valid_text(value,ident):
-    if not isinstance(value,str) or not value.strip() or len(value)>2048:fail('E_SCHEMA','Invalid or excessive label',[ident])
-    if any(ord(c)<32 and c!='\n' or 0x7f<=ord(c)<0xa0 or 0xd800<=ord(c)<=0xdfff or 0x202a<=ord(c)<=0x202e or 0x2066<=ord(c)<=0x2069 for c in value):fail('E_TEXT_UNSUPPORTED','Control or bidirectional formatting character',[ident])
-    if any(not line.strip() for line in value.split('\n')):fail('E_SCHEMA','Empty label line',[ident])
 def unique_pairs(pairs):
     d={}
     for k,v in pairs:
@@ -31,4 +27,3 @@ def loads(data):
     except (json.JSONDecodeError,UnicodeError):fail('E_SCHEMA','Invalid JSON encoding or syntax')
 def load(path):
     return loads(path.read_bytes())
-
