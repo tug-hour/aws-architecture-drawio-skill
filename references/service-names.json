@@ -1,0 +1,469 @@
+{
+  "services": {
+    "aws4.api_gateway": {
+      "allowed_names": [
+        "Amazon API Gateway"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 131,
+          "shape_id": "7",
+          "media": "ppt/media/image1305.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 129,
+          "shape_id": "7",
+          "media": "ppt/media/image1302.svg"
+        }
+      }
+    },
+    "aws4.athena": {
+      "allowed_names": [
+        "Amazon Athena"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 36,
+          "shape_id": "39",
+          "media": "ppt/media/image273.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 34,
+          "shape_id": "39",
+          "media": "ppt/media/image270.svg"
+        }
+      }
+    },
+    "aws4.aurora": {
+      "allowed_names": [
+        "Amazon Aurora"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 79,
+          "shape_id": "50",
+          "media": "ppt/media/image603.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 77,
+          "shape_id": "50",
+          "media": "ppt/media/image600.svg"
+        }
+      }
+    },
+    "aws4.cloudfront": {
+      "allowed_names": [
+        "Amazon CloudFront"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 126,
+          "shape_id": "66",
+          "media": "ppt/media/image1191.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 124,
+          "shape_id": "66",
+          "media": "ppt/media/image1188.svg"
+        }
+      }
+    },
+    "aws4.cloudsearch2": {
+      "allowed_names": [
+        "Amazon CloudSearch"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 31,
+          "shape_id": "33",
+          "media": "ppt/media/image177.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 29,
+          "shape_id": "33",
+          "media": "ppt/media/image174.svg"
+        }
+      }
+    },
+    "aws4.cloudwatch_2": {
+      "allowed_names": [
+        "Amazon CloudWatch"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 103,
+          "shape_id": "82",
+          "media": "ppt/media/image941.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 101,
+          "shape_id": "82",
+          "media": "ppt/media/image938.svg"
+        }
+      }
+    },
+    "aws4.cognito": {
+      "allowed_names": [
+        "Amazon Cognito"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 137,
+          "shape_id": "25",
+          "media": "ppt/media/image1349.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 135,
+          "shape_id": "25",
+          "media": "ppt/media/image1346.svg"
+        }
+      }
+    },
+    "aws4.dynamodb": {
+      "allowed_names": [
+        "Amazon DynamoDB"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 79,
+          "shape_id": "104449",
+          "media": "ppt/media/image611.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 77,
+          "shape_id": "104449",
+          "media": "ppt/media/image608.svg"
+        }
+      }
+    },
+    "aws4.ec2": {
+      "allowed_names": [
+        "Amazon EC2",
+        "Amazon Elastic Compute Cloud"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 63,
+          "shape_id": "89093",
+          "media": "ppt/media/image13.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 61,
+          "shape_id": "89093",
+          "media": "ppt/media/image9.svg"
+        }
+      },
+      "full_name": "Amazon Elastic Compute Cloud",
+      "short_name": "Amazon EC2",
+      "tokens": [
+        "EC2"
+      ],
+      "source_url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html"
+    },
+    "aws4.ecs": {
+      "allowed_names": [
+        "Amazon ECS",
+        "Amazon Elastic Container Service"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 71,
+          "shape_id": "99",
+          "media": "ppt/media/image555.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 69,
+          "shape_id": "99",
+          "media": "ppt/media/image552.svg"
+        }
+      },
+      "full_name": "Amazon Elastic Container Service",
+      "short_name": "Amazon ECS",
+      "tokens": [
+        "ECS"
+      ],
+      "source_url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html"
+    },
+    "aws4.eventbridge": {
+      "allowed_names": [
+        "Amazon EventBridge"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 39,
+          "shape_id": "76803",
+          "media": "ppt/media/image303.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 37,
+          "shape_id": "76803",
+          "media": "ppt/media/image300.svg"
+        }
+      }
+    },
+    "aws4.fargate": {
+      "allowed_names": [
+        "AWS Fargate"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 72,
+          "shape_id": "30",
+          "media": "ppt/media/image579.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 70,
+          "shape_id": "30",
+          "media": "ppt/media/image576.svg"
+        }
+      }
+    },
+    "aws4.iot_core": {
+      "allowed_names": [
+        "AWS IoT Core"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 98,
+          "shape_id": "28",
+          "media": "ppt/media/image781.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 96,
+          "shape_id": "28",
+          "media": "ppt/media/image778.svg"
+        }
+      }
+    },
+    "aws4.kinesis_data_firehose": {
+      "allowed_names": [
+        "Amazon Data Firehose"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 32,
+          "shape_id": "25",
+          "media": "ppt/media/image199.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 30,
+          "shape_id": "25",
+          "media": "ppt/media/image196.svg"
+        }
+      }
+    },
+    "aws4.kinesis_data_streams": {
+      "allowed_names": [
+        "Amazon Kinesis Data Streams"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 32,
+          "shape_id": "23",
+          "media": "ppt/media/image197.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 30,
+          "shape_id": "23",
+          "media": "ppt/media/image194.svg"
+        }
+      }
+    },
+    "aws4.lambda": {
+      "allowed_names": [
+        "AWS Lambda"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 64,
+          "shape_id": "91139",
+          "media": "ppt/media/image36.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 62,
+          "shape_id": "91139",
+          "media": "ppt/media/image30.svg"
+        }
+      }
+    },
+    "aws4.rds": {
+      "allowed_names": [
+        "Amazon RDS",
+        "Amazon Relational Database Service"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 81,
+          "shape_id": "27",
+          "media": "ppt/media/image643.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 79,
+          "shape_id": "27",
+          "media": "ppt/media/image640.svg"
+        }
+      },
+      "full_name": "Amazon Relational Database Service",
+      "short_name": "Amazon RDS",
+      "tokens": [
+        "RDS"
+      ],
+      "source_url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html"
+    },
+    "aws4.route_53": {
+      "allowed_names": [
+        "Amazon Route 53"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 126,
+          "shape_id": "76",
+          "media": "ppt/media/image1201.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 124,
+          "shape_id": "76",
+          "media": "ppt/media/image1198.svg"
+        }
+      }
+    },
+    "aws4.s3": {
+      "allowed_names": [
+        "Amazon S3",
+        "Amazon Simple Storage Service"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 153,
+          "shape_id": "56",
+          "media": "ppt/media/image1573.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 151,
+          "shape_id": "56",
+          "media": "ppt/media/image1570.svg"
+        }
+      },
+      "full_name": "Amazon Simple Storage Service",
+      "short_name": "Amazon S3",
+      "tokens": [
+        "S3"
+      ],
+      "source_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+    },
+    "aws4.sns": {
+      "allowed_names": [
+        "Amazon SNS",
+        "Amazon Simple Notification Service"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 38,
+          "shape_id": "29",
+          "media": "ppt/media/image281.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 36,
+          "shape_id": "29",
+          "media": "ppt/media/image278.svg"
+        }
+      },
+      "full_name": "Amazon Simple Notification Service",
+      "short_name": "Amazon SNS",
+      "tokens": [
+        "SNS"
+      ],
+      "source_url": "https://docs.aws.amazon.com/sns/latest/dg/welcome.html"
+    },
+    "aws4.sqs": {
+      "allowed_names": [
+        "Amazon SQS",
+        "Amazon Simple Queue Service"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 38,
+          "shape_id": "38",
+          "media": "ppt/media/image289.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 36,
+          "shape_id": "38",
+          "media": "ppt/media/image286.svg"
+        }
+      },
+      "full_name": "Amazon Simple Queue Service",
+      "short_name": "Amazon SQS",
+      "tokens": [
+        "SQS"
+      ],
+      "source_url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html"
+    },
+    "aws4.waf": {
+      "allowed_names": [
+        "AWS WAF"
+      ],
+      "source_ref": {
+        "light": {
+          "file": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx",
+          "slide": 141,
+          "shape_id": "44",
+          "media": "ppt/media/image1417.svg"
+        },
+        "dark": {
+          "file": "AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx",
+          "slide": 139,
+          "shape_id": "44",
+          "media": "ppt/media/image1414.svg"
+        }
+      }
+    }
+  },
+  "notes": [
+    "Allowed names derive from supplied PPTX. Expanded abbreviated names are verified in official AWS docs.",
+    "AWS WAF is an official name; do not invent an expanded product name.",
+    "Policy is required for service captions in both production and draft. General/resource captions remain customizable."
+  ]
+}

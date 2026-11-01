@@ -1,0 +1,77 @@
+{
+  "web-three-tier": {
+    "must_assets": [
+      "aws4.cloudfront",
+      "aws4.s3",
+      "aws4.fargate",
+      "aws4.aurora",
+      "aws4.dynamodb",
+      "aws4.application_load_balancer"
+    ],
+    "min_az": 2
+  },
+  "serverless-iot": {
+    "must_assets": [
+      "aws4.iot_core",
+      "aws4.lambda",
+      "aws4.kinesis_data_streams",
+      "aws4.kinesis_data_firehose"
+    ],
+    "min_az": 0
+  },
+  "asynchronous": {
+    "must_assets": [
+      "aws4.fargate",
+      "aws4.eventbridge",
+      "aws4.sqs",
+      "aws4.iot_core"
+    ],
+    "min_az": 2
+  },
+  "multi-region-dr": {
+    "must_assets": [
+      "aws4.fargate",
+      "aws4.aurora",
+      "aws4.dynamodb",
+      "aws4.route_53"
+    ],
+    "min_az": 4,
+    "min_region": 2,
+    "availability_required": true
+  },
+  "observability": {
+    "must_assets": [
+      "aws4.cloudwatch_2",
+      "aws4.sns"
+    ],
+    "min_az": 0
+  },
+  "verified-symbols": {
+    "all_verified": true,
+    "min_az": 0
+  },
+  "realtime-streaming": {
+    "must_assets": [
+      "aws4.iot_core",
+      "aws4.lambda",
+      "aws4.dynamodb",
+      "aws4.cognito"
+    ],
+    "min_az": 0
+  },
+  "dynamodb-streams": {
+    "must_assets": [
+      "aws4.dynamodb",
+      "aws4.dynamodb_stream",
+      "aws4.lambda"
+    ],
+    "min_az": 0
+  },
+  "s3-bucket": {
+    "must_assets": [
+      "aws4.cloudfront",
+      "aws4.bucket"
+    ],
+    "min_az": 0
+  }
+}

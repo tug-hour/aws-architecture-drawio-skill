@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "api",
+        "x_pt": 340,
+        "y_pt": 160
+      },
+      {
+        "node_id": "ingest",
+        "x_pt": 340,
+        "y_pt": 480
+      },
+      {
+        "node_id": "fn",
+        "x_pt": 340,
+        "y_pt": 800
+      },
+      {
+        "node_id": "cw",
+        "x_pt": 720,
+        "y_pt": 480
+      },
+      {
+        "node_id": "sns",
+        "x_pt": 1080,
+        "y_pt": 480
+      },
+      {
+        "node_id": "operator",
+        "x_pt": 1440,
+        "y_pt": 480
+      }
+    ]
+  },
+  "canvas": {
+    "mode": "auto"
+  },
+  "nodes": [
+    {
+      "id": "api",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate",
+      "group_id": "region",
+      "description": "ECS API・ワーカー"
+    },
+    {
+      "id": "ingest",
+      "asset_id": "aws4.iot_core",
+      "label": "AWS IoT Core",
+      "group_id": "region",
+      "description": "有効化したログ・指標"
+    },
+    {
+      "id": "fn",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda",
+      "group_id": "region",
+      "description": "処理・エラー"
+    },
+    {
+      "id": "cw",
+      "asset_id": "aws4.cloudwatch_2",
+      "label": "Amazon CloudWatch",
+      "group_id": "region",
+      "description": "集約・アラーム"
+    },
+    {
+      "id": "sns",
+      "asset_id": "aws4.sns",
+      "label": "Amazon SNS",
+      "group_id": "region",
+      "description": "アラーム通知"
+    },
+    {
+      "id": "operator",
+      "asset_id": "aws4.user",
+      "label": "運用担当者"
+    }
+  ],
+  "edges": [
+    {
+      "id": "observeapi",
+      "source": "api",
+      "target": "cw",
+      "direction": "forward",
+      "label": "ログ・指標"
+    },
+    {
+      "id": "observeingest",
+      "source": "ingest",
+      "target": "cw",
+      "direction": "forward",
+      "label": "ログ・指標"
+    },
+    {
+      "id": "observefn",
+      "source": "fn",
+      "target": "cw",
+      "direction": "forward",
+      "label": "ログ・指標"
+    },
+    {
+      "id": "alarm",
+      "source": "cw",
+      "target": "sns",
+      "direction": "forward",
+      "label": "アラーム"
+    },
+    {
+      "id": "notify",
+      "source": "sns",
+      "target": "operator",
+      "direction": "forward",
+      "label": "通知"
+    }
+  ],
+  "groups": [
+    {
+      "id": "aws",
+      "type": "group.aws-cloud",
+      "role": "containment",
+      "label": "AWS Cloud"
+    },
+    {
+      "id": "region",
+      "type": "group.region",
+      "role": "containment",
+      "label": "各リージョンの監視・通知",
+      "parent_id": "aws"
+    }
+  ]
+}

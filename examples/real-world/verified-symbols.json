@@ -1,0 +1,296 @@
+{
+  "schema_version": "1.0",
+  "theme": "both",
+  "layout": {
+    "mode": "manual",
+    "positions": [
+      {
+        "node_id": "icon0",
+        "x_pt": 90,
+        "y_pt": 60
+      },
+      {
+        "node_id": "icon1",
+        "x_pt": 360,
+        "y_pt": 60
+      },
+      {
+        "node_id": "icon2",
+        "x_pt": 630,
+        "y_pt": 60
+      },
+      {
+        "node_id": "icon3",
+        "x_pt": 900,
+        "y_pt": 60
+      },
+      {
+        "node_id": "icon4",
+        "x_pt": 1170,
+        "y_pt": 60
+      },
+      {
+        "node_id": "icon5",
+        "x_pt": 90,
+        "y_pt": 210
+      },
+      {
+        "node_id": "icon6",
+        "x_pt": 360,
+        "y_pt": 210
+      },
+      {
+        "node_id": "icon7",
+        "x_pt": 630,
+        "y_pt": 210
+      },
+      {
+        "node_id": "icon8",
+        "x_pt": 900,
+        "y_pt": 210
+      },
+      {
+        "node_id": "icon9",
+        "x_pt": 1170,
+        "y_pt": 210
+      },
+      {
+        "node_id": "icon10",
+        "x_pt": 90,
+        "y_pt": 360
+      },
+      {
+        "node_id": "icon11",
+        "x_pt": 360,
+        "y_pt": 360
+      },
+      {
+        "node_id": "icon12",
+        "x_pt": 630,
+        "y_pt": 360
+      },
+      {
+        "node_id": "icon13",
+        "x_pt": 900,
+        "y_pt": 360
+      },
+      {
+        "node_id": "icon14",
+        "x_pt": 1170,
+        "y_pt": 360
+      },
+      {
+        "node_id": "icon15",
+        "x_pt": 90,
+        "y_pt": 510
+      },
+      {
+        "node_id": "icon16",
+        "x_pt": 360,
+        "y_pt": 510
+      },
+      {
+        "node_id": "icon17",
+        "x_pt": 630,
+        "y_pt": 510
+      },
+      {
+        "node_id": "icon18",
+        "x_pt": 900,
+        "y_pt": 510
+      },
+      {
+        "node_id": "icon19",
+        "x_pt": 1170,
+        "y_pt": 510
+      },
+      {
+        "node_id": "icon20",
+        "x_pt": 90,
+        "y_pt": 660
+      },
+      {
+        "node_id": "icon21",
+        "x_pt": 360,
+        "y_pt": 660
+      },
+      {
+        "node_id": "icon22",
+        "x_pt": 630,
+        "y_pt": 660
+      },
+      {
+        "node_id": "icon23",
+        "x_pt": 900,
+        "y_pt": 660
+      },
+      {
+        "node_id": "icon24",
+        "x_pt": 1170,
+        "y_pt": 660
+      },
+      {
+        "node_id": "icon25",
+        "x_pt": 90,
+        "y_pt": 810
+      },
+      {
+        "node_id": "icon26",
+        "x_pt": 360,
+        "y_pt": 810
+      },
+      {
+        "node_id": "icon27",
+        "x_pt": 630,
+        "y_pt": 810
+      }
+    ]
+  },
+  "canvas": {
+    "mode": "auto"
+  },
+  "nodes": [
+    {
+      "id": "icon0",
+      "asset_id": "aws4.api_gateway",
+      "label": "Amazon API Gateway"
+    },
+    {
+      "id": "icon1",
+      "asset_id": "aws4.application_load_balancer",
+      "label": "Application Load Balancer"
+    },
+    {
+      "id": "icon2",
+      "asset_id": "aws4.athena",
+      "label": "Amazon Athena"
+    },
+    {
+      "id": "icon3",
+      "asset_id": "aws4.aurora",
+      "label": "Amazon Aurora"
+    },
+    {
+      "id": "icon4",
+      "asset_id": "aws4.client",
+      "label": "Client"
+    },
+    {
+      "id": "icon5",
+      "asset_id": "aws4.cloudfront",
+      "label": "Amazon CloudFront"
+    },
+    {
+      "id": "icon6",
+      "asset_id": "aws4.cloudsearch2",
+      "label": "Amazon CloudSearch"
+    },
+    {
+      "id": "icon7",
+      "asset_id": "aws4.cloudwatch_2",
+      "label": "Amazon CloudWatch"
+    },
+    {
+      "id": "icon8",
+      "asset_id": "aws4.cognito",
+      "label": "Amazon Cognito"
+    },
+    {
+      "id": "icon9",
+      "asset_id": "aws4.dynamodb",
+      "label": "Amazon DynamoDB"
+    },
+    {
+      "id": "icon10",
+      "asset_id": "aws4.ec2",
+      "label": "Amazon EC2"
+    },
+    {
+      "id": "icon11",
+      "asset_id": "aws4.ecs",
+      "label": "Amazon ECS"
+    },
+    {
+      "id": "icon12",
+      "asset_id": "aws4.eventbridge",
+      "label": "Amazon EventBridge"
+    },
+    {
+      "id": "icon13",
+      "asset_id": "aws4.fargate",
+      "label": "AWS Fargate"
+    },
+    {
+      "id": "icon14",
+      "asset_id": "aws4.iot_core",
+      "label": "AWS IoT Core"
+    },
+    {
+      "id": "icon15",
+      "asset_id": "aws4.kinesis_data_firehose",
+      "label": "Amazon Data Firehose"
+    },
+    {
+      "id": "icon16",
+      "asset_id": "aws4.kinesis_data_streams",
+      "label": "Amazon Kinesis\nData Streams"
+    },
+    {
+      "id": "icon17",
+      "asset_id": "aws4.lambda",
+      "label": "AWS Lambda"
+    },
+    {
+      "id": "icon18",
+      "asset_id": "aws4.rds",
+      "label": "Amazon RDS"
+    },
+    {
+      "id": "icon19",
+      "asset_id": "aws4.route_53",
+      "label": "Amazon Route 53"
+    },
+    {
+      "id": "icon20",
+      "asset_id": "aws4.s3",
+      "label": "Amazon S3"
+    },
+    {
+      "id": "icon21",
+      "asset_id": "aws4.sns",
+      "label": "Amazon SNS"
+    },
+    {
+      "id": "icon22",
+      "asset_id": "aws4.sqs",
+      "label": "Amazon SQS"
+    },
+    {
+      "id": "icon23",
+      "asset_id": "aws4.user",
+      "label": "User"
+    },
+    {
+      "id": "icon24",
+      "asset_id": "aws4.users",
+      "label": "Users"
+    },
+    {
+      "id": "icon25",
+      "asset_id": "aws4.waf",
+      "label": "AWS WAF"
+    },
+    {
+      "id": "icon26",
+      "asset_id": "aws4.dynamodb_stream",
+      "label": "Amazon DynamoDB Streams"
+    },
+    {
+      "id": "icon27",
+      "asset_id": "aws4.bucket",
+      "label": "Amazon S3 bucket"
+    }
+  ],
+  "edges": [],
+  "groups": []
+}
