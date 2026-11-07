@@ -11,9 +11,10 @@ def main():
     parser = argparse.ArgumentParser(description='JSON to editable draw.io')
     parser.add_argument('--input', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--operations', type=Path)
     args = parser.parse_args()
     try:
-        result, code = generate(args.input, args.output)
+        result, code = generate(args.input, args.output, args.operations)
     except Failure as error:
         result, code = {'status': 'failed', 'errors': [error.issue]}, error.exit_code
     except (OSError, ValueError, TypeError, KeyError) as error:

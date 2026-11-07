@@ -29,6 +29,28 @@ python3 -B "<skill-dir>/scripts/build_drawio.py" --input "<drawing.json>" --outp
 
 線はsource・targetを実際の端点へ結ぶ。source_port・target_portは各辺上の相対位置、waypointsは線のparentからの相対px。ポートを省略すればdraw.ioの接続解決に委ねられるが、経路を固定して更新したい線では採用値を明示する。既存線を別の変更に伴って再配置しない。細かなラベル位置や線のstyleもJSONで直接編集できる。
 
+## 複数の変更をまとめる
+
+通常の部品操作・文言変更・接続変更は操作配列へまとめ、同じ生成入口へ渡せる。JSONを直接編集する従来の方法も使える。
+
+```sh
+python3 -B "<skill-dir>/scripts/build_drawio.py" --input "<drawing.json>" --operations "<operations.json>" --output "<new-directory>"
+```
+
+```json
+[
+  {"op":"copy", "roots":["key"], "prefix":"copy.", "offset":[300,0]},
+  {"op":"set", "id":"copy.key.name", "fields":{"value":"AWS Key Management Service"}},
+  {"op":"move", "roots":["copy.key"], "offset":[0,150]}
+]
+```
+
+操作は配列順に適用する。addはid・atと既存add_partの指定、copy／moveはrootsと既存の引数を使う。setは既存要素の指定フィールドを更新する（overrides等の辞書はフィールド全体を置換する）。putはid・elementで新規のdrawio/1要素や接続を追加し、removeはidで要素を除去する。参照の整合性は操作配列の適用後に確認する。操作結果にはID対応と影響する外部線を返す。文言の子IDは実データまたは直前のID対応から選ぶ。操作ファイルは編集の入力であり、再生成は出力されたarchitecture.jsonだけで行える。
+
+対象部品・関連線・必要な親枠以外の保存値は変更しない。移動時に外部線の端点は追従するが、経由点は絶対位置を保つため、必要な線だけ続けて調整する。setで親やboundsを直接変える場合は、子や経由点の座標変換はしない。まとまりの移動にはmoveを使う。処理途中で不正な参照などが生じた場合は、入力を変更せず生成を失敗させる。図形の種類や配線品質で入力を拒否する処理は追加しない。
+
+規則の既定値は部品作成時だけ使い、採用値をJSONへ展開する。生成時に既存図へ再適用しない。整列・接続点・経路の計算支援は、対象を指定した操作として必要なものだけ使い、採用結果を保存する。生成するたびの自動配置は行わない。
+
 ## 部品を作る・再利用する
 
 [CaseHub](../examples/casehub.json)は複数機能・2地域の構成例。接続関係が適合する部分の配置と内部配線を再利用し、例全体のサービス構成を依頼へ強制しない。
