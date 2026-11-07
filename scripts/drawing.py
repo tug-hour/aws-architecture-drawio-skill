@@ -147,20 +147,34 @@ def author_document(source):
     return xml
 
 
-def generate(path, output):
+def generate(path, output, operations_path=None):
     """Write a new source/output pair; no browser, export, layout or optional QA."""
     start = time.perf_counter()
     path, output = Path(path), Path(output)
     if output.exists():
         fail('E_OUTPUT_EXISTS', 'Output path already exists')
     data = path.read_bytes()
-    xml = author_document(loads(data))
+    source_hash = hashlib.sha256(data).hexdigest()
+    source = loads(data)
+    operation_results = None
+    if operations_path is not None:
+        from batch import apply_operations
+        operations = loads(Path(operations_path).read_bytes())
+        if isinstance(operations, dict):
+            object_keys(operations, ('operations',), ('operations',))
+            operations = operations['operations']
+        source, operation_results = apply_operations(source, operations, validate=False)
+        data = (json.dumps(source, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
+    xml = author_document(source)
     report = {
         'status': 'authored', 'candidate_version': get_version(),
-        'source_sha256': hashlib.sha256(data).hexdigest(),
+        'source_sha256': source_hash,
         'artifacts': ['architecture.json', 'diagram.drawio'],
         'output': str(output.resolve()), 'rendered': False,
     }
+    if operation_results is not None:
+        report['operations'] = operation_results
+        report['affected_edges'] = list(dict.fromkeys(edge for result in operation_results for edge in result['affected_edges']))
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='.drawing-', dir=output.parent) as temporary:
         prepared = Path(temporary) / 'prepared'

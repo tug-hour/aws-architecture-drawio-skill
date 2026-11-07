@@ -1,0 +1,61 @@
+{
+  "source": "AWS-Architecture-Icons-Deck_For-Light-BG_01302026.pptx and AWS-Architecture-Icons-Deck_For-Dark-BG_01302026.pptx; see provenance.json",
+  "recommended": {
+    "font_size_px": 16,
+    "font_family": "Arial"
+  },
+  "mandatory": {
+    "service_size_px": 80,
+    "resource_size_px": 48,
+    "frame_icon_size_px": 40,
+    "stroke_width_px": 1.6667,
+    "nesting_buffer_px": 4.8
+  },
+  "extension": {
+    "service_glyph_scale": 0.7,
+    "japanese_font_family": "Arial Unicode MS",
+    "arrow": {
+      "endArrow": "open",
+      "endFill": 0,
+      "endSize": 6
+    }
+  },
+  "measured": {
+    "service_size_pt": 60,
+    "resource_size_pt": 36,
+    "frame_icon_size_pt": 30,
+    "stroke_width_pt": 1.25,
+    "callout_large_size_pt": 25.92,
+    "callout_large_font_pt": 14,
+    "callout_small_size_pt": 21.6,
+    "callout_small_font_pt": 11
+  },
+  "themes": {
+    "light": {
+      "background": "#FFFFFF",
+      "text": "#000000",
+      "cloud_frame": "#000000",
+      "wire": "#000000",
+      "callout_fill": "#000000",
+      "callout_text": "#FFFFFF",
+      "cloud_icon": "#242F3E"
+    },
+    "dark": {
+      "background": "#000000",
+      "text": "#FFFFFF",
+      "cloud_frame": "#FFFFFF",
+      "wire": "#8FA7C4",
+      "callout_fill": "#FFFFFF",
+      "callout_text": "#000000",
+      "cloud_icon": "#232F3E"
+    }
+  },
+  "source_refs": {
+    "dimensions": "L31+/D29+; resources L28+/D26+; groups L25-26/D23-24",
+    "stroke": "L25,D23;L27,D25",
+    "nesting_buffer": "L14/D12: should; adopted mandatory",
+    "font": "L17/D15: should",
+    "callout": "L18/D16",
+    "arrow_and_glyph": "native approximation; independent extension"
+  }
+}

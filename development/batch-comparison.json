@@ -1,0 +1,100 @@
+{
+  "candidate_version": "0.9.0",
+  "baseline_version": "0.8.0",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "comparison_kind": "Independent package trials, not instructions-only A/B/C",
+  "conditions": {
+    "baseline": {
+      "first_draft_seconds": 56.262378541,
+      "rework_count": 1,
+      "elapsed_to_shared_review_seconds": 479.5,
+      "local_changed_ids": [
+        "primary.tokyo.analytics-queue.node",
+        "standby.tokyo.analytics-queue.node"
+      ],
+      "unrelated_saved_values_identical": true,
+      "elements": 493,
+      "artifacts_directory": "redesign-20261107-baseline",
+      "renders": [
+        {
+          "name": "new-fixed",
+          "returncode": 0,
+          "seconds": 1.875001459
+        },
+        {
+          "name": "local-fixed",
+          "returncode": 0,
+          "seconds": 1.8651752079999997
+        },
+        {
+          "name": "new",
+          "returncode": 0,
+          "seconds": 1.929486875,
+          "image_exists": true
+        },
+        {
+          "name": "local",
+          "returncode": 0,
+          "seconds": 1.8934655,
+          "image_exists": true
+        }
+      ],
+      "total_rendering_seconds": 7.563
+    },
+    "candidate": {
+      "first_draft_seconds": 53,
+      "rework_count": 2,
+      "elapsed_to_shared_review_seconds": 373.5,
+      "local_changed_ids": [
+        "new.primary.tokyo.queue.node",
+        "new.standby.tokyo.queue.node"
+      ],
+      "unrelated_saved_values_identical": true,
+      "elements": 493,
+      "artifacts_directory": "redesign-20261107-candidate",
+      "renders": [
+        {
+          "name": "new-final",
+          "returncode": 0,
+          "seconds": 1.901327542
+        },
+        {
+          "name": "local-final",
+          "returncode": 0,
+          "seconds": 1.850448625
+        },
+        {
+          "name": "new-fixed",
+          "returncode": 0,
+          "seconds": 1.911729291
+        },
+        {
+          "name": "local-fixed",
+          "returncode": 0,
+          "seconds": 1.878882584
+        },
+        {
+          "name": "new",
+          "returncode": 0,
+          "seconds": 1.8719575419999999,
+          "image_exists": true
+        },
+        {
+          "name": "local",
+          "returncode": 0,
+          "seconds": 1.8969876669999999,
+          "image_exists": true
+        }
+      ],
+      "total_rendering_seconds": 11.311
+    }
+  },
+  "limitations": [
+    "Single trial with independently chosen layouts.",
+    "Local variants were made before initial visual review: end-to-end new/local times cannot be separated fairly.",
+    "Some correction planning, coordinator work and handoff waiting were not separately timed.",
+    "Shared-review elapsed includes comparison overhead and other-condition waits; it is not active work."
+  ],
+  "conclusion": "Batch operations work and unrelated local values are preserved. Candidate required two corrections versus one for baseline. End-to-end speedup is not established."
+}

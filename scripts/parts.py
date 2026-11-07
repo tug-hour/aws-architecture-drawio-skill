@@ -1,8 +1,14 @@
 """Create and transform parts in expanded drawio/1 JSON without rerouting."""
 import copy
+import json
+from pathlib import Path
 import unicodedata
 
 from input_common import fail, finite
+
+
+_RULE_DATA = json.loads((Path(__file__).resolve().parents[1] / 'references' / 'style-rules.json').read_text(encoding='utf-8'))
+_RULES = {**_RULE_DATA['mandatory'], **_RULE_DATA['recommended'], **_RULE_DATA['extension']}
 
 
 def _elements(doc):
@@ -189,7 +195,7 @@ def _caption(text, x, y, width=250, align='center', color='#000000'):
     return {'bounds': [x, y, actual_width, max(22, len(lines) * 22)],
             'value': text, 'connectable': False,
             'overrides': {'text': None, 'html': 0, 'whiteSpace': 'nowrap', 'overflow': 'visible',
-                          'align': align, 'verticalAlign': 'top', 'spacing': 0, 'fontSize': 16,
+                          'align': align, 'verticalAlign': 'top', 'spacing': 0, 'fontSize': _RULES['font_size_px'],
                           'fontFamily': 'Arial,Arial Unicode MS', 'fontColor': color,
                           'strokeColor': 'none', 'fillColor': 'none'}}
 
@@ -215,7 +221,7 @@ def add_part(source, ident, *, at, asset=None, shape=None, name=None, role='',
             fail('E_SCHEMA', 'No preset found; supply explicit shape and appearance', [ident])
     is_frame = bool(preset.get('native_icon') is not None or asset in (catalog or {}).get('groups', {})) or kind == 'frame'
     kind = 'frame' if is_frame else (kind or preset.get('role', 'service'))
-    fg = '#FFFFFF' if theme == 'dark' else '#000000'
+    fg = _RULE_DATA['themes'].get(theme, _RULE_DATA['themes']['light'])['text']
     name = name if name is not None else preset.get('name', ident)
     if kind == 'service' and '\n' not in name and len(name) > 28:
         # Choose at most two lines at a word boundary, keeping the brand attached.
@@ -225,8 +231,9 @@ def add_part(source, ident, *, at, asset=None, shape=None, name=None, role='',
             split = min(breaks, key=lambda i: abs(len(' '.join(words[:i])) - len(' '.join(words[i:]))))
             name = ' '.join(words[:split]) + '\n' + ' '.join(words[split:])
     if size is None:
-        size = (600, 400) if is_frame else (preset.get('width_pt', 60 if kind == 'service' else 36) * 4 / 3,
-                                          preset.get('height_pt', 60 if kind == 'service' else 36) * 4 / 3)
+        default_size = _RULES['service_size_px'] if kind == 'service' else _RULES['resource_size_px']
+        size = (600, 400) if is_frame else (preset.get('width_pt', default_size * 3 / 4) * 4 / 3,
+                                          preset.get('height_pt', default_size * 3 / 4) * 4 / 3)
     w, h = _delta(size)
     if min(w, h) < 0:
         fail('E_SCHEMA', 'Negative dimensions', [ident])
@@ -240,7 +247,7 @@ def add_part(source, ident, *, at, asset=None, shape=None, name=None, role='',
     if is_frame:
         overlay = preset.get('role') == 'overlay'
         border = {'shape': 'rect', 'fillColor': 'none', 'strokeColor': color,
-                  'strokeWidth': 1.6667, 'rounded': 0, 'container': int(not overlay),
+                  'strokeWidth': _RULES['stroke_width_px'], 'rounded': 0, 'container': int(not overlay),
                   'collapsible': 0, 'recursiveResize': 0}
         dash = preset.get('dash', 'solid')
         if dash != 'solid':
@@ -249,11 +256,12 @@ def add_part(source, ident, *, at, asset=None, shape=None, name=None, role='',
         icon = shape or preset.get('native_icon')
         if icon:
             cloud = asset == 'group.aws-cloud'
-            icon_x = (w - 40) / 2 if overlay else 0
-            items[ident + '.header-base'] = {'parent': ident, 'bounds': [icon_x, 0, 40, 40], 'connectable': False,
+            icon_size = _RULES['frame_icon_size_px']
+            icon_x = (w - icon_size) / 2 if overlay else 0
+            items[ident + '.header-base'] = {'parent': ident, 'bounds': [icon_x, 0, icon_size, icon_size], 'connectable': False,
                                            'overrides': {'shape': 'rect', 'fillColor': '#FFFFFF', 'strokeColor': 'none'}}
-            items[ident + '.glyph'] = {'parent': ident, 'bounds': [icon_x, 0, 40, 40], 'connectable': False,
-                                      'overrides': {'shape': icon, 'fillColor': ('#232F3E' if theme == 'dark' else '#242F3E') if cloud else color,
+            items[ident + '.glyph'] = {'parent': ident, 'bounds': [icon_x, 0, icon_size, icon_size], 'connectable': False,
+                                      'overrides': {'shape': icon, 'fillColor': _RULE_DATA['themes'].get(theme, _RULE_DATA['themes']['light'])['cloud_icon'] if cloud else color,
                                                     'strokeColor': 'none', 'aspect': 'fixed'}}
         items[ident + '.name'] = (_caption(name, 0, 44, w, 'center', fg) if overlay
                                   else _caption(name, 46 if icon else 8, 4, max(0, w - 54), 'left', fg))
@@ -268,7 +276,7 @@ def add_part(source, ident, *, at, asset=None, shape=None, name=None, role='',
                                 'overrides': {'shape': 'rect', 'fillColor': color if kind == 'service' else 'none',
                                               'strokeColor': 'none', 'perimeter': 'rectanglePerimeter'}}
         nw, nh = preset.get('native_width', 1), preset.get('native_height', 1)
-        factor = min(w, h) * (0.7 if kind == 'service' else 1) / max(nw, nh)
+        factor = min(w, h) * (_RULES['service_glyph_scale'] if kind == 'service' else 1) / max(nw, nh)
         gw, gh = nw * factor, nh * factor
         glyph_color = '#FFFFFF' if kind == 'service' else preset.get('theme_colors', {}).get(theme, color)
         items[ident + '.glyph'] = {'parent': ident + '.icon', 'bounds': [(w - gw) / 2, (h - gh) / 2, gw, gh],
